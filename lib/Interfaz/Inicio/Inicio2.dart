@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:turismo/Interfaz/Inicio/Inicio1.dart';
 import 'package:turismo/Interfaz/Inicio/login.dart';
+import 'package:turismo/Interfaz/Usuarios/Inicio.dart';
 import 'package:turismo/Interfaz/Usuarios/registrarUsuario.dart';
 import 'package:turismo/Interfaz/Usuarios/vistaIzquierda.dart';
 import 'package:turismo/Interfaz/constante.dart';
@@ -23,6 +24,7 @@ class _Inicio2State extends State<Inicio2> {
     return Scaffold(
       appBar: new PreferredSize(
         child: new Container(
+          
           padding: new EdgeInsets.only(top: MediaQuery.of(context).padding.top),
           child: new Padding(
             padding: const EdgeInsets.only(
@@ -31,13 +33,14 @@ class _Inicio2State extends State<Inicio2> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 IconButton(
+                  
                   iconSize: 25,
                   icon: Icon(Icons.arrow_back_ios_outlined),
                   color: Colors.white,
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (_) => VistaIzquierda(),
+                        builder: (_) => Inicio(),
                       ),
                     );
                   },
@@ -46,7 +49,7 @@ class _Inicio2State extends State<Inicio2> {
                   width: (moreSize * 2),
                 ),
                 Text(
-                  'Buscar',
+                  'Inicio',
                   style: new TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.w500,
@@ -57,18 +60,20 @@ class _Inicio2State extends State<Inicio2> {
             ),
           ),
           decoration: new BoxDecoration(
-              gradient: new LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: deliveryGradients,
-              ),
-              boxShadow: [
+            gradient: new LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: deliveryGradients,
+            ),
+            
+            /*boxShadow: [
                 new BoxShadow(
                   color: Colors.grey,
                   blurRadius: 20.0,
                   spreadRadius: 1.0,
                 )
-              ]),
+              ]*/
+          ),
         ),
         preferredSize: new Size(MediaQuery.of(context).size.width, 150.0),
       ),

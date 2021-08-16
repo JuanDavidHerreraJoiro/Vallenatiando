@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:icon/icon.dart';
 import 'package:turismo/Interfaz/Inicio/Inicio1.dart';
 import 'package:turismo/Interfaz/Inicio/Inicio2.dart';
+import 'package:turismo/Interfaz/Inicio/login.dart';
 import 'package:turismo/Interfaz/Inicio/tipoRegistro.dart';
 import 'package:turismo/Interfaz/Usuarios/Inicio.dart';
+import 'package:turismo/Interfaz/Usuarios/login.dart';
 import 'package:turismo/Interfaz/constante.dart';
 
 class VistaIzquierda extends StatefulWidget {
@@ -305,7 +307,7 @@ class _VistaIzquierdaHomeStateState extends State<_VistaIzquierdaHomeState> {
                             ),
                             onPressed: () {
                               Navigator.of(context).pushReplacement(
-                                //validar si tiene empresa 
+                                //validar si tiene empresa
                                 //si tiene empresa muestra Registras Producto
                                 //No tiene muestra registrar empresa
                                 MaterialPageRoute(
@@ -372,7 +374,7 @@ class _VistaIzquierdaHomeStateState extends State<_VistaIzquierdaHomeState> {
                             onPressed: () {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                  builder: (_) => Inicio2(),
+                                  builder: (_) => CuentaLogin(),
                                 ),
                               );
                             },
