@@ -1,8 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:turismo/Interfaz/Inicio/Inicio1.dart';
+import 'package:turismo/Interfaz/Inicio/inicio1.dart';
 import 'package:turismo/Interfaz/Inicio/buscar.dart';
-import 'package:turismo/Interfaz/Usuarios/vistaIzquierda2.dart';
+import 'package:turismo/Interfaz/Usuarios/vistaIzquierdaNoUsuarios.dart';
+import 'package:turismo/Interfaz/Usuarios/vistaIzquierdaUsuarios.dart';
+import 'package:turismo/Interfaz/Usuarios/vistaIzquierdaUsuarios.dart';
 import 'package:turismo/Interfaz/constante.dart';
 import 'dart:math';
 
@@ -38,6 +40,7 @@ class _CentroInicioState extends StatefulWidget {
 }
 
 int index2 = 0;
+bool logueado = false;
 
 class __CentroInicioStateState extends State<_CentroInicioState> {
   String consultatipo = "Productos";
@@ -63,118 +66,8 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
             ),
           ),
           SafeArea(
-            child: VistaIzquierda2(),
+            child: tipoVistaIzquierda(),
           ),
-          /*SafeArea(
-            child: Container(
-              width: 300.0,
-              padding: EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: DrawerHeader(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CircleAvatar(
-                            radius: (logoSize + 10) + 2,
-                            child: CircleAvatar(
-                              radius: (logoSize + 10),
-                              backgroundColor: Colors.white,
-                              child: ClipOval(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(0.0),
-                                  child: Image.asset(logo1),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: ListView(
-                      children: [
-                        ListTile(
-                          onTap: () {},
-                          leading: Icon(
-                            Icons.fiber_new,
-                            color: Colors.white,
-                          ),
-                          title: Text(
-                            "Crear Cuenta",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        ListTile(
-                          onTap: () {},
-                          leading: Icon(
-                            Icons.local_offer,
-                            color: Colors.white,
-                          ),
-                          title: Text(
-                            "Ofertas",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        ListTile(
-                          onTap: () {},
-                          leading: Icon(
-                            Icons.live_help,
-                            color: Colors.white,
-                          ),
-                          title: Text(
-                            "Ayuda",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        ListTile(
-                          onTap: () {},
-                          leading: Icon(
-                            Icons.menu_book,
-                            color: Colors.white,
-                          ),
-                          title: Text(
-                            "Terminos Legales",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        ListTile(
-                          onTap: () {},
-                          leading: Icon(
-                            Icons.more_horiz,
-                            color: Colors.white,
-                          ),
-                          title: Text(
-                            "Acerca de ¿?",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),*/
           TweenAnimationBuilder(
             tween: Tween<double>(begin: 0, end: value),
             duration: Duration(milliseconds: 500),
@@ -235,29 +128,21 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                                 ),
                               ),
                             ),
-                            Container(
-                                height: MediaQuery.of(context).size.height,
-                                width: MediaQuery.of(context).size.width,
-                                child: SingleChildScrollView(
-                                  padding: EdgeInsets.only(
-                                      left: 0, right: 380, top: 35, bottom: 40),
-                                  child: Column(
-                                    children: [
-                                      IconButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              value == 0
-                                                  ? value = 1
-                                                  : value = 0;
-                                            });
-                                          },
-                                          icon: Icon(
-                                            Icons.menu,
-                                            color: Colors.white,
-                                          ))
-                                    ],
-                                  ),
-                                )),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: 10, right: 5, top: 30, bottom: 10),
+                              child: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    value == 0 ? value = 1 : value = 0;
+                                  });
+                                },
+                                icon: Icon(
+                                  Icons.menu,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
                             Align(
                               alignment: Alignment.bottomCenter,
                               child: CircleAvatar(
@@ -409,6 +294,14 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
         ],
       ),
     );
+  }
+
+  StatefulWidget tipoVistaIzquierda() {
+    if (logueado == false) {
+      return VistaIzquierdaNoUsuarios();
+    } else {
+      return VistaIzquierdaUsuarios();
+    }
   }
 }
 

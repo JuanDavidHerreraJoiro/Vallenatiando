@@ -17,11 +17,16 @@ class DeliveryColorsRedOrange {
   static final red3 = Color(0xFFf77268);
   static final red4 = Color(0xFFBe2525);
   static final red5 = Color(0xFFc53b3b);
+  static final red6 = Color(0xFFFC8D8D);
+  static final red7 = Color(0xFF870802);
+  static final red8 = Color(0xFFFF6F4C);
+  static final red9 = Color(0xFFFC9491);
   static final orange6 = Color(0xFFFFA500);
   static final orange7 = Color(0xFFFF8C00);
   static final orange8 = Color(0xFFffb366);
   static final orange9 = Color(0xFFffa64d);
   static final orange10 = Color(0xFFff8000);
+  static final orange11 = Color(0xFFFDAE9E);
 }
 
 final _border = OutlineInputBorder(
@@ -55,3 +60,9 @@ final deliveryGradients = [
   DeliveryColorsRedOrange.red3,
   DeliveryColorsRedOrange.orange8,
 ];
+
+final deliveryGradients2 = [
+  DeliveryColorsRedOrange.orange11,
+  DeliveryColorsRedOrange.red6,
+];
+

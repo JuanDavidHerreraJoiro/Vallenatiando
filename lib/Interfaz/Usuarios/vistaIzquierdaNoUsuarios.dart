@@ -1,20 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:turismo/Interfaz/Inicio/Inicio1.dart';
-import 'package:turismo/Interfaz/Inicio/Inicio2.dart';
-import 'package:turismo/Interfaz/Inicio/login.dart';
-import 'package:turismo/Interfaz/Usuarios/Inicio.dart';
-import 'package:turismo/Interfaz/Usuarios/registrarUsuario.dart';
-import 'package:turismo/Interfaz/constante.dart';
+import 'package:turismo/Interfaz/Inicio/inicio1.dart';
+import 'package:turismo/Interfaz/Inicio/inicioCuenta.dart';
 
-class VistaIzquierda2 extends StatefulWidget {
+class VistaIzquierdaNoUsuarios extends StatefulWidget {
   @override
-  _VistaIzquierda2State createState() => _VistaIzquierda2State();
+  _VistaIzquierdaNoUsuariosState createState() =>
+      _VistaIzquierdaNoUsuariosState();
 }
 
-class _VistaIzquierda2State extends State<VistaIzquierda2> {
+class _VistaIzquierdaNoUsuariosState extends State<VistaIzquierdaNoUsuarios> {
+  _VistaIzquierdaNoUsuariosState();
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(context) {
     const logoSize = 80.0;
     return Container(
       width: 300.0,
@@ -55,7 +54,7 @@ class _VistaIzquierda2State extends State<VistaIzquierda2> {
                   onTap: () {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (_) => Inicio2(),
+                        builder: (_) => InicioCuenta(),
                       ),
                     );
                   },

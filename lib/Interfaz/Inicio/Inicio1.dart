@@ -57,13 +57,6 @@ class _Inicio1State extends State<Inicio1> {
                 ),
               ),
             ),
-            /*CircleAvatar(
-              radius: 150,
-              backgroundColor: Colors.white,
-              child: ClipOval(
-                child: Image.asset(logo1),
-              ),
-            )*/
           ],
         ),
       ),

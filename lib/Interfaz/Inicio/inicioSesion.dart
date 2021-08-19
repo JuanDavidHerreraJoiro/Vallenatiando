@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:turismo/Interfaz/Inicio/Inicio1.dart';
-import 'package:turismo/Interfaz/Inicio/Inicio2.dart';
+import 'package:turismo/Bll/MensajesService.dart';
+import 'package:turismo/Bll/UsuariosServices.dart';
+import 'package:turismo/Interfaz/Inicio/inicio1.dart';
+import 'package:turismo/Interfaz/Inicio/inicioCuenta.dart';
 import 'package:turismo/Interfaz/Usuarios/Inicio.dart';
+import 'package:turismo/Interfaz/componentes/textFormfield.dart';
 import 'package:turismo/Interfaz/constante.dart';
 
 bool verpassword = true;
@@ -9,12 +12,12 @@ bool verpassword = true;
 TextEditingController controladorUsuario = new TextEditingController();
 TextEditingController controladorPassword = new TextEditingController();
 
-class Login extends StatefulWidget {
+class InicioSesion extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _InicioSesionState createState() => _InicioSesionState();
 }
 
-class _LoginState extends State<Login> {
+class _InicioSesionState extends State<InicioSesion> {
   @override
   void initState() {
     controladorUsuario;
@@ -39,7 +42,7 @@ class _LoginState extends State<Login> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Stack(
               children: [
                 Positioned(
@@ -52,7 +55,7 @@ class _LoginState extends State<Login> {
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
-                        colors: deliveryGradients,
+                        colors: [Colors.orangeAccent, Colors.redAccent],
                       ),
                       borderRadius: BorderRadius.vertical(bottom: Radius.zero),
                     ),
@@ -84,79 +87,70 @@ class _LoginState extends State<Login> {
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  //crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     const SizedBox(
                       height: 40,
                     ),
                     Text(
-                      "Login",
+                      "Inicio de sesión",
                       style: Theme.of(context).textTheme.headline4!.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: DeliveryColorsRedOrange.red1,
+                            fontWeight: FontWeight.w300,
+                            color: DeliveryColorsRedOrange.red7,
                           ),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(
                       height: 50,
                     ),
-                    Text(
-                      "Username",
-                      textAlign: TextAlign.start,
-                      style: Theme.of(context).textTheme.headline6!.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: DeliveryColorsRedOrange.red1,
+                    TextFieldContainer(
+                      child: TextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        controller: controladorUsuario,
+                        cursorColor: Colors.white,
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        decoration: InputDecoration(
+                          icon: Icon(
+                            Icons.person,
+                            color: Colors.white,
+                            size: 30,
                           ),
-                    ),
-                    TextField(
-                      controller: controladorUsuario,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.person_outline,
-                          color: Colors.black,
+                          hintText: "Usuario",
+                          hintStyle:
+                              TextStyle(color: Colors.white, fontSize: 18),
+                          border: InputBorder.none,
                         ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide: BorderSide(
-                              color: DeliveryColorsRedOrange.red1,
-                              width: 2,
-                              style: BorderStyle.solid),
-                        ),
-                        hintText: "Username",
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
-                    Text(
-                      "Password",
-                      textAlign: TextAlign.start,
-                      style: Theme.of(context).textTheme.headline6!.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: DeliveryColorsRedOrange.red1,
+                    TextFieldContainer(
+                      child: TextFormField(
+                        controller: controladorPassword,
+                        obscureText: verpassword,
+                        cursorColor: Colors.redAccent,
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        decoration: InputDecoration(
+                          hintText: "Contraseña",
+                          hintStyle:
+                              TextStyle(color: Colors.white, fontSize: 18),
+                          icon: Icon(
+                            Icons.lock,
+                            color: Colors.white,
+                            size: 30,
                           ),
-                    ),
-                    TextField(
-                      controller: controladorPassword,
-                      obscureText: verpassword,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.lock_outline,
-                          color: Colors.black,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide: BorderSide(
-                              color: DeliveryColorsRedOrange.grey,
-                              width: 2,
-                              style: BorderStyle.solid),
-                        ),
-                        hintText: "Password",
-                        suffix: GestureDetector(
-                          onTap: visibility,
-                          child: Icon(verpassword
-                              ? Icons.visibility_off
-                              : Icons.visibility),
+                          suffix: GestureDetector(
+                            onTap: visibility,
+                            child: Icon(
+                              verpassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: Colors.white,
+                            ),
+                          ),
+                          border: InputBorder.none,
                         ),
                       ),
                     ),
@@ -174,11 +168,32 @@ class _LoginState extends State<Login> {
                   flex: 6,
                   child: InkWell(
                     onTap: () async {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (_) => Inicio(),
-                        ),
-                      );
+                      if (controladorUsuario.text.isNotEmpty &&
+                          controladorPassword.text.isNotEmpty) {
+                        bool resultdo = false;
+                        resultdo = await listarUsuariosPassword1(
+                            controladorUsuario.text, controladorPassword.text);
+
+                        if (resultdo == true) {
+                          String texto1 = 'USUARIO & PASSWORD CORRECTOS';
+                          String texto2 = 'INICIAR SESION';
+                          MensajeService(context, texto1, Colors.green.shade300,
+                              texto2, true);
+                        } else {
+                          String texto1 = '¿USUARIO U/O PASSWORD INCORRECTOS?';
+                          String texto2 = 'INICIAR SESION ERROR...';
+                          MensajeService(context, texto1,
+                              DeliveryColorsRedOrange.red3, texto2, false);
+                        }
+                        controladorUsuario.text = "";
+                        controladorPassword.text = "";
+                        logueado = resultdo;
+                      } else {
+                        String texto1 = '¿USUARIO U/O PASSWORD ESTAN VACIOS?';
+                        String texto2 = 'INICIAR SESION ERROR...';
+                        MensajeService(context, texto1,
+                            DeliveryColorsRedOrange.red3, texto2, false);
+                      }
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -186,7 +201,10 @@ class _LoginState extends State<Login> {
                         gradient: LinearGradient(
                           begin: Alignment.centerRight,
                           end: Alignment.centerLeft,
-                          colors: deliveryGradients,
+                          colors: [
+                            Colors.orangeAccent,
+                            Colors.redAccent,
+                          ],
                         ),
                       ),
                       child: Padding(
@@ -208,7 +226,7 @@ class _LoginState extends State<Login> {
                     onPressed: () {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (_) => Inicio2(),
+                          builder: (_) => InicioCuenta(),
                         ),
                       );
                     },

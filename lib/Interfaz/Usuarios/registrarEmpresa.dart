@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:turismo/Interfaz/Usuarios/vistaIzquierda.dart';
+import 'package:turismo/Interfaz/Usuarios/vistaIzquierdaUsuarios.dart';
 import 'package:turismo/Interfaz/constante.dart';
 
 TextEditingController controladorNIT = new TextEditingController();
@@ -70,7 +70,7 @@ class _RegistrarEmpresaHomeStateState
                   color: Colors.white,
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (_) => VistaIzquierda()),
+                      MaterialPageRoute(builder: (_) => VistaIzquierdaUsuarios()),
                     );
                   },
                 ),

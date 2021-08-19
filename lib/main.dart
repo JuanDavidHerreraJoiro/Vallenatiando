@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:turismo/Interfaz/Inicio/Inicio1.dart';
+import 'package:turismo/Interfaz/Inicio/inicio1.dart';
 
 void main() {
   runApp(MyApp());

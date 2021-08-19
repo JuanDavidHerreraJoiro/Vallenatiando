@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:turismo/Interfaz/Usuarios/Inicio.dart';
 import 'package:turismo/Interfaz/constante.dart';
-import 'package:turismo/Interfaz/Inicio/Inicio1.dart';
+import 'package:turismo/Interfaz/Inicio/inicio1.dart';
 import 'dart:math';
 
 class Buscar extends StatefulWidget {

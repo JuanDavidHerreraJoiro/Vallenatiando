@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:turismo/Interfaz/Inicio/Inicio2.dart';
+import 'package:turismo/Bll/MensajesService.dart';
+import 'package:turismo/Bll/PersonasService.dart';
+import 'package:turismo/Entity/Personas.dart';
+import 'package:turismo/Interfaz/Inicio/inicio1.dart';
+import 'package:turismo/Interfaz/Inicio/inicioCuenta.dart';
+import 'package:turismo/Interfaz/Inicio/inicioSesion.dart';
+import 'package:turismo/Interfaz/Usuarios/registrarCuenta.dart';
 import 'package:turismo/Interfaz/constante.dart';
 
 TextEditingController controladorTipoIdentificacion =
@@ -12,6 +18,9 @@ TextEditingController controladorTelefono1 = new TextEditingController();
 TextEditingController controladorTelefono2 = new TextEditingController();
 
 class RegistrarUsuario extends StatefulWidget {
+  Personas persona = new Personas();
+  RegistrarUsuario({Key? key, required this.persona});
+
   @override
   _RegistrarUsuarioState createState() {
     return _RegistrarUsuarioState();
@@ -24,11 +33,14 @@ class _RegistrarUsuarioState extends State<RegistrarUsuario> {
     Size size = MediaQuery.of(context).size;
     var width = size.width;
     var moreSize = 50;
-    return _RegistrarUsuarioHomeState();
+    return _RegistrarUsuarioHomeState(persona: widget.persona);
   }
 }
 
 class _RegistrarUsuarioHomeState extends StatefulWidget {
+  Personas persona = new Personas();
+  _RegistrarUsuarioHomeState({Key? key, required this.persona});
+
   @override
   _RegistrarUsuarioHomeStateState createState() {
     return _RegistrarUsuarioHomeStateState();
@@ -58,48 +70,6 @@ class _RegistrarUsuarioHomeStateState
     var moreSize = 50;
     const logoSize = 70.0;
     return Scaffold(
-      appBar: new PreferredSize(
-        child: new Container(
-          padding: new EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-          child: new Padding(
-            padding: const EdgeInsets.only(
-                left: 10.0, top: 5.0, bottom: 5.0, right: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                IconButton(
-                  iconSize: 25,
-                  icon: Icon(Icons.close),
-                  color: Colors.white,
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (_) => Inicio2()),
-                    );
-                  },
-                ),
-                SizedBox(
-                  width: moreSize * 1.1,
-                ),
-                Text(
-                  'VALLENATIANDO', //'Home'
-                  style: new TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          ),
-          decoration: new BoxDecoration(
-            gradient: new LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: deliveryGradients),
-          ),
-        ),
-        preferredSize: new Size(MediaQuery.of(context).size.width, 150.0),
-      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -111,40 +81,50 @@ class _RegistrarUsuarioHomeStateState
                 child: Container(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       const SizedBox(
                         height: 40,
                       ),
                       Text(
-                        "Registro Persona",
+                        "Registro de Datos Personales",
                         style: TextStyle(
                             fontSize: 30,
                             color: DeliveryColorsRedOrange.red1,
-                            fontWeight: FontWeight.bold),
+                            fontWeight: FontWeight.w300),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Tipo de identificacion",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: DeliveryColorsRedOrange.red1,
-                            fontWeight: FontWeight.bold),
+                        height: 35,
                       ),
                       Container(
+                        margin:
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+                        child: Text(
+                          "Tipo de identificacion",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: DeliveryColorsRedOrange.red1,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Container(
+                        margin:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                        //padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                        width: size.width * 0.8,
                         decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              colors: [Colors.orangeAccent, Colors.redAccent]),
                           color: DeliveryColorsRedOrange.orange10,
-                          borderRadius: BorderRadius.circular(0.0),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              bottom: 0, left: 20, right: 10, top: 0),
+                              bottom: 0, left: 20, right: 30, top: 0),
                           child: SizedBox(
-                            width: size.width / 1.5,
+                            width: size.width * 0.8,
                             child: DropdownButton<String>(
                               isExpanded: true,
                               //elevation: 5,
@@ -191,176 +171,167 @@ class _RegistrarUsuarioHomeStateState
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Nº ID",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: DeliveryColorsRedOrange.red1,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      TextField(
-                        controller: controladorIdentificacion,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.person_pin_outlined,
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        child: TextFormField(
+                          controller: controladorIdentificacion,
+                          style: TextStyle(
                             color: Colors.black,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(
-                                color: DeliveryColorsRedOrange.grey,
-                                width: 2,
-                                style: BorderStyle.solid),
-                          ),
-                          hintText: "Nº ID",
+                          ), // // Probar todos los teclados
+                          decoration: new InputDecoration(
+                              icon: Icon(
+                                Icons.badge,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red, width: 0.5),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.black, width: 0.5),
+                              ),
+                              labelText: 'Identificacion',
+                              labelStyle: TextStyle(
+                                color: Colors.black,
+                              )),
                         ),
                       ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Nombres",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: DeliveryColorsRedOrange.red1,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      TextField(
-                        controller: controladorNombre,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.person,
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        child: TextFormField(
+                          controller: controladorNombre,
+                          style: TextStyle(
                             color: Colors.black,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(
-                                color: DeliveryColorsRedOrange.grey,
-                                width: 2,
-                                style: BorderStyle.solid),
-                          ),
-                          hintText: "Nombre",
+                          ), // // Probar todos los teclados
+                          decoration: new InputDecoration(
+                              icon: Icon(
+                                Icons.person_pin,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red, width: 0.5),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.black, width: 0.5),
+                              ),
+                              labelText: 'Nombre',
+                              labelStyle: TextStyle(
+                                color: Colors.black,
+                              )),
                         ),
                       ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Apellidos",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: DeliveryColorsRedOrange.red1,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      TextField(
-                        controller: controladorApellido,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.person,
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        child: TextFormField(
+                          controller: controladorApellido,
+                          style: TextStyle(
                             color: Colors.black,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(
-                                color: DeliveryColorsRedOrange.grey,
-                                width: 2,
-                                style: BorderStyle.solid),
-                          ),
-                          hintText: "Apellido",
+                          ), // // Probar todos los teclados
+                          decoration: new InputDecoration(
+                              icon: Icon(
+                                Icons.person_pin,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red, width: 0.5),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.black, width: 0.5),
+                              ),
+                              labelText: 'Apellido',
+                              labelStyle: TextStyle(
+                                color: Colors.black,
+                              )),
                         ),
                       ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Direccion",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: DeliveryColorsRedOrange.red1,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      TextField(
-                        controller: controladorDireccion,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.circle,
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        child: TextFormField(
+                          controller: controladorDireccion,
+                          style: TextStyle(
                             color: Colors.black,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(
-                                color: DeliveryColorsRedOrange.grey,
-                                width: 2,
-                                style: BorderStyle.solid),
-                          ),
-                          hintText: "Direccion",
+                          ), // // Probar todos los teclados
+                          decoration: new InputDecoration(
+                              icon: Icon(
+                                Icons.directions,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red, width: 0.5),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.black, width: 0.5),
+                              ),
+                              labelText: 'Direccion',
+                              labelStyle: TextStyle(
+                                color: Colors.black,
+                              )),
                         ),
                       ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Telefono",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: DeliveryColorsRedOrange.red1,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      TextField(
-                        controller: controladorTelefono1,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.phone,
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        child: TextFormField(
+                          controller: controladorTelefono1,
+                          style: TextStyle(
                             color: Colors.black,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(
-                                color: DeliveryColorsRedOrange.grey,
-                                width: 2,
-                                style: BorderStyle.solid),
-                          ),
-                          hintText: "Telefono",
+                          ), // // Probar todos los teclados
+                          decoration: new InputDecoration(
+                              icon: Icon(
+                                Icons.phone,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red, width: 0.5),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.black, width: 0.5),
+                              ),
+                              labelText: 'Telefono 1',
+                              labelStyle: TextStyle(
+                                color: Colors.black,
+                              )),
                         ),
                       ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Telefono",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: DeliveryColorsRedOrange.red1,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      TextField(
-                        controller: controladorTelefono2,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.phone,
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        child: TextFormField(
+                          controller: controladorTelefono2,
+                          style: TextStyle(
                             color: Colors.black,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(
-                                color: DeliveryColorsRedOrange.grey,
-                                width: 2,
-                                style: BorderStyle.solid),
-                          ),
-                          hintText: "Telefono",
+                          ), // // Probar todos los teclados
+                          decoration: new InputDecoration(
+                              icon: Icon(
+                                Icons.phone_android,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red, width: 0.5),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.black, width: 0.5),
+                              ),
+                              labelText: 'Telefono 2',
+                              labelStyle: TextStyle(
+                                color: Colors.black,
+                              )),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 15,
                       ),
                     ],
                   ),
@@ -369,21 +340,59 @@ class _RegistrarUsuarioHomeStateState
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(25),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Expanded(
                   flex: 6,
                   child: InkWell(
-                    onTap: () async {},
+                    onTap: () async {
+                      if (controladorTipoIdentificacion.text.isNotEmpty &&
+                          controladorIdentificacion.text.isNotEmpty &&
+                          controladorNombre.text.isNotEmpty &&
+                          controladorApellido.text.isNotEmpty &&
+                          controladorDireccion.text.isNotEmpty &&
+                          controladorTelefono1.text.isNotEmpty) {
+                        Personas personasnueva = new Personas();
+                        personasnueva.tipoIdentificacion =
+                            controladorTipoIdentificacion.text;
+                        personasnueva.idPersona =
+                            controladorIdentificacion.text;
+                        personasnueva.nombre = controladorNombre.text;
+                        personasnueva.apellido = controladorApellido.text;
+                        personasnueva.direccion = controladorDireccion.text;
+                        personasnueva.telefono = controladorTelefono1.text;
+                        personasnueva.celular = controladorTelefono2.text;
+                        personasnueva.estado = "ACTIVO";
+                        personasnueva.usuario = widget.persona.usuario;
+                        personasnueva.password = widget.persona.password;
+
+                        RegistrarPersonas1(personasnueva);
+
+                        print(personasnueva.toMap());
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (_) => InicioSesion(),
+                          ),
+                        );
+                      } else {
+                        String texto1 = '¿HAY CAMPOS VACIOS?';
+                        String texto2 = 'REGISTRAR PERSONA ERROR...';
+                        MensajeService(context, texto1,
+                            DeliveryColorsRedOrange.red3, texto2, false);
+                      }
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(14.0),
                         gradient: LinearGradient(
                           begin: Alignment.centerRight,
                           end: Alignment.centerLeft,
-                          colors: deliveryGradients,
+                          colors: [
+                            Colors.orangeAccent,
+                            Colors.redAccent,
+                          ],
                         ),
                       ),
                       child: Padding(
@@ -397,6 +406,20 @@ class _RegistrarUsuarioHomeStateState
                     ),
                   ),
                 ),
+                Expanded(
+                  flex: 1,
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back_ios_rounded),
+                    color: Colors.black,
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (_) => InicioCuenta(),
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ],
             ),
           ),
@@ -404,4 +427,16 @@ class _RegistrarUsuarioHomeStateState
       ),
     );
   }
+}
+
+Widget _buildCircleAvatar(BuildContext context) {
+  return Center(
+      child: Stack(
+    children: <Widget>[
+      CircleAvatar(
+        radius: 80.0,
+        backgroundImage: AssetImage(logo1),
+      ),
+    ],
+  ));
 }

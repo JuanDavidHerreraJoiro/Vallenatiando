@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:turismo/Interfaz/Inicio/Inicio1.dart';
+import 'package:turismo/Interfaz/Inicio/inicio1.dart';
 import 'package:turismo/Interfaz/Usuarios/registrarEmpresa.dart';
 import 'package:turismo/Interfaz/Usuarios/registroProducto.dart';
-import 'package:turismo/Interfaz/Usuarios/vistaIzquierda.dart';
+import 'package:turismo/Interfaz/Usuarios/vistaIzquierdaUsuarios.dart';
 import 'package:turismo/Interfaz/constante.dart';
 
 class TipoRegistro extends StatefulWidget {
@@ -36,7 +36,7 @@ class _TipoRegistroState extends State<TipoRegistro> {
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (_) => VistaIzquierda(),
+                        builder: (_) => VistaIzquierdaUsuarios(),
                       ),
                     );
                   },
