@@ -6,6 +6,7 @@ import 'package:turismo/Interfaz/Inicio/inicio1.dart';
 import 'package:turismo/Interfaz/Inicio/inicioCuenta.dart';
 import 'package:turismo/Interfaz/Inicio/inicioSesion.dart';
 import 'package:turismo/Interfaz/Usuarios/registrarCuenta.dart';
+import 'package:turismo/Interfaz/componentes/TextFielForm.dart';
 import 'package:turismo/Interfaz/constante.dart';
 
 TextEditingController controladorTipoIdentificacion =
@@ -17,6 +18,7 @@ TextEditingController controladorDireccion = new TextEditingController();
 TextEditingController controladorTelefono1 = new TextEditingController();
 TextEditingController controladorTelefono2 = new TextEditingController();
 
+// ignore: must_be_immutable
 class RegistrarUsuario extends StatefulWidget {
   Personas persona = new Personas();
   RegistrarUsuario({Key? key, required this.persona});
@@ -31,14 +33,18 @@ class _RegistrarUsuarioState extends State<RegistrarUsuario> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    // ignore: unused_local_variable
     var width = size.width;
+    // ignore: unused_local_variable
     var moreSize = 50;
     return _RegistrarUsuarioHomeState(persona: widget.persona);
   }
 }
 
+// ignore: must_be_immutable
 class _RegistrarUsuarioHomeState extends StatefulWidget {
   Personas persona = new Personas();
+  // ignore: unused_element
   _RegistrarUsuarioHomeState({Key? key, required this.persona});
 
   @override
@@ -66,8 +72,11 @@ class _RegistrarUsuarioHomeStateState
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    // ignore: unused_local_variable
     var width = size.width;
+    // ignore: unused_local_variable
     var moreSize = 50;
+    // ignore: unused_local_variable
     const logoSize = 70.0;
     return Scaffold(
       body: Column(
@@ -89,9 +98,9 @@ class _RegistrarUsuarioHomeStateState
                       Text(
                         "Registro de Datos Personales",
                         style: TextStyle(
-                            fontSize: 30,
+                            fontSize: 25,
                             color: DeliveryColorsRedOrange.red1,
-                            fontWeight: FontWeight.w300),
+                            fontWeight: FontWeight.w400),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(
@@ -106,7 +115,7 @@ class _RegistrarUsuarioHomeStateState
                           style: TextStyle(
                               fontSize: 18,
                               color: DeliveryColorsRedOrange.red1,
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.w400),
                         ),
                       ),
                       Container(
@@ -171,167 +180,35 @@ class _RegistrarUsuarioHomeStateState
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                        child: TextFormField(
-                          controller: controladorIdentificacion,
-                          style: TextStyle(
-                            color: Colors.black,
-                          ), // // Probar todos los teclados
-                          decoration: new InputDecoration(
-                              icon: Icon(
-                                Icons.badge,
-                                color: Colors.red,
-                                size: 40,
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.red, width: 0.5),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.black, width: 0.5),
-                              ),
-                              labelText: 'Identificacion',
-                              labelStyle: TextStyle(
-                                color: Colors.black,
-                              )),
-                        ),
+                      TextFieldForm(
+                        controlador: controladorIdentificacion, 
+                        icono: Icons.badge,
+                        labelText: 'Identificacion',
                       ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                        child: TextFormField(
-                          controller: controladorNombre,
-                          style: TextStyle(
-                            color: Colors.black,
-                          ), // // Probar todos los teclados
-                          decoration: new InputDecoration(
-                              icon: Icon(
-                                Icons.person_pin,
-                                color: Colors.red,
-                                size: 40,
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.red, width: 0.5),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.black, width: 0.5),
-                              ),
-                              labelText: 'Nombre',
-                              labelStyle: TextStyle(
-                                color: Colors.black,
-                              )),
-                        ),
+                      TextFieldForm(
+                        controlador: controladorNombre, 
+                        icono: Icons.person_pin,
+                        labelText: 'Nombre',
                       ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                        child: TextFormField(
-                          controller: controladorApellido,
-                          style: TextStyle(
-                            color: Colors.black,
-                          ), // // Probar todos los teclados
-                          decoration: new InputDecoration(
-                              icon: Icon(
-                                Icons.person_pin,
-                                color: Colors.red,
-                                size: 40,
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.red, width: 0.5),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.black, width: 0.5),
-                              ),
-                              labelText: 'Apellido',
-                              labelStyle: TextStyle(
-                                color: Colors.black,
-                              )),
-                        ),
+                      TextFieldForm(
+                        controlador: controladorApellido, 
+                        icono: Icons.person_pin,
+                        labelText: 'Apellido',
                       ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                        child: TextFormField(
-                          controller: controladorDireccion,
-                          style: TextStyle(
-                            color: Colors.black,
-                          ), // // Probar todos los teclados
-                          decoration: new InputDecoration(
-                              icon: Icon(
-                                Icons.directions,
-                                color: Colors.red,
-                                size: 40,
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.red, width: 0.5),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.black, width: 0.5),
-                              ),
-                              labelText: 'Direccion',
-                              labelStyle: TextStyle(
-                                color: Colors.black,
-                              )),
-                        ),
+                      TextFieldForm(
+                        controlador: controladorDireccion, 
+                        icono: Icons.directions,
+                        labelText: 'Direccion',
                       ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                        child: TextFormField(
-                          controller: controladorTelefono1,
-                          style: TextStyle(
-                            color: Colors.black,
-                          ), // // Probar todos los teclados
-                          decoration: new InputDecoration(
-                              icon: Icon(
-                                Icons.phone,
-                                color: Colors.red,
-                                size: 40,
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.red, width: 0.5),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.black, width: 0.5),
-                              ),
-                              labelText: 'Telefono 1',
-                              labelStyle: TextStyle(
-                                color: Colors.black,
-                              )),
-                        ),
+                      TextFieldForm(
+                        controlador: controladorTelefono1, 
+                        icono: Icons.phone,
+                        labelText: 'Telefono 1',
                       ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                        child: TextFormField(
-                          controller: controladorTelefono2,
-                          style: TextStyle(
-                            color: Colors.black,
-                          ), // // Probar todos los teclados
-                          decoration: new InputDecoration(
-                              icon: Icon(
-                                Icons.phone_android,
-                                color: Colors.red,
-                                size: 40,
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.red, width: 0.5),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.black, width: 0.5),
-                              ),
-                              labelText: 'Telefono 2',
-                              labelStyle: TextStyle(
-                                color: Colors.black,
-                              )),
-                        ),
+                      TextFieldForm(
+                        controlador: controladorTelefono2, 
+                        icono: Icons.phone,
+                        labelText: 'Telefono 2',
                       ),
                     ],
                   ),
@@ -427,16 +304,4 @@ class _RegistrarUsuarioHomeStateState
       ),
     );
   }
-}
-
-Widget _buildCircleAvatar(BuildContext context) {
-  return Center(
-      child: Stack(
-    children: <Widget>[
-      CircleAvatar(
-        radius: 80.0,
-        backgroundImage: AssetImage(logo1),
-      ),
-    ],
-  ));
 }

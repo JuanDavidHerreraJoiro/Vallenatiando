@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "769683989999",
+    "project_id": "vallenatiando",
+    "storage_bucket": "vallenatiando.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769683989999:android:5086714e702b83b846c21a",
+        "android_client_info": {
+          "package_name": "com.example.turismo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769683989999-6gv4hof37m8488d0gfjjk95umnk5b9iu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.turismo",
+            "certificate_hash": "df7f20e731f55e561556b2076252c980aa0c437f"
+          }
+        },
+        {
+          "client_id": "769683989999-4h580ntpq6jbtt5dej9t2cp3ki07tpor.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKFjoKilRpEQmnuioED2BvDZdXCBUVxl8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769683989999-4h580ntpq6jbtt5dej9t2cp3ki07tpor.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -30,7 +30,7 @@ class _Inicio1State extends State<Inicio1> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    const logoSize = 80.0;
+    const logoSize = 70.0;
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(

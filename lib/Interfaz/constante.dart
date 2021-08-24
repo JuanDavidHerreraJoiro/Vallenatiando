@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+/*
+C:\Program Files\Java\jdk1.8.0_291\bin>
+keytool -list -v -keystore C:\Users\Juand\.android\debug.keystore -alias androiddebugkey -storepass android -keypass android
+*/
+/*
+keytool -exportcert -alias androiddebugkey -keystore "C:\Users\Juand\.android\debug.keystore" | "C:\Users\Juand\OneDrive\Escritorio\Juan David Herrera\openssl\bin\openssl" sha1 -binary | "C:\Users\Juand\OneDrive\Escritorio\Juan David Herrera\openssl\bin\openssl" base64
+*/
 const kTextColor = Color(0xFF535353);
 const kTextLightColor = Color(0xFFACACAC);
 

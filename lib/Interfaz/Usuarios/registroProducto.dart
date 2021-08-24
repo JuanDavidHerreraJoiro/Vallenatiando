@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:turismo/Interfaz/Inicio/tipoRegistro.dart';
+import 'package:turismo/Interfaz/componentes/TextFielForm.dart';
+import 'package:turismo/Interfaz/componentes/TextFieldFormDescription.dart';
 import 'package:turismo/Interfaz/constante.dart';
 
 TextEditingController controladorNIT = new TextEditingController();
@@ -56,48 +58,6 @@ class _RegistrarProductoHomeStateState
     var moreSize = 50;
     const logoSize = 70.0;
     return Scaffold(
-      appBar: new PreferredSize(
-        child: new Container(
-          padding: new EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-          child: new Padding(
-            padding: const EdgeInsets.only(
-                left: 10.0, top: 5.0, bottom: 5.0, right: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                IconButton(
-                  iconSize: 25,
-                  icon: Icon(Icons.close),
-                  color: Colors.white,
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (_) => TipoRegistro()),
-                    );
-                  },
-                ),
-                SizedBox(
-                  width: moreSize * 1.1,
-                ),
-                Text(
-                  'VALLENATIANDO', //'Home'
-                  style: new TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          ),
-          decoration: new BoxDecoration(
-            gradient: new LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: deliveryGradients),
-          ),
-        ),
-        preferredSize: new Size(MediaQuery.of(context).size.width, 150.0),
-      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -109,246 +69,76 @@ class _RegistrarProductoHomeStateState
                 child: Container(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       const SizedBox(
-                        height: 40,
+                        height: 30,
                       ),
                       Text(
                         "Registro Producto",
                         style: TextStyle(
-                            fontSize: 30,
+                            fontSize: 25,
                             color: DeliveryColorsRedOrange.red1,
-                            fontWeight: FontWeight.bold),
+                            fontWeight: FontWeight.w400),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(
-                        height: 15,
+                        height: 25,
                       ),
-                      Text(
-                        "Nombre producto",
-                        textAlign: TextAlign.start,
+                      
+                      TextFieldForm(
+                        controlador: controladorNombre, 
+                        icono: Icons.indeterminate_check_box,
+                        labelText: 'Nombre del producto',
+                      ),
+                      TextFieldForm(
+                        controlador: controladorNombre, 
+                        icono: Icons.attach_money,
+                        labelText: 'Precio/Costo/Tarifa',
+                      ),
+                      TextFieldForm(
+                        controlador: controladorDireccion, 
+                        icono: Icons.map_sharp,
+                        labelText: 'Ubicacion',
+                      ),
+                      TextFieldForm(
+                        controlador: controladorTelefono1, 
+                        icono: Icons.date_range,
+                        labelText: 'Fecha de vigencia',
+                      ),
+                      TextFieldForm(
+                        controlador: controladorTelefono2, 
+                        icono: Icons.circle,
+                        labelText: 'Cantidad',
+                      ),
+                      TextFieldForm(
+                        controlador: controladorTelefono2, 
+                        icono: Icons.money_rounded,
+                        labelText: 'Precio Oferta',
+                      ),
+                      TextFieldForm(
+                        controlador: controladorTelefono2, 
+                        icono: Icons.date_range_outlined,
+                        labelText: 'Fecha de Vigencia de la oferta',
+                      ),
+                      TextFieldFormDescription(
+                        controlador: controladorNombre, 
+                        icono: Icons.description,
+                        labelText: "Descripcion",
+                      ),
+                      SizedBox(height: 20,),
+
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        child: Text(
+                          "Agrege Fotos del producto",
                         style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 20,
                             color: DeliveryColorsRedOrange.red1,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      TextField(
-                        controller: controladorNombre,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.indeterminate_check_box,
-                            color: Colors.black,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(
-                                color: DeliveryColorsRedOrange.grey,
-                                width: 2,
-                                style: BorderStyle.solid),
-                          ),
-                          hintText: "Nombres producto",
+                            fontWeight: FontWeight.w400),
                         ),
                       ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Descripcion",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: DeliveryColorsRedOrange.red1,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      TextField(
-                        controller: controladorDireccion,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.circle,
-                            color: Colors.black,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(
-                                color: DeliveryColorsRedOrange.grey,
-                                width: 2,
-                                style: BorderStyle.solid),
-                          ),
-                          hintText: "Descripcion",
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Precio",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: DeliveryColorsRedOrange.red1,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      TextField(
-                        controller: controladorTelefono1,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.attach_money,
-                            color: Colors.black,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(
-                                color: DeliveryColorsRedOrange.grey,
-                                width: 2,
-                                style: BorderStyle.solid),
-                          ),
-                          hintText: "Precio/Costo/Tarifa",
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Ubicacion",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: DeliveryColorsRedOrange.red1,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      TextField(
-                        controller: controladorTelefono2,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.map_sharp,
-                            color: Colors.black,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(
-                                color: DeliveryColorsRedOrange.grey,
-                                width: 2,
-                                style: BorderStyle.solid),
-                          ),
-                          hintText: "Ubicacion",
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Fecha de vigencia",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: DeliveryColorsRedOrange.red1,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      TextField(
-                        controller: controladorTelefono2,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.date_range,
-                            color: Colors.black,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(
-                                color: DeliveryColorsRedOrange.grey,
-                                width: 2,
-                                style: BorderStyle.solid),
-                          ),
-                          hintText: "Fecha de vigencia",
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Cantidad",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: DeliveryColorsRedOrange.red1,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      TextField(
-                        controller: controladorTelefono2,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.circle,
-                            color: Colors.black,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(
-                                color: DeliveryColorsRedOrange.grey,
-                                width: 2,
-                                style: BorderStyle.solid),
-                          ),
-                          hintText: "Cantidad",
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Precio de oferta",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: DeliveryColorsRedOrange.red1,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      TextField(
-                        controller: controladorTelefono2,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.attach_money,
-                            color: Colors.black,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(
-                                color: DeliveryColorsRedOrange.grey,
-                                width: 2,
-                                style: BorderStyle.solid),
-                          ),
-                          hintText: "Precio de oferta",
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Fecha vigencia oferta",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: DeliveryColorsRedOrange.red1,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      TextField(
-                        controller: controladorTelefono2,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.date_range,
-                            color: Colors.black,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(
-                                color: DeliveryColorsRedOrange.grey,
-                                width: 2,
-                                style: BorderStyle.solid),
-                          ),
-                          hintText: "Fecha vigencia oferta",
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
+
                       Row(
                         children: [
                           Expanded(
@@ -358,10 +148,10 @@ class _RegistrarProductoHomeStateState
                                 onTap: () {
                                   print('click on edit 1');
                                 },
-                                child: Image(
-                                  image: AssetImage(img),
-                                  fit: BoxFit.contain,
-                                  height: 100,
+                                child: Icon(
+                                  Icons.add_a_photo,
+                                  color: Colors.red,
+                                  size: 80,
                                 ),
                               ),
                             ),
@@ -373,19 +163,17 @@ class _RegistrarProductoHomeStateState
                                 onTap: () {
                                   print('click on edit 2');
                                 },
-                                child: Image(
-                                  image: AssetImage(img),
-                                  fit: BoxFit.contain,
-                                  height: 100,
+                                child: Icon(
+                                  Icons.add_a_photo,
+                                  color: Colors.red,
+                                  size: 80,
                                 ),
                               ),
                             ),
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 15,
-                      ),
+                      SizedBox(height: 30,),
                       Row(
                         children: [
                           Expanded(
@@ -393,12 +181,12 @@ class _RegistrarProductoHomeStateState
                               padding: const EdgeInsets.all(1.0),
                               child: GestureDetector(
                                 onTap: () {
-                                  print('click on edit 3');
+                                  print('click on edit 1');
                                 },
-                                child: Image(
-                                  image: AssetImage(img),
-                                  fit: BoxFit.contain,
-                                  height: 100,
+                                child: Icon(
+                                  Icons.add_a_photo,
+                                  color: Colors.red,
+                                  size: 80,
                                 ),
                               ),
                             ),
@@ -408,18 +196,18 @@ class _RegistrarProductoHomeStateState
                               padding: const EdgeInsets.all(1.0),
                               child: GestureDetector(
                                 onTap: () {
-                                  print('click on edit 4');
+                                  print('click on edit 2');
                                 },
-                                child: Image(
-                                  image: AssetImage(img),
-                                  fit: BoxFit.contain,
-                                  height: 100,
+                                child: Icon(
+                                  Icons.add_a_photo,
+                                  color: Colors.red,
+                                  size: 80,
                                 ),
                               ),
                             ),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -427,21 +215,24 @@ class _RegistrarProductoHomeStateState
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(25),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Expanded(
                   flex: 6,
                   child: InkWell(
-                    onTap: () async {},
+                    onTap: () async { },
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(14.0),
                         gradient: LinearGradient(
                           begin: Alignment.centerRight,
                           end: Alignment.centerLeft,
-                          colors: deliveryGradients,
+                          colors: [
+                            Colors.orangeAccent,
+                            Colors.redAccent,
+                          ],
                         ),
                       ),
                       child: Padding(
@@ -453,6 +244,20 @@ class _RegistrarProductoHomeStateState
                         ),
                       ),
                     ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back_ios_rounded),
+                    color: Colors.black,
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (_) => TipoRegistro(),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],

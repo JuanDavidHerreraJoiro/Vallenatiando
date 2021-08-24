@@ -80,11 +80,31 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                     );
                   },
                   leading: Icon(
-                    Icons.search,
+                    Icons.people,
                     color: Colors.white,
                   ),
                   title: Text(
-                    "Buscador",
+                    "Mi perfil",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                ListTile(
+                  onTap: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (_) => TipoRegistro(),
+                      ),
+                    );
+                  },
+                  leading: Icon(
+                    Icons.point_of_sale,
+                    color: Colors.white,
+                  ),
+                  title: Text(
+                    "Quiero Vender",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),
@@ -100,31 +120,11 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                     );
                   },
                   leading: Icon(
-                    Icons.notification_add,
+                    Icons.local_offer,
                     color: Colors.white,
                   ),
                   title: Text(
-                    "Notificaciones",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                ListTile(
-                  onTap: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (_) => Inicio(),
-                      ),
-                    );
-                  },
-                  leading: Icon(
-                    Icons.shopping_cart,
-                    color: Colors.white,
-                  ),
-                  title: Text(
-                    "Mis Compras",
+                    "Ofertas",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),
@@ -152,13 +152,19 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   height: 10,
                 ),
                 ListTile(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (_) => Inicio(),
+                      ),
+                    );
+                  },
                   leading: Icon(
-                    Icons.local_offer,
+                    Icons.notification_add,
                     color: Colors.white,
                   ),
                   title: Text(
-                    "Ofertas",
+                    "Notificicaciones",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),
@@ -166,13 +172,19 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   height: 10,
                 ),
                 ListTile(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (_) => Inicio(),
+                      ),
+                    );
+                  },
                   leading: Icon(
-                    Icons.point_of_sale,
+                    Icons.shopping_cart,
                     color: Colors.white,
                   ),
                   title: Text(
-                    "Quiero Vender",
+                    "Mis Compras",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),
@@ -187,46 +199,6 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Ayuda",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                ListTile(
-                  onTap: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (_) => InicioCuenta(),
-                      ),
-                    );
-                  },
-                  leading: Icon(
-                    Icons.fiber_new,
-                    color: Colors.white,
-                  ),
-                  title: Text(
-                    "Crear Cuenta",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                ListTile(
-                  onTap: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (_) => InicioCuenta(),
-                      ),
-                    );
-                  },
-                  leading: Icon(
-                    Icons.people,
-                    color: Colors.white,
-                  ),
-                  title: Text(
-                    "Mi perfil",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),
@@ -263,7 +235,7 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
           ),
           Padding(
             padding:
-                const EdgeInsets.only(bottom: 5, left: 0, right: 0, top: 0),
+                const EdgeInsets.only(bottom: 4, left: 0, right: 0, top: 0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

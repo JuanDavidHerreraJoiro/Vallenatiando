@@ -1,4 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:turismo/Bll/MensajesService.dart';
+import 'package:turismo/Bll/UsuariosServices.dart';
+import 'package:turismo/Entity/Personas.dart';
 import 'package:turismo/Interfaz/Inicio/inicio1.dart';
 import 'package:turismo/Interfaz/Inicio/inicioSesion.dart';
 import 'package:turismo/Interfaz/Usuarios/Inicio.dart';
@@ -15,12 +22,16 @@ var facebook = 'assets/icons/facebook.png';
 var gmail = 'assets/icons/gmail.png';
 
 class _InicioCuentaState extends State<InicioCuenta> {
+  bool login = false;
+  bool isChecked = false;
+  FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var width = size.width;
     var moreSize = 50;
     const logoSize = 80.0;
+
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -142,11 +153,19 @@ class _InicioCuentaState extends State<InicioCuenta> {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (_) => CuentaLogin(),
-                            ),
-                          );
+                          if (isChecked == true) {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (_) => CuentaLogin(),
+                              ),
+                            );
+                          } else {
+                            String texto1 =
+                                'POR FAVOR ACEPTAR TERMINOS Y CONDICIONES';
+                            String texto2 = 'TERMINOS Y CONDICIONES ERROR...';
+                            MensajeService(
+                                context, texto1, Colors.grey, texto2, false);
+                          }
                         },
                       ),
                     ),
@@ -193,7 +212,18 @@ class _InicioCuentaState extends State<InicioCuenta> {
                                 ),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: () async {
+                              if (isChecked == true) {
+                                await LoginFacebook();
+                              } else {
+                                String texto1 =
+                                    'POR FAVOR ACEPTAR TERMINOS Y CONDICIONES';
+                                String texto2 =
+                                    'TERMINOS Y CONDICIONES ERROR...';
+                                MensajeService(context, texto1, Colors.grey,
+                                    texto2, false);
+                              }
+                            },
                           ),
                         ),
                         SizedBox(
@@ -210,7 +240,18 @@ class _InicioCuentaState extends State<InicioCuenta> {
                                 ),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: () async {
+                              if (isChecked == true) {
+                                await LoginWithGoogle();
+                              } else {
+                                String texto1 =
+                                    'POR FAVOR ACEPTAR TERMINOS Y CONDICIONES';
+                                String texto2 =
+                                    'TERMINOS Y CONDICIONES ERROR...';
+                                MensajeService(context, texto1, Colors.grey,
+                                    texto2, false);
+                              }
+                            },
                           ),
                         ),
                       ],
@@ -218,18 +259,32 @@ class _InicioCuentaState extends State<InicioCuenta> {
                     const SizedBox(
                       height: 10,
                     ),
-                    InkWell(
-                      child: new Text(
-                        "Terminos y condiciones",
-                        style: Theme.of(context).textTheme.headline6!.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.red,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Checkbox(
+                          checkColor: Colors.white,
+                          value: isChecked,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              isChecked = value!;
+                            });
+                          },
+                        ),
+                        InkWell(
+                          child: Text(
+                            "Aceptar los Terminos y condiciones",
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              color: DeliveryColorsRedOrange.red1,
                             ),
-                        textAlign: TextAlign.center,
-                      ),
-                      onTap: () {
-                        print("2");
-                      }, //=> launch('https://docs.flutter.io/flutter/services/UrlLauncher-class.html')
+                            textAlign: TextAlign.center,
+                          ),
+                          onTap: () {
+                            print("2");
+                          }, //=> launch('https://docs.flutter.io/flutter/services/UrlLauncher-class.html')
+                        ),
+                      ],
                     ),
                     const SizedBox(
                       height: 20,
@@ -242,5 +297,120 @@ class _InicioCuentaState extends State<InicioCuenta> {
         ],
       ),
     );
+  }
+
+  Future LoginWithGoogle() async {
+    GoogleSignInAccount? googleuser = await GoogleSignIn().signIn();
+    GoogleSignInAuthentication googleAuth = await googleuser!.authentication;
+    OAuthCredential credential = GoogleAuthProvider.credential(
+        idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
+    Fluttertoast.showToast(msg: "Cuenta registrada");
+    var a = await auth.signInWithCredential(credential);
+    User user;
+    GoogleSignIn googleSignIn = await GoogleSignIn();
+    googleSignIn.disconnect();
+
+    setState(() {
+      login = true;
+      user = a.user!;
+      print(
+          "CORRECTO ${a.user!.email} - ${a.user!.displayName!.replaceAll(" ", "")}");
+    });
+    bool resultdo = false;
+
+    resultdo = await listarUsuario1(
+        a.user!.displayName!.replaceAll(" ", "").toString());
+
+    if (resultdo == true) {
+      String texto1 = 'USUARIO YA REGISTRADO';
+      String texto2 = 'INICIAR SESION ERROR...';
+      MensajeService(
+          context, texto1, DeliveryColorsRedOrange.red3, texto2, false);
+    } else {
+      Personas persona = new Personas();
+      persona.usuario = a.user!.displayName!.replaceAll(" ", "");
+      persona.password = a.user!.displayName!.replaceAll(" ", "");
+      SingOutGoogle(googleSignIn);
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (_) => RegistrarUsuario(persona: persona),
+        ),
+      );
+    }
+  }
+
+  Future LoginFacebook() async {
+    FacebookLogin loginFacebook = FacebookLogin();
+    FacebookLoginResult result = await loginFacebook.logIn(['email']);
+    switch (result.status) {
+      case FacebookLoginStatus.cancelledByUser:
+        Fluttertoast.showToast(msg: "Cancelar facebook");
+        break;
+      case FacebookLoginStatus.error:
+        Fluttertoast.showToast(msg: "Error cuenta facebook");
+        break;
+      case FacebookLoginStatus.loggedIn:
+        Fluttertoast.showToast(msg: "Cuenta registrada");
+        await LoginWithFacebook(result);
+        break;
+    }
+  }
+
+  Future LoginWithFacebook(FacebookLoginResult result) async {
+    FacebookLogin loginFacebook = FacebookLogin();
+
+    FacebookAccessToken accesoToken = result.accessToken;
+    AuthCredential credential =
+        FacebookAuthProvider.credential(accesoToken.token);
+
+    var a = await auth.signInWithCredential(credential);
+
+    User user;
+    setState(() {
+      login = true;
+      user = a.user!;
+      print(
+          "CORRECTO ${a.user!.email} - ${a.user!.displayName!.replaceAll(" ", "")} - ${a.user!}");
+    });
+
+    bool resultdo = false;
+    resultdo = await listarUsuario1(
+        a.user!.displayName!.replaceAll(" ", "").toString());
+
+    if (resultdo == true) {
+      String texto1 = 'USUARIO YA REGISTRADO';
+      String texto2 = 'INICIAR SESION ERROR...';
+      MensajeService(
+          context, texto1, DeliveryColorsRedOrange.red3, texto2, false);
+    } else {
+      Personas persona = new Personas();
+      persona.usuario = a.user!.displayName!.replaceAll(" ", "");
+      persona.password = a.user!.displayName!.replaceAll(" ", "");
+      SingOutFacebook(loginFacebook);
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (_) => RegistrarUsuario(persona: persona),
+        ),
+      );
+    }
+  }
+
+  Future SingOutGoogle(GoogleSignIn googleSignIn) async {
+    await auth.signOut().then((value) {
+      setState(() {
+        googleSignIn.disconnect();
+        login = false;
+      });
+    });
+  }
+
+  Future SingOutFacebook(FacebookLogin loginFacebook) async {
+    await auth.signOut().then((value) {
+      setState(() {
+        loginFacebook.logOut();
+
+        login = false;
+      });
+    });
   }
 }

@@ -32,9 +32,17 @@ dependencies:
   toggle_switch: ^0.1.9
   icon: ^2.0.0+4
   timezone: ^0.7.0
+  firebase_core: ^1.5.0
+  firebase_auth: ^3.0.2
+  flutter_facebook_login: ^3.0.0
+  font_awesome_flutter: ^9.1.0
+  provider: ^6.0.0
+  google_sign_in: ^5.0.7
+  fluttertoast: ^8.0.8
 
   flutter:
     sdk: flutter
+  
   
   # flutter_icons:
     # android: true

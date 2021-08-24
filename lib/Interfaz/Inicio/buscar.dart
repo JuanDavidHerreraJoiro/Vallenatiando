@@ -1,6 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:turismo/Interfaz/Usuarios/Inicio.dart';
+import 'package:turismo/Interfaz/Usuarios/paddingNoUsuarios.dart';
+import 'package:turismo/Interfaz/Usuarios/paddingUsuarios.dart';
 import 'package:turismo/Interfaz/constante.dart';
 import 'package:turismo/Interfaz/Inicio/inicio1.dart';
 import 'dart:math';
@@ -184,106 +186,7 @@ class __CentroBuscarStateState extends State<_CentroBuscarState> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  IconButton(
-                                    iconSize: 35,
-                                    icon: Icon(Icons.home_outlined),
-                                    color: Colors.black54,
-                                    onPressed: () {
-                                      Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(
-                                          builder: (_) => Inicio(),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  Text(
-                                    "Inicio",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline6!
-                                        .copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black45,
-                                            fontSize: 15),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                ],
-                              ), //
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  IconButton(
-                                    iconSize: 35,
-                                    icon: Icon(Icons.search_sharp),
-                                    color: Colors.redAccent,
-                                    onPressed: () {
-                                      setState(() {});
-                                    },
-                                  ),
-                                  Text(
-                                    "Buscar",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline6!
-                                        .copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.redAccent,
-                                            fontSize: 15),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                ],
-                              ), //
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  IconButton(
-                                    iconSize: 35,
-                                    icon: Icon(Icons.shopping_cart_outlined),
-                                    color: Colors.black54,
-                                    onPressed: () {
-                                      /* Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (_) => CarritoCliente(),
-                            ),
-                          );*/
-                                    },
-                                  ),
-                                  Text(
-                                    "Carrito",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline6!
-                                        .copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black45,
-                                            fontSize: 15),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                ],
-                              ), //
-                            ),
-                          ],
-                        ),
-                      ),
+                      tipoPadding(),
                     ],
                   ),
                 ),
@@ -293,6 +196,14 @@ class __CentroBuscarStateState extends State<_CentroBuscarState> {
         ],
       ),
     );
+  }
+
+  StatefulWidget tipoPadding() {
+    if (logueado == false) {
+      return PaddingNoUsuarios();
+    } else {
+      return PaddingUsuarios();
+    }
   }
 }
 /*
