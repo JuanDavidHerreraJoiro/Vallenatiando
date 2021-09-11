@@ -1,11 +1,13 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:turismo/Bll/EmpresaService.dart';
+import 'package:turismo/Bll/ProductoService.dart';
+import 'package:turismo/Dal/Global.dart';
 import 'package:turismo/Interfaz/Inicio/inicio1.dart';
-import 'package:turismo/Interfaz/Inicio/buscar.dart';
+import 'package:turismo/Interfaz/Inicio/InicioEmpresas.dart';
 import 'package:turismo/Interfaz/Usuarios/paddingNoUsuarios.dart';
 import 'package:turismo/Interfaz/Usuarios/paddingUsuarios.dart';
 import 'package:turismo/Interfaz/Usuarios/vistaIzquierdaNoUsuarios.dart';
-import 'package:turismo/Interfaz/Usuarios/vistaIzquierdaUsuarios.dart';
 import 'package:turismo/Interfaz/Usuarios/vistaIzquierdaUsuarios.dart';
 import 'package:turismo/Interfaz/constante.dart';
 import 'dart:math';
@@ -31,7 +33,7 @@ class _InicioState extends State<Inicio> {
     //var moreSize = 50;
     return PageView(
       controller: controller,
-      children: [_CentroInicioState(), Buscar()],
+      children: [_CentroInicioState()],
     );
   }
 }
@@ -61,7 +63,7 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: deliveryGradients,
+                colors: deliveryGradientsFinal,
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
               ),
@@ -84,24 +86,21 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                   body: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Expanded(
-                        flex: 3,
+                      Container(
+                        height: 100,
                         child: Stack(
                           children: [
                             Positioned(
-                              bottom: logoSize,
+                              bottom: 1,
                               left: -moreSize / 2,
                               right: -moreSize / 2,
-                              height: width + moreSize,
+                              height: width, // + moreSize,
                               child: Container(
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
-                                    colors: [
-                                      Colors.orangeAccent,
-                                      Colors.redAccent,
-                                    ],
+                                    colors: deliveryGradientsFinal,
                                   ),
                                   borderRadius: BorderRadius.vertical(
                                       bottom: Radius.zero),
@@ -123,9 +122,6 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                                         fontSize: 18,
                                       ),
                                     ),
-                                    SizedBox(
-                                      height: 28,
-                                    ),
                                   ],
                                 ),
                               ),
@@ -145,39 +141,46 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                                 ),
                               ),
                             ),
-                            Align(
-                              alignment: Alignment.bottomCenter,
-                              child: CircleAvatar(
-                                  radius: logoSize + 3,
-                                  backgroundColor: DeliveryColorsRedOrange
-                                      .red1, //Colors.green,
-                                  child: CircleAvatar(
-                                    radius: logoSize,
-                                    backgroundColor: Colors.white,
-                                    child: ClipOval(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(12.0),
-                                        child: Image.asset(logo1),
-                                      ),
-                                    ),
-                                  )),
-                            )
                           ],
                         ),
                       ),
-                      const SizedBox(
-                        height: 5,
-                      ),
                       Expanded(
-                        flex: 6,
-                        child: Container(
-                          child: FutureBuilder(
-                            future: null, //_listaCliente,
-                            builder:
-                                (BuildContext context, AsyncSnapshot snapshot) {
-                              return tipoFuture(snapshot);
-                            },
-                          ),
+                        flex: 7,
+                        child: ListView(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 10.0),
+                          children: <Widget>[
+                            _crearInput(),
+                            Divider(),
+                            Text(
+                              'Que desea hacer hoy?',
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 25.0),
+                            ),
+                            _crearListaCategoriaNombres(),
+                            Divider(),
+                            Text(
+                              'Lista de ofertas',
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 25.0),
+                            ),
+                            _crearListaFotos2(),
+                            Divider(),
+                            Text(
+                              'Lista de productos',
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 25.0),
+                            ),
+                            _crearListaFotos(),
+                            Divider(),
+                            Text(
+                              'Top Empresas',
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 25.0),
+                            ),
+                            SizedBox(height: 10),
+                            _crearCategorias(),
+                          ],
                         ),
                       ),
                       tipoPadding(),
@@ -187,7 +190,7 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
               ));
             },
           ),
-          GestureDetector(
+          /* GestureDetector(
             onHorizontalDragUpdate: (e) {
               if (e.delta.dx > 0) {
                 setState(() {
@@ -199,7 +202,7 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                 });
               }
             },
-          )
+          )*/
         ],
       ),
     );
@@ -215,132 +218,327 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
 
   StatefulWidget tipoPadding() {
     if (logueado == false) {
-      return PaddingNoUsuarios();
+      return PaddingNoUsuarios(
+        Color1: Colors.redAccent,
+        Color2: Colors.black54,
+      );
     } else {
-      return PaddingUsuarios();
+      return PaddingUsuarios(
+        Color1: Colors.redAccent,
+        Color2: Colors.black54,
+      );
     }
   }
-}
 
-//Future<List<Cliente>> tipoLista(/*token*/) {
-
-//if (index2 == 0) {
-
-// return _listaCliente;
-/*} else if (index2 == 1) {
-    return listaClientes(http.Client(), token);
+  Widget _crearInput() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10, bottom: 0, left: 0, right: 0),
+      child: TextField(
+        textCapitalization: TextCapitalization.sentences,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
+          hintText: 'Producto o servicio',
+          prefixIcon: Icon(Icons.search),
+        ),
+        onChanged: (valor) {
+          setState(() {});
+        },
+      ),
+    );
   }
-  if (index2 == 2) {
-    return listaEmpleados(http.Client(), token);
-  }*/
 
-//List<dynamic> num = <dynamic>["1"];
-//}
+  Widget _crearCategorias() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 20.0),
+      height: 60,
+      child: Container(
+        child: FutureBuilder(
+          future: consultarEmpresaRuta1("EMPRESA"),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            return tipoFuture(snapshot);
+          },
+        ),
+      ),
+    );
+  }
 
-dynamic tipoFuture(snapshot) {
-  //if (index2 == 0) {
-  return ListView.builder(
-    itemCount: 5 /*snapshot.data == null ? 0 : snapshot.data.length*/,
-    itemBuilder: (context, index) {
-      if (snapshot.data == null) {
-        try {
-          return ListTile(
-            title: Text(
-              "Producto ${index + 1}",
-              style: TextStyle(
-                fontSize: 15.0,
-                fontWeight: FontWeight.w500,
+  dynamic tipoFuture(snapshot) {
+    return ListView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: snapshot.data == null ? 0 : snapshot.data.length,
+      itemBuilder: (context, index) {
+        return _estructuraTopEmpresas(snapshot, index);
+      },
+    );
+  }
+
+  Widget _estructuraTopEmpresas(snapshot, int index) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      child: Column(
+        children: [
+          CircleAvatar(
+            backgroundColor: Colors.red[200],
+            radius: 27 + 3,
+            child: CircleAvatar(
+              radius: 27,
+              backgroundColor: Colors.white,
+              child: ClipOval(
+                child: Image.network(
+                  urlServidor + "/" + snapshot.data[index]['ruta'].toString(),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-            subtitle: Column(
-              //mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Descripcion: "),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.star,
-                      color: Colors.amber,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _crearListaFotos() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 20.0),
+      height: 210,
+      child: Container(
+        child: FutureBuilder(
+          future: consultarProducto1(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            return tipoFuture1(snapshot);
+          },
+        ),
+      ),
+    );
+  }
+
+  dynamic tipoFuture1(snapshot) {
+    return ListView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: snapshot.data == null ? 0 : snapshot.data.length,
+      itemBuilder: (context, index) {
+        return _estructuraListaProductos(snapshot, index);
+      },
+    );
+  }
+
+  Widget _estructuraListaProductos(snapshot, int index) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 300,
+            child: Card(
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                children: [
+                  Container(
+                    height: 150,
+                    child: Image.network(
+                      urlServidor +
+                          "/" +
+                          snapshot.data[index]['ruta'].toString(),
+                      width: 300,
+                      fit: BoxFit.fill,
                     ),
-                    Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Comprados: ${0}"),
-                    IconButton(
-                      iconSize: 25,
-                      icon: Icon(Icons.mail_outline_sharp),
-                      color: Colors.black,
-                      onPressed: () {
-                        /* Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (_) => CarritoCliente(),
+                  ),
+                  Container(
+                    height: 50,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            snapshot.data[index]['nombre'].toString(),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
                             ),
-                          );*/
-                      },
+                          ),
+                          Text(
+                            "\$ " + snapshot.data[index]['precio'].toString(),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _crearListaCategoriaNombres() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 20.0),
+      height: 120,
+      child: Container(
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount:
+              listaCategoriaDia.length == 0 ? 0 : listaCategoriaDia.length,
+          itemBuilder: (context, index) {
+            return _estructuraListaCategoriaNombres(listaCategoriaDia, index);
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _estructuraListaCategoriaNombres(listaCategoriaDia, int index) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 300,
+            child: Card(
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                children: [
+                  Container(
+                    //alignment: Al,
+                    height: 100,
+                    child: Center(
+                      child: Text(
+                        listaCategoriaDia[index],
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 30,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _crearListaFotos2() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 20.0),
+      height: 210,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 300,
+                  child: Card(
+                    child: Wrap(
+                      alignment: WrapAlignment.center,
                       children: [
-                        Text("Cuenta",
-                            textAlign: TextAlign.end,
-                            style: TextStyle(
-                              color: DeliveryColorsRedOrange.red3,
-                            )),
-                        Text("0",
-                            textAlign: TextAlign.end,
-                            style: TextStyle(
-                              color: Colors.black,
-                            )),
+                        Container(
+                          height: 150,
+                          child: Image.network(
+                            "https://www.mundialdetornillos.com/images/NOTICIAS_2020/martillo-herramientas-para-tener-en-casa.jpg",
+                            width: 300,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        Container(
+                          //alignment: Al,
+                          height: 50,
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "HOLA",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                Text(
+                                  "HOLA",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
-                    )
-                  ],
-                )
+                    ),
+                  ),
+                ),
               ],
             ),
-            leading: ClipRRect(
-              //borderRadius: BorderRadius.circular(0), //or 15.0
-              child: Container(
-                height: 80.0,
-                width: 80.0,
-                color: DeliveryColorsRedOrange.red3,
-                //child: backgrounI Icon(Icons.volume_up, color: Colors.white, size: 50.0),
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 300,
+                  child: Card(
+                    child: Wrap(
+                      alignment: WrapAlignment.center,
+                      children: [
+                        Container(
+                          color: Colors.blueAccent,
+                          height: 150,
+                          child: Image.network(
+                            "https://www.mundialdetornillos.com/images/NOTICIAS_2020/martillo-herramientas-para-tener-en-casa.jpg",
+                            width: 300,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        Container(
+                          //alignment: Al,
+                          height: 50,
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "HOLA",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                Text(
+                                  "HOLA",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-            /*CircleAvatar(
-              //color: DeliveryColors.dark,
-              backgroundColor: DeliveryColorsRedOrange.red3,
-              /* backgroundImage: NetworkImage(snapshot
-                                        .data[index]['Foto']
-                                        .toString()),*/ //exepcion
-            ),*/
-            trailing: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[]),
-          );
-        } catch (e) {
-          return CircularProgressIndicator();
-        }
-      }
-      return CircularProgressIndicator();
-    },
-  );
+          ),
+        ],
+      ),
+    );
+  }
 }

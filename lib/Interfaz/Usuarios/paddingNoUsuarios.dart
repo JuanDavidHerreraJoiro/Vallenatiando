@@ -1,9 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:turismo/Interfaz/Inicio/buscar.dart';
+import 'package:turismo/Interfaz/Inicio/InicioEmpresas.dart';
 import 'package:turismo/Interfaz/Usuarios/Inicio.dart';
 
 class PaddingNoUsuarios extends StatefulWidget {
+  final Color1;
+  final Color2;
+  const PaddingNoUsuarios({
+    Key? key,
+    required this.Color1,
+    required this.Color2,
+  }) : super(key: key);
+
   @override
   _PaddingNoUsuariosState createState() => _PaddingNoUsuariosState();
 }
@@ -23,7 +31,7 @@ class _PaddingNoUsuariosState extends State<PaddingNoUsuarios> {
                 IconButton(
                   iconSize: 35,
                   icon: Icon(Icons.home_outlined),
-                  color: Colors.redAccent,
+                  color: widget.Color1, //Colors.redAccent,
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
@@ -36,7 +44,7 @@ class _PaddingNoUsuariosState extends State<PaddingNoUsuarios> {
                   "Inicio",
                   style: Theme.of(context).textTheme.headline6!.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: Colors.redAccent,
+                      color: widget.Color1, //Colors.redAccent,
                       fontSize: 15),
                   textAlign: TextAlign.center,
                 ),
@@ -51,21 +59,21 @@ class _PaddingNoUsuariosState extends State<PaddingNoUsuarios> {
               children: [
                 IconButton(
                   iconSize: 35,
-                  icon: Icon(Icons.search_sharp),
-                  color: Colors.black54,
+                  icon: Icon(Icons.business_outlined),
+                  color: widget.Color2, //Colors.black54,
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (_) => Buscar(),
+                        builder: (_) => InicioEmpresas(),
                       ),
                     );
                   },
                 ),
                 Text(
-                  "Buscar",
+                  "Empresas",
                   style: Theme.of(context).textTheme.headline6!.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: Colors.black45,
+                      color: widget.Color2, //Colors.black45,
                       fontSize: 15),
                   textAlign: TextAlign.center,
                 ),

@@ -255,7 +255,7 @@ class _CuentaLoginHomeStateState extends State<_CuentaLoginHomeState> {
                           personas.password = controladorpassword.text.trim();
                           Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (_) => RegistrarUsuario(persona: personas),
+                          builder: (_) => RegistrarUsuario(persona: personas,FG: ""),
                         ),
                       );
                         }

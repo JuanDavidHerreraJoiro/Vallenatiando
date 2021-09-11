@@ -24,7 +24,6 @@ var gmail = 'assets/icons/gmail.png';
 class _InicioCuentaState extends State<InicioCuenta> {
   bool login = false;
   bool isChecked = false;
-  FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -50,7 +49,7 @@ class _InicioCuentaState extends State<InicioCuenta> {
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
-                        colors: [Colors.orangeAccent, Colors.redAccent],
+                        colors: deliveryGradientsFinal,
                       ),
                       borderRadius: BorderRadius.vertical(bottom: Radius.zero),
                     ),
@@ -81,7 +80,7 @@ class _InicioCuentaState extends State<InicioCuenta> {
                       backgroundColor: Colors.white,
                       child: ClipOval(
                         child: Padding(
-                          padding: const EdgeInsets.all(12.0),
+                          padding: const EdgeInsets.all(0),
                           child: Image.asset(logo1),
                         ),
                       ),
@@ -300,6 +299,7 @@ class _InicioCuentaState extends State<InicioCuenta> {
   }
 
   Future LoginWithGoogle() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
     GoogleSignInAccount? googleuser = await GoogleSignIn().signIn();
     GoogleSignInAuthentication googleAuth = await googleuser!.authentication;
     OAuthCredential credential = GoogleAuthProvider.credential(
@@ -308,13 +308,11 @@ class _InicioCuentaState extends State<InicioCuenta> {
     var a = await auth.signInWithCredential(credential);
     User user;
     GoogleSignIn googleSignIn = await GoogleSignIn();
-    googleSignIn.disconnect();
 
     setState(() {
       login = true;
       user = a.user!;
-      print(
-          "CORRECTO ${a.user!.email} - ${a.user!.displayName!.replaceAll(" ", "")}");
+      //print("CORRECTO ${a.user!.email} - ${a.user!.displayName!.replaceAll(" ", "")}");
     });
     bool resultdo = false;
 
@@ -328,36 +326,42 @@ class _InicioCuentaState extends State<InicioCuenta> {
           context, texto1, DeliveryColorsRedOrange.red3, texto2, false);
     } else {
       Personas persona = new Personas();
-      persona.usuario = a.user!.displayName!.replaceAll(" ", "");
+      persona.usuario = a.user!.email!.replaceAll(" ", "");
       persona.password = a.user!.displayName!.replaceAll(" ", "");
+      //print(persona.toMap());
       SingOutGoogle(googleSignIn);
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (_) => RegistrarUsuario(persona: persona),
+          builder: (_) => RegistrarUsuario(persona: persona, FG: "G"),
         ),
       );
     }
+    googleSignIn.disconnect();
   }
 
   Future LoginFacebook() async {
-    FacebookLogin loginFacebook = FacebookLogin();
-    FacebookLoginResult result = await loginFacebook.logIn(['email']);
+    final loginFacebook = FacebookLogin();
+    final result = await loginFacebook.logIn(['email']);
+    print("RS ${result.status}");
     switch (result.status) {
       case FacebookLoginStatus.cancelledByUser:
         Fluttertoast.showToast(msg: "Cancelar facebook");
         break;
       case FacebookLoginStatus.error:
+        print(result.status);
         Fluttertoast.showToast(msg: "Error cuenta facebook");
         break;
       case FacebookLoginStatus.loggedIn:
         Fluttertoast.showToast(msg: "Cuenta registrada");
-        await LoginWithFacebook(result);
+        await LoginWithFacebook(result, loginFacebook);
         break;
     }
   }
 
-  Future LoginWithFacebook(FacebookLoginResult result) async {
-    FacebookLogin loginFacebook = FacebookLogin();
+  Future LoginWithFacebook(
+      FacebookLoginResult result, FacebookLogin loginFacebook) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    //FacebookLogin loginFacebook = FacebookLogin();
 
     FacebookAccessToken accesoToken = result.accessToken;
     AuthCredential credential =
@@ -369,8 +373,7 @@ class _InicioCuentaState extends State<InicioCuenta> {
     setState(() {
       login = true;
       user = a.user!;
-      print(
-          "CORRECTO ${a.user!.email} - ${a.user!.displayName!.replaceAll(" ", "")} - ${a.user!}");
+      //print("CORRECTO ${a.user!.email} - ${a.user!.displayName!.replaceAll(" ", "")} - ${a.user!}");
     });
 
     bool resultdo = false;
@@ -384,18 +387,23 @@ class _InicioCuentaState extends State<InicioCuenta> {
           context, texto1, DeliveryColorsRedOrange.red3, texto2, false);
     } else {
       Personas persona = new Personas();
-      persona.usuario = a.user!.displayName!.replaceAll(" ", "");
+      persona.usuario = a.user!.email!.replaceAll(" ", "");
       persona.password = a.user!.displayName!.replaceAll(" ", "");
       SingOutFacebook(loginFacebook);
+      print(persona.toMap());
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (_) => RegistrarUsuario(persona: persona),
+          builder: (_) => RegistrarUsuario(
+            persona: persona,
+            FG: "F",
+          ),
         ),
       );
     }
   }
 
   Future SingOutGoogle(GoogleSignIn googleSignIn) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
     await auth.signOut().then((value) {
       setState(() {
         googleSignIn.disconnect();
@@ -405,10 +413,10 @@ class _InicioCuentaState extends State<InicioCuenta> {
   }
 
   Future SingOutFacebook(FacebookLogin loginFacebook) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
     await auth.signOut().then((value) {
       setState(() {
         loginFacebook.logOut();
-
         login = false;
       });
     });

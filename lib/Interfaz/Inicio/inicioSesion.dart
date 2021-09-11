@@ -11,6 +11,7 @@ bool verpassword = true;
 
 TextEditingController controladorUsuario = new TextEditingController();
 TextEditingController controladorPassword = new TextEditingController();
+String idPersona = "";
 
 class InicioSesion extends StatefulWidget {
   @override
@@ -22,6 +23,8 @@ class _InicioSesionState extends State<InicioSesion> {
   void initState() {
     controladorUsuario;
     controladorPassword;
+    controladorUsuario.text = "";
+    controladorPassword.text = "";
     super.initState();
   }
 
@@ -37,6 +40,7 @@ class _InicioSesionState extends State<InicioSesion> {
     var width = size.width;
     var moreSize = 50;
     const logoSize = 80.0;
+
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -55,7 +59,7 @@ class _InicioSesionState extends State<InicioSesion> {
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
-                        colors: [Colors.orangeAccent, Colors.redAccent],
+                        colors: deliveryGradientsFinal,
                       ),
                       borderRadius: BorderRadius.vertical(bottom: Radius.zero),
                     ),
@@ -65,14 +69,13 @@ class _InicioSesionState extends State<InicioSesion> {
                   alignment: Alignment.bottomCenter,
                   child: CircleAvatar(
                       radius: logoSize + 3,
-                      backgroundColor:
-                          DeliveryColorsRedOrange.red1, //Colors.green,
+                      backgroundColor: Colors.red[200],
                       child: CircleAvatar(
                         radius: logoSize,
-                        backgroundColor: Colors.white,
+                        backgroundColor: Colors.red[200],
                         child: ClipOval(
                           child: Padding(
-                            padding: const EdgeInsets.all(12.0),
+                            padding: const EdgeInsets.all(0.0),
                             child: Image.asset(logo1),
                           ),
                         ),
@@ -87,7 +90,6 @@ class _InicioSesionState extends State<InicioSesion> {
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
-                  //crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     const SizedBox(
@@ -173,8 +175,12 @@ class _InicioSesionState extends State<InicioSesion> {
                         bool resultdo = false;
                         resultdo = await listarUsuariosPassword1(
                             controladorUsuario.text, controladorPassword.text);
-
                         if (resultdo == true) {
+                          List listaPersonas =
+                              await listarUsuarioIdentificacion(
+                                  controladorUsuario.text,
+                                  controladorPassword.text);
+                          idPersona = listaPersonas[0]["idPersona"].toString();
                           String texto1 = 'USUARIO & PASSWORD CORRECTOS';
                           String texto2 = 'INICIAR SESION';
                           MensajeService(context, texto1, Colors.green.shade300,
@@ -201,10 +207,7 @@ class _InicioSesionState extends State<InicioSesion> {
                         gradient: LinearGradient(
                           begin: Alignment.centerRight,
                           end: Alignment.centerLeft,
-                          colors: [
-                            Colors.orangeAccent,
-                            Colors.redAccent,
-                          ],
+                          colors: deliveryGradientsFinal,
                         ),
                       ),
                       child: Padding(

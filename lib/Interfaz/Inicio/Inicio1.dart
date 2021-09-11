@@ -8,8 +8,8 @@ class Inicio1 extends StatefulWidget {
   _Inicio1State createState() => _Inicio1State();
 }
 
-var logo1 = 'assets/imagenes/Vallenatiando1.png';
-var logo2 = 'assets/imagenes/Vallenatiando2.png';
+//var logo1 = 'assets/imagenes/Vallenatiando1.png';
+var logo1 = 'assets/imagenes/logoVallenatiando.png';
 
 class _Inicio1State extends State<Inicio1> {
   @override
@@ -37,7 +37,7 @@ class _Inicio1State extends State<Inicio1> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: deliveryGradients,
+            colors: deliveryGradientsFinal,
           ),
         ),
         child: Column(
@@ -45,10 +45,11 @@ class _Inicio1State extends State<Inicio1> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
-              radius: (logoSize * 2) + 3,
+              backgroundColor: Colors.red[200],
+              radius: (logoSize * 2) + 5,
               child: CircleAvatar(
                 radius: (logoSize * 2),
-                backgroundColor: Colors.white,
+                backgroundColor: Colors.red[200],
                 child: ClipOval(
                   child: Padding(
                     padding: const EdgeInsets.all(0.0),

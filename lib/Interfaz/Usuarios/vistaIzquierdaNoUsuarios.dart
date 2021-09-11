@@ -27,10 +27,10 @@ class _VistaIzquierdaNoUsuariosState extends State<VistaIzquierdaNoUsuarios> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
-                    radius: (logoSize + 10) + 2,
+                    backgroundColor: Colors.red[200],
+                    radius: (logoSize + 10) + 5,
                     child: CircleAvatar(
                       radius: (logoSize + 10),
-                      backgroundColor: Colors.white,
                       child: ClipOval(
                         child: Padding(
                           padding: const EdgeInsets.all(0.0),

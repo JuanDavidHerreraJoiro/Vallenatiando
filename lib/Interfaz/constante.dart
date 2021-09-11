@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 /*
 C:\Program Files\Java\jdk1.8.0_291\bin>
 keytool -list -v -keystore C:\Users\Juand\.android\debug.keystore -alias androiddebugkey -storepass android -keypass android
@@ -35,6 +36,13 @@ class DeliveryColorsRedOrange {
   static final orange11 = Color(0xFFFDAE9E);
 }
 
+class DeliveryColorsFinal {
+  static final redfinal1 = Color(0xFFd51a21);
+  static final redfinal2 = Color(0xFFed1b26);
+  static final redfinal3 = Color(0xFF901619);
+  static final redfinal4 = Color(0xFFae171e);
+}
+
 final _border = OutlineInputBorder(
   borderRadius: BorderRadius.circular(5),
   borderSide: BorderSide(
@@ -47,10 +55,11 @@ final lightTheme = ThemeData(
     displayColor: Colors.black,
   ),
   inputDecorationTheme: InputDecorationTheme(
-      border: _border,
-      enabledBorder: _border,
-      focusedBorder: _border,
-      hintStyle: GoogleFonts.poppins(color: Colors.black, fontSize: 10)),
+    border: _border,
+    enabledBorder: _border,
+    focusedBorder: _border,
+    hintStyle: GoogleFonts.poppins(color: Colors.black, fontSize: 10),
+  ),
   iconTheme: IconThemeData(
     color: Colors.black,
   ),
@@ -71,4 +80,18 @@ final deliveryGradients2 = [
   DeliveryColorsRedOrange.orange11,
   DeliveryColorsRedOrange.red6,
 ];
+final deliveryGradientsFinal = [
+  DeliveryColorsFinal.redfinal2,
+  DeliveryColorsFinal.redfinal3,
+];
 
+class FontTexto {
+  static final styleTexto = GoogleFonts.montserrat(
+    color: DeliveryColorsRedOrange.red1,
+    fontSize: 20,
+  );
+  static final styleTitulo = GoogleFonts.poppins(
+    color: DeliveryColorsRedOrange.red1,
+    fontSize: 35,
+  );
+}

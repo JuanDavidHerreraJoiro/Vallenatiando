@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:turismo/Interfaz/Inicio/inicioSesion.dart';
+import 'package:turismo/Interfaz/Inicio/tipoProductoEmpresa.dart';
 import 'package:turismo/Interfaz/Usuarios/Inicio.dart';
+import 'package:turismo/Interfaz/Usuarios/registrarEmpresa.dart';
+import 'package:turismo/Interfaz/Usuarios/registroProducto.dart';
+import 'package:turismo/Interfaz/constante.dart';
 
 void MensajeRepository(
   context,
@@ -43,37 +48,36 @@ void MensajeRepository(
     ),
   );
 }
-/*
-void MensajeVacioRepository(
-    context, texto1, Color colors, texto2, bool acceso, String vista) {
+
+void MensajeRepositoryFG(
+  context,
+  texto1,
+  Color colors,
+  texto2,
+  bool acceso,
+) {
   showDialog(
     context: context,
     builder: (_) => AlertDialog(
       title: Text(texto2, style: TextStyle(color: Colors.white)),
       backgroundColor: colors,
-      content: Text('' + texto1,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-          )),
+      content: Text(
+        '' + texto1,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 18,
+        ),
+      ),
       actions: [
         TextButton(
           onPressed: () {
             if (acceso == true) {
-              if (vista == "ADM") {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => VistaIzquierdaAdministrador()));
-              } else if (vista == "EMP") {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => VistaIzquierdaEmpleado()));
-              } else if (vista == "CLI") {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => FRMLogin()));
-              }
+              Navigator.canPop(context);
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (_) => Inicio(),
+                ),
+              );
             } else {
               Navigator.pop(context);
             }
@@ -88,42 +92,59 @@ void MensajeVacioRepository(
   );
 }
 
-void MensajeModificarRepository(
-    context, texto1, Color colors, texto2, bool acceso, String vista) {
+void MensajeRepositoryEmpresaProducto(
+  context,
+  texto1,
+  Color colors,
+  texto2,
+  bool acceso,
+) {
   showDialog(
     context: context,
     builder: (_) => AlertDialog(
       title: Text(texto2, style: TextStyle(color: Colors.white)),
       backgroundColor: colors,
-      content: Text('' + texto1,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-          )),
+      content: Text(
+        '' + texto1,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 18,
+        ),
+      ),
       actions: [
-        TextButton(
+        RaisedButton(
+          color: Colors.green.shade300,
           onPressed: () {
-            if (acceso == true) {
-              if (vista == "ADM") {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => BuscarAdministrador()));
-              } else if (vista == "EMP") {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => BuscarEmpleado()));
-              } else if (vista == "CLI") {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => HomeCliente()));
-              }
-            } else {
-              Navigator.pop(context);
-            }
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (_) => RegistrarEmpresa(),
+              ),
+            );
           },
           child: Text(
-            'CONFIRMAR',
-            style: TextStyle(color: Colors.white),
+            " REGISTRAR EMPRESA  ",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+            ),
+          ),
+        ),
+        RaisedButton(
+          color: DeliveryColorsRedOrange.red3,
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (_) => TipoProductoEmpresa()),
+            );
+          },
+          child: Text(
+            "REGISTRAR PRODUCTO",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+            ),
           ),
         ),
       ],
     ),
   );
-}*/
+}

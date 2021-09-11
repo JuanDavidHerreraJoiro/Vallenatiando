@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:turismo/Interfaz/Inicio/InicioCuenta.dart';
+import 'package:turismo/Bll/EmpresaService.dart';
+import 'package:turismo/Bll/MensajesService.dart';
 import 'package:turismo/Interfaz/Inicio/inicio1.dart';
-import 'package:turismo/Interfaz/Inicio/tipoRegistro.dart';
+import 'package:turismo/Interfaz/Inicio/inicioSesion.dart';
+import 'package:turismo/Interfaz/Inicio/tipoProductoEmpresa.dart';
 import 'package:turismo/Interfaz/Usuarios/Inicio.dart';
-import 'package:turismo/Interfaz/Usuarios/registrarCuenta.dart';
-import 'package:turismo/Interfaz/constante.dart';
+import 'package:turismo/Interfaz/Usuarios/registrarEmpresa.dart';
+import 'package:turismo/Interfaz/Usuarios/tipoRegistroEmpresa.dart';
 
 class VistaIzquierdaUsuarios extends StatefulWidget {
   @override
@@ -28,10 +30,10 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
-                    radius: (logoSize + 10) + 2,
+                    backgroundColor: Colors.red[200],
+                    radius: (logoSize + 10) + 5,
                     child: CircleAvatar(
                       radius: (logoSize + 10),
-                      backgroundColor: Colors.white,
                       child: ClipOval(
                         child: Padding(
                           padding: const EdgeInsets.all(0.0),
@@ -92,10 +94,11 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   height: 10,
                 ),
                 ListTile(
-                  onTap: () {
+                  onTap: () async {
+                    //print("${idPersona}");
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (_) => TipoRegistro(),
+                        builder: (_) => TipoRegistroEmpresa(),
                       ),
                     );
                   },

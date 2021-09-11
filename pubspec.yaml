@@ -21,14 +21,13 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-
-  flutter_launcher_icons: ^0.9.0 
+  image_picker:
   shared_preferences: ^2.0.5
   cupertino_icons: ^1.0.3
   path_provider: ^2.0.1
   sqflite: ^2.0.0+3
   http: ^0.13.1
-  google_fonts: ^2.0.0
+  google_fonts: ^2.1.0
   toggle_switch: ^0.1.9
   icon: ^2.0.0+4
   timezone: ^0.7.0
@@ -39,15 +38,21 @@ dependencies:
   provider: ^6.0.0
   google_sign_in: ^5.0.7
   fluttertoast: ^8.0.8
+  image: ^3.0.2
+  google_maps_flutter: ^2.0.6
+  flutter_lints: ^1.0.4
+  geolocator: ^7.6.0
+  geocoding: ^2.0.1
 
   flutter:
     sdk: flutter
   
   
-  # flutter_icons:
-    # android: true
-    # ios: true
-    # image_path: "assets/icons/Logotipo.png"
+  
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/iconoVallenatiando.png"
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -55,8 +60,12 @@ dependencies:
  
 
 dev_dependencies:
-  flutter_test:
+    flutter_launcher_icons: "^0.9.2"
+
+flutter_test:
     sdk: flutter
+
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -73,6 +82,7 @@ flutter:
   assets:
     - assets/imagenes/Vallenatiando1.png
     - assets/imagenes/Vallenatiando2.png
+    - assets/imagenes/logoVallenatiando.png
     - assets/imagenes/AddImagen.png
     - assets/icons/Vallenatiando1.png
     - assets/icons/Vallenatiando2.png

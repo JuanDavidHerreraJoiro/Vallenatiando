@@ -9,6 +9,7 @@ void main() async {
   runApp(MyApp());
 }
 
+// ignore: use_key_in_widget_constructors
 class MyApp extends StatelessWidget {
   final controller = PageController(initialPage: 1);
   @override

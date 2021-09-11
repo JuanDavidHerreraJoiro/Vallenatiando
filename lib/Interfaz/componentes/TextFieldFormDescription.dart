@@ -5,9 +5,9 @@ class TextFieldFormDescription extends StatelessWidget {
   final String labelText;
   final TextEditingController controlador;
   const TextFieldFormDescription({
-    Key? key, 
-    required this.icono, 
-    required this.labelText, 
+    Key? key,
+    required this.icono,
+    required this.labelText,
     required this.controlador,
   }) : super(key: key);
 
@@ -22,23 +22,22 @@ class TextFieldFormDescription extends StatelessWidget {
           color: Colors.black,
         ), // // Probar todos los teclados
         decoration: new InputDecoration(
-            icon: Icon(
-              icono,
-              color: Colors.red,
-              size: 40,
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(color: Colors.red, width: 0.5),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(color: Colors.black, width: 0.5),
-            ),
-            labelText: labelText,
-            labelStyle: TextStyle(
-              color: Colors.black,
-            )),
+          icon: Icon(
+            icono,
+            color: Colors.red,
+            size: 40,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red, width: 0.5),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black, width: 0.5),
+          ),
+          labelText: labelText,
+          labelStyle: TextStyle(
+            color: Colors.black,
+          ),
+        ),
       ),
     );
   }

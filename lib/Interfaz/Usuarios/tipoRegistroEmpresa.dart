@@ -1,31 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:turismo/Bll/EmpresaService.dart';
+import 'package:turismo/Bll/MensajesService.dart';
 import 'package:turismo/Interfaz/Inicio/inicio1.dart';
+import 'package:turismo/Interfaz/Inicio/inicioSesion.dart';
 import 'package:turismo/Interfaz/Usuarios/Inicio.dart';
+import 'package:turismo/Interfaz/Usuarios/registrarEmprendimiento.dart';
 import 'package:turismo/Interfaz/Usuarios/registrarEmpresa.dart';
-import 'package:turismo/Interfaz/Usuarios/registroProducto.dart';
-import 'package:turismo/Interfaz/Usuarios/vistaIzquierdaUsuarios.dart';
 import 'package:turismo/Interfaz/constante.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class TipoRegistro extends StatefulWidget {
+class TipoRegistroEmpresa extends StatefulWidget {
+  TipoRegistroEmpresa({Key? key}) : super(key: key);
+
   @override
-  _TipoRegistroState createState() => _TipoRegistroState();
+  _TipoRegistroEmpresaState createState() => _TipoRegistroEmpresaState();
 }
 
-var atras = 'assets/icons/flechAtras.png';
-
-class _TipoRegistroState extends State<TipoRegistro> {
+class _TipoRegistroEmpresaState extends State<TipoRegistroEmpresa> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var width = size.width;
     var moreSize = 50;
     const logoSize = 80.0;
+
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Stack(
               children: [
                 Positioned(
@@ -38,7 +42,7 @@ class _TipoRegistroState extends State<TipoRegistro> {
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
-                        colors: [Colors.orangeAccent, Colors.redAccent],
+                        colors: deliveryGradientsFinal,
                       ),
                       borderRadius: BorderRadius.vertical(bottom: Radius.zero),
                     ),
@@ -62,19 +66,19 @@ class _TipoRegistroState extends State<TipoRegistro> {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: CircleAvatar(
-                      radius: logoSize + 3,
-                      backgroundColor:
-                          DeliveryColorsRedOrange.red1, //Colors.green,
-                      child: CircleAvatar(
-                        radius: logoSize,
-                        backgroundColor: Colors.white,
-                        child: ClipOval(
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Image.asset(logo1),
-                          ),
+                    radius: logoSize + 3,
+                    backgroundColor: DeliveryColorsRedOrange.red3,
+                    child: CircleAvatar(
+                      radius: logoSize,
+                      backgroundColor: Colors.white,
+                      child: ClipOval(
+                        child: Padding(
+                          padding: const EdgeInsets.all(0),
+                          child: Image.asset(logo1),
                         ),
-                      )),
+                      ),
+                    ),
+                  ),
                 )
               ],
             ),
@@ -91,11 +95,8 @@ class _TipoRegistroState extends State<TipoRegistro> {
                       height: 40,
                     ),
                     Text(
-                      "TIPO DE REGISTRO",
-                      style: Theme.of(context).textTheme.headline4!.copyWith(
-                            fontWeight: FontWeight.w300,
-                            color: DeliveryColorsRedOrange.red1,
-                          ),
+                      "VALLENATIANDO",
+                      style: FontTexto.styleTitulo,
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(
@@ -110,21 +111,34 @@ class _TipoRegistroState extends State<TipoRegistro> {
                         color: DeliveryColorsRedOrange.red3,
                         textColor: Colors.white,
                         child: Text(
-                          "Empresa",
+                          "Registrar empresa",
                           style: TextStyle(
                             fontSize: 20.0,
                           ),
                         ),
-                        onPressed: () {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                                builder: (_) => RegistrarEmpresa()),
-                          );
+                        onPressed: () async {
+                          List listaEmpresa =
+                              await ConsultarIdentificacionPersonasEmpresa1(
+                                  idPersona);
+
+                          if (listaEmpresa.length == 0) {
+                            //print("${listaEmpresa.length}");
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (_) => RegistrarEmpresa(),
+                              ),
+                            );
+                          } else {
+                            String texto1 = '¿REGISTRAR OTRA EMPRESA?';
+                            String texto2 = 'ADVERTENCIA';
+                            MensajeServiceEmpresaProducto(
+                                context, texto1, Colors.grey, texto2, true);
+                          }
                         },
                       ),
                     ),
                     const SizedBox(
-                      height: 30,
+                      height: 20,
                     ),
                     SizedBox(
                       height: 50,
@@ -132,18 +146,20 @@ class _TipoRegistroState extends State<TipoRegistro> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(logoSize),
                         ),
-                        color: DeliveryColorsRedOrange.red3,
+                        color: DeliveryColorsFinal.redfinal4,
                         textColor: Colors.white,
                         child: Text(
-                          "Producto",
+                          "Crear emprendimiento",
                           style: TextStyle(
+                            color: Colors.white,
                             fontSize: 20.0,
                           ),
                         ),
                         onPressed: () {
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
-                                builder: (_) => RegistrarProducto()),
+                              builder: (_) => RegistrarEmprendimiento(),
+                            ),
                           );
                         },
                       ),
