@@ -18,15 +18,6 @@ class InicioEmpresas extends StatefulWidget {
   _InicioEmpresasState createState() => _InicioEmpresasState();
 }
 
-List listaCategoriaDia = [
-  "ESCUCHAR",
-  "ESCUCHAR",
-  "ESCUCHAR",
-  "ESCUCHAR",
-  "ESCUCHAR",
-  "ESCUCHAR",
-];
-
 class _InicioEmpresasState extends State<InicioEmpresas> {
   double value = 0;
   @override

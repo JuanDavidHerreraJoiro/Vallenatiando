@@ -43,6 +43,35 @@ class _CentroInicioState extends StatefulWidget {
   __CentroInicioStateState createState() => __CentroInicioStateState();
 }
 
+//https://spng.pngfind.com/pngs/s/187-1878783_etiqueta-de-oferta-png-transparent-png.png
+List listaCategoriaDia = [
+  {
+    "nombre": "PROMOCIONES",
+    "urlImg":
+        "https://st4.depositphotos.com/4177785/20331/v/600/depositphotos_203319412-stock-illustration-shopping-bag-with-percent-glyph.jpg"
+  },
+  {
+    "nombre": "MERCADO",
+    "urlImg":
+        "https://surveymonkey-assets.s3.amazonaws.com/survey/294611264/8354f529-3c5d-468d-b861-71dcf1691626.png"
+  },
+  {
+    "nombre": "HOTELERIA",
+    "urlImg":
+        "https://us.123rf.com/450wm/savo/savo1904/savo190400112/123535584-hotel-icon-simple-design-for-website-or-app-flat-design-.jpg?ver=6"
+  },
+  {"nombre": "MOTELERIA", "urlImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtxEhXj1v-9H3982k14KLMcYP96lKEKjt_eNH67aRE9LOQ0ItkwbzwRDWpPT9NkeHhgpw&usqp=CAU"},
+  /*{"nombre": "FERRETERIA", "urlImg": ""},
+  {"nombre": "DOMICILIOS", "urlImg": ""},
+  {"nombre": "FARMACIA", "urlImg": ""},
+  {"nombre": "IPS", "urlImg": ""},
+  {"nombre": "EPS", "urlImg": ""},
+  {"nombre": "TECNOLOGIA", "urlImg": ""},
+  {"nombre": "AGROPECUARIO", "urlImg": ""},
+  {"nombre": "FUNERARIA", "urlImg": ""},
+  {"nombre": "ARTE", "urlImg": ""},*/
+];
+
 int index2 = 0;
 bool logueado = false;
 
@@ -379,7 +408,7 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
   Widget _crearListaCategoriaNombres() {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20.0),
-      height: 120,
+      height: 150,
       child: Container(
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -400,21 +429,30 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 300,
+            width: 120,
             child: Card(
               child: Wrap(
                 alignment: WrapAlignment.center,
                 children: [
                   Container(
                     //alignment: Al,
-                    height: 100,
+                    height: 130,
                     child: Center(
-                      child: Text(
-                        listaCategoriaDia[index],
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 30,
-                        ),
+                      child: Column(
+                        children: [
+                          Image.network(
+                            listaCategoriaDia[index]["urlImg"],
+                            width: 100,
+                            fit: BoxFit.fill,
+                          ),
+                          Text(
+                            listaCategoriaDia[index]["nombre"],
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
