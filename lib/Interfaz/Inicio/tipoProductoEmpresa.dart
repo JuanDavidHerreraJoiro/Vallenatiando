@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:turismo/Bll/EmpresaService.dart';
 import 'package:turismo/Dal/Global.dart';
 import 'package:turismo/Interfaz/Inicio/inicio1.dart';
@@ -56,7 +57,7 @@ class _TipoProductoEmpresaState extends State<TipoProductoEmpresa> {
                       children: [
                         Text(
                           "MIS EMPRESAS",
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             color: Colors.white,
                             fontSize: 18,
                           ),
@@ -144,7 +145,7 @@ class _TipoProductoEmpresaState extends State<TipoProductoEmpresa> {
                 Text(
                   "${snapshot.data[index]["nombre"]}",
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18),
+                  style: GoogleFonts.montserrat(fontSize: 18),
                 ),
                 const SizedBox(
                   height: 5,

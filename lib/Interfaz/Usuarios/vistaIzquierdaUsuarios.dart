@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:turismo/Bll/EmpresaService.dart';
 import 'package:turismo/Bll/MensajesService.dart';
 import 'package:turismo/Interfaz/Inicio/inicio1.dart';
@@ -17,7 +18,7 @@ class VistaIzquierdaUsuarios extends StatefulWidget {
 class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
   @override
   Widget build(BuildContext context) {
-    const logoSize = 80.0;
+    const logoSize = 73.0;
     return Container(
       width: 300.0,
       padding: EdgeInsets.all(8.0),
@@ -67,7 +68,7 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Inicio",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
                   ),
                 ),
                 SizedBox(
@@ -87,7 +88,7 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Mi perfil",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
                   ),
                 ),
                 SizedBox(
@@ -108,7 +109,7 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Quiero Vender",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
                   ),
                 ),
                 SizedBox(
@@ -128,7 +129,7 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Ofertas",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
                   ),
                 ),
                 SizedBox(
@@ -148,7 +149,7 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Favoritos",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
                   ),
                 ),
                 SizedBox(
@@ -168,7 +169,7 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Notificicaciones",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
                   ),
                 ),
                 SizedBox(
@@ -188,7 +189,7 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Mis Compras",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
                   ),
                 ),
                 SizedBox(
@@ -202,7 +203,7 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Ayuda",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
                   ),
                 ),
                 SizedBox(
@@ -216,7 +217,7 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Terminos Legales",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
                   ),
                 ),
                 SizedBox(
@@ -230,7 +231,7 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Acerca de ¿?",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
                   ),
                 ),
               ],

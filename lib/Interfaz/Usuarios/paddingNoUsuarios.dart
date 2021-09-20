@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:turismo/Interfaz/Inicio/InicioEmpresas.dart';
 import 'package:turismo/Interfaz/Usuarios/Inicio.dart';
 
@@ -42,7 +43,7 @@ class _PaddingNoUsuariosState extends State<PaddingNoUsuarios> {
                 ),
                 Text(
                   "Inicio",
-                  style: Theme.of(context).textTheme.headline6!.copyWith(
+                  style:  GoogleFonts.montserrat(
                       fontWeight: FontWeight.bold,
                       color: widget.Color1, //Colors.redAccent,
                       fontSize: 15),
@@ -71,7 +72,7 @@ class _PaddingNoUsuariosState extends State<PaddingNoUsuarios> {
                 ),
                 Text(
                   "Empresas",
-                  style: Theme.of(context).textTheme.headline6!.copyWith(
+                  style: GoogleFonts.montserrat(
                       fontWeight: FontWeight.bold,
                       color: widget.Color2, //Colors.black45,
                       fontSize: 15),

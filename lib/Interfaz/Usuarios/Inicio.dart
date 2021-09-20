@@ -1,16 +1,24 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:turismo/Bll/EmpresaService.dart';
 import 'package:turismo/Bll/ProductoService.dart';
 import 'package:turismo/Dal/Global.dart';
+import 'package:turismo/Entity/Productos.dart';
 import 'package:turismo/Interfaz/Inicio/inicio1.dart';
 import 'package:turismo/Interfaz/Inicio/InicioEmpresas.dart';
+import 'package:turismo/Interfaz/Usuarios/googleMaps.dart';
 import 'package:turismo/Interfaz/Usuarios/paddingNoUsuarios.dart';
 import 'package:turismo/Interfaz/Usuarios/paddingUsuarios.dart';
+import 'package:turismo/Interfaz/Usuarios/detalles.dart';
 import 'package:turismo/Interfaz/Usuarios/vistaIzquierdaNoUsuarios.dart';
 import 'package:turismo/Interfaz/Usuarios/vistaIzquierdaUsuarios.dart';
+import 'package:turismo/Interfaz/componentes/TextFielForm.dart';
 import 'package:turismo/Interfaz/constante.dart';
 import 'dart:math';
+
+TextEditingController controladorBuscar = new TextEditingController();
 
 class Inicio extends StatefulWidget {
   @override
@@ -45,31 +53,19 @@ class _CentroInicioState extends StatefulWidget {
 
 //https://spng.pngfind.com/pngs/s/187-1878783_etiqueta-de-oferta-png-transparent-png.png
 List listaCategoriaDia = [
-  {
-    "nombre": "PROMOCIONES",
-    "urlImg":
-        "https://st4.depositphotos.com/4177785/20331/v/600/depositphotos_203319412-stock-illustration-shopping-bag-with-percent-glyph.jpg"
-  },
-  {
-    "nombre": "MERCADO",
-    "urlImg":
-        "https://surveymonkey-assets.s3.amazonaws.com/survey/294611264/8354f529-3c5d-468d-b861-71dcf1691626.png"
-  },
-  {
-    "nombre": "HOTELERIA",
-    "urlImg":
-        "https://us.123rf.com/450wm/savo/savo1904/savo190400112/123535584-hotel-icon-simple-design-for-website-or-app-flat-design-.jpg?ver=6"
-  },
-  {"nombre": "MOTELERIA", "urlImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtxEhXj1v-9H3982k14KLMcYP96lKEKjt_eNH67aRE9LOQ0ItkwbzwRDWpPT9NkeHhgpw&usqp=CAU"},
-  /*{"nombre": "FERRETERIA", "urlImg": ""},
-  {"nombre": "DOMICILIOS", "urlImg": ""},
-  {"nombre": "FARMACIA", "urlImg": ""},
-  {"nombre": "IPS", "urlImg": ""},
-  {"nombre": "EPS", "urlImg": ""},
-  {"nombre": "TECNOLOGIA", "urlImg": ""},
-  {"nombre": "AGROPECUARIO", "urlImg": ""},
-  {"nombre": "FUNERARIA", "urlImg": ""},
-  {"nombre": "ARTE", "urlImg": ""},*/
+  {"nombre": "Oferta", "urlImg": "assets/svg/Descuento.svg"},
+  {"nombre": "Mercado", "urlImg": "assets/svg/Mercado.svg"},
+  {"nombre": "Hoteleria", "urlImg": "assets/svg/Hotel.svg"},
+  {"nombre": "Moteleria", "urlImg": "assets/svg/Motel.svg"},
+  {"nombre": "Ferreteria", "urlImg": "assets/svg/Ferreteria.svg"},
+  {"nombre": "Domicilios", "urlImg": "assets/svg/Domicilio.svg"},
+  {"nombre": "Farmacia", "urlImg": "assets/svg/Farmacia.svg"},
+  {"nombre": "IPS", "urlImg": "assets/svg/IPS.svg"},
+  {"nombre": "EPS", "urlImg": "assets/svg/EPS.svg"},
+  {"nombre": "Tecnologia", "urlImg": "assets/svg/Tecnologia.svg"},
+  {"nombre": "Agro", "urlImg": "assets/svg/Agro.svg"},
+  {"nombre": "Funeraria", "urlImg": "assets/svg/Funeral.svg"},
+  {"nombre": "Arte", "urlImg": "assets/svg/Pintar.svg"},
 ];
 
 int index2 = 0;
@@ -78,6 +74,12 @@ bool logueado = false;
 class __CentroInicioStateState extends State<_CentroInicioState> {
   String consultatipo = "Productos";
   double value = 0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    controladorBuscar = new TextEditingController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -146,10 +148,7 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                                   children: [
                                     Text(
                                       "INICIO",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                      ),
+                                      style: FontTexto.styleAppbar,
                                     ),
                                   ],
                                 ),
@@ -182,30 +181,26 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                             _crearInput(),
                             Divider(),
                             Text(
-                              'Que desea hacer hoy?',
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 25.0),
+                              '¿Que desea hacer hoy?',
+                              style: FontTexto.styleTexto,
                             ),
                             _crearListaCategoriaNombres(),
                             Divider(),
                             Text(
                               'Lista de ofertas',
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 25.0),
+                              style: FontTexto.styleTexto,
                             ),
                             _crearListaFotos2(),
                             Divider(),
                             Text(
                               'Lista de productos',
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 25.0),
+                              style: FontTexto.styleTexto,
                             ),
                             _crearListaFotos(),
                             Divider(),
                             Text(
                               'Top Empresas',
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 25.0),
+                              style: FontTexto.styleTexto,
                             ),
                             SizedBox(height: 10),
                             _crearCategorias(),
@@ -260,18 +255,23 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
   }
 
   Widget _crearInput() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10, bottom: 0, left: 0, right: 0),
-      child: TextField(
-        textCapitalization: TextCapitalization.sentences,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
-          hintText: 'Producto o servicio',
-          prefixIcon: Icon(Icons.search),
+    return TextFormField(
+      controller: controladorBuscar,
+      style: FontTexto.styleCajaTexto, // // Probar todos los teclados
+      decoration: new InputDecoration(
+        icon: Icon(
+          Icons.search,
+          color: Colors.red,
+          size: 30,
         ),
-        onChanged: (valor) {
-          setState(() {});
-        },
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red, width: 0.5),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.black, width: 0.5),
+        ),
+        labelText: "Productos y servicios",
+        labelStyle: FontTexto.styleCajaTexto, // // Probar todos los teclados
       ),
     );
   }
@@ -307,7 +307,7 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
       child: Column(
         children: [
           CircleAvatar(
-            backgroundColor: Colors.red[200],
+            backgroundColor: DeliveryColorsFinal.redfinal3,
             radius: 27 + 3,
             child: CircleAvatar(
               radius: 27,
@@ -351,29 +351,69 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
   }
 
   Widget _estructuraListaProductos(snapshot, int index) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 300,
-            child: Card(
+    return GestureDetector(
+      onTap: () {
+        Productos producto = new Productos();
+        producto.idProducto = snapshot.data[index]['idProducto'].toString();
+        producto.nombre = snapshot.data[index]['nombre'].toString();
+        producto.descripcion = snapshot.data[index]['descripcion'].toString();
+        producto.precio = snapshot.data[index]['precio'].toString();
+        producto.fechaVigencia =
+            snapshot.data[index]['fechaVigencia'].toString();
+        producto.cantidad = snapshot.data[index]['cantidad'].toString();
+        producto.precioOfertaOpcional =
+            snapshot.data[index]['precioOfertaOpcional'].toString();
+        producto.fechaVigenciaOferta =
+            snapshot.data[index]['fechaVigenciaOferta'].toString();
+        producto.estado = snapshot.data[index]['estado'].toString();
+        producto.idEmpresa = snapshot.data[index]['idEmpresa'].toString();
+        String ruta =
+            urlServidor + "/" + snapshot.data[index]['ruta'].toString();
+
+        Navigator.push(
+          context,
+          PageRouteBuilder(
+            transitionDuration: const Duration(milliseconds: 700),
+            reverseTransitionDuration: const Duration(milliseconds: 700),
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                FadeTransition(
+              opacity: animation,
+              child: Detalles(
+                producto: producto,
+                route: ruta,
+              ),
+            ),
+          ),
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 300,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(20 * 1.25),
+                ),
+              ),
               child: Wrap(
                 alignment: WrapAlignment.center,
-                children: [
+                children: <Widget>[
                   Container(
                     height: 150,
                     child: Image.network(
                       urlServidor +
                           "/" +
                           snapshot.data[index]['ruta'].toString(),
-                      width: 300,
-                      fit: BoxFit.fill,
+                      //width: 300,
+                      fit: BoxFit.contain,
                     ),
                   ),
                   Container(
-                    height: 50,
+                    height: 60,
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -381,14 +421,33 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                           Text(
                             snapshot.data[index]['nombre'].toString(),
                             textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
+                            style: FontTexto.styleNombreProducto,
                           ),
                           Text(
-                            "\$ " + snapshot.data[index]['precio'].toString(),
+                            "Ferreteria", //categoria
+                            style: FontTexto.styleSubtexto,
+                          ),
+                          Text.rich(
+                            TextSpan(
+                                text: "\$ ",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle1!
+                                    .copyWith(
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.red),
+                                children: [
+                                  TextSpan(
+                                      text: snapshot.data[index]['precio']
+                                          .toString(),
+                                      style: GoogleFonts.montserrat(color: Colors.black)),
+                                  TextSpan(
+                                    text: " pesos",
+                                    style: FontTexto.styleSubtexto,
+                                  )
+                                ]),
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: GoogleFonts.montserrat(
                               fontSize: 12,
                             ),
                           ),
@@ -399,8 +458,8 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -408,7 +467,7 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
   Widget _crearListaCategoriaNombres() {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20.0),
-      height: 150,
+      height: 100,
       child: Container(
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -424,41 +483,58 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
 
   Widget _estructuraListaCategoriaNombres(listaCategoriaDia, int index) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10),
+      padding: const EdgeInsets.all(0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 120,
-            child: Card(
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                children: [
-                  Container(
-                    //alignment: Al,
-                    height: 130,
-                    child: Center(
-                      child: Column(
-                        children: [
-                          Image.network(
-                            listaCategoriaDia[index]["urlImg"],
-                            width: 100,
-                            fit: BoxFit.fill,
-                          ),
-                          Text(
-                            listaCategoriaDia[index]["nombre"],
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 15,
+            color: Colors.transparent,
+            width: 100,
+            // child: Card(
+            //color: Colors.transparent,
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              children: [
+                Container(
+                  color: Colors.transparent,
+                  height: 90.0,
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CircleAvatar(
+                          radius: 27 + 3,
+                          backgroundColor: DeliveryColorsFinal.redfinal3,
+                          child: CircleAvatar(
+                            radius: 27,
+                            backgroundColor: Colors.white,
+                            child: Padding(
+                              padding: const EdgeInsets.all(0),
+                              child: SvgPicture.asset(
+                                listaCategoriaDia[index]["urlImg"],
+                                color: DeliveryColorsFinal.redfinal3,
+                                width: 40.0,
+                                height: 40.0,
+                              ),
                             ),
+                            // ),
                           ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          listaCategoriaDia[index]["nombre"],
+                          textAlign: TextAlign.center,
+                          style: FontTexto.styleTexto3,
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
+            //),
           ),
         ],
       ),
@@ -501,16 +577,12 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                                 Text(
                                   "HOLA",
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                  ),
+                                  style: FontTexto.styleTexto,
                                 ),
                                 Text(
                                   "HOLA",
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                  ),
+                                  style: FontTexto.styleTexto,
                                 ),
                               ],
                             ),
@@ -522,7 +594,7 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                 ),
               ],
             ),
-          ),
+          ), /*
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: Column(
@@ -553,14 +625,14 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                                 Text(
                                   "HOLA",
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 16,
                                   ),
                                 ),
                                 Text(
                                   "HOLA",
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: GoogleFonts.montserrat(
                                     fontSize: 12,
                                   ),
                                 ),
@@ -575,6 +647,7 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
               ],
             ),
           ),
+        */
         ],
       ),
     );

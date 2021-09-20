@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TextFieldFormBuscar extends StatelessWidget {
   final IconData icono;
@@ -18,7 +19,7 @@ class TextFieldFormBuscar extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
       child: TextFormField(
         controller: controlador,
-        style: TextStyle(
+        style: GoogleFonts.montserrat(
           color: Colors.black,
         ), // // Probar todos los teclados
 
@@ -38,7 +39,7 @@ class TextFieldFormBuscar extends StatelessWidget {
             borderSide: BorderSide(color: Colors.black, width: 0.5),
           ),
           labelText: labelText,
-          labelStyle: TextStyle(
+          labelStyle: GoogleFonts.montserrat(
             color: Colors.black,
           ),
         ),

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:turismo/Bll/EmpresaService.dart';
 import 'package:turismo/Bll/FileImagenesService.dart';
 import 'package:turismo/Bll/MensajesService.dart';
@@ -100,7 +101,7 @@ class _RegistrarEmprendimientoHomeStateState
                       ),
                       Text(
                         "Registrar Emprendimiento",
-                        style: TextStyle(
+                        style: GoogleFonts.montserrat(
                             fontSize: 25,
                             color: DeliveryColorsRedOrange.red1,
                             fontWeight: FontWeight.w400),
@@ -146,7 +147,7 @@ class _RegistrarEmprendimientoHomeStateState
                         padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                         child: Text(
                           "Agrege Foto de la Empresa",
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                               fontSize: 20,
                               color: DeliveryColorsRedOrange.red1,
                               fontWeight: FontWeight.w400),
@@ -187,7 +188,7 @@ class _RegistrarEmprendimientoHomeStateState
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
                           "Registrar",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
                           textAlign: TextAlign.center,
                         ),
                       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:turismo/Bll/MensajesService.dart';
 import 'package:turismo/Bll/UsuariosServices.dart';
 import 'package:turismo/Interfaz/Inicio/inicio1.dart';
@@ -97,10 +98,10 @@ class _InicioSesionState extends State<InicioSesion> {
                     ),
                     Text(
                       "Inicio de sesión",
-                      style: Theme.of(context).textTheme.headline4!.copyWith(
-                            fontWeight: FontWeight.w300,
-                            color: DeliveryColorsRedOrange.red7,
-                          ),
+                      style: GoogleFonts.montserrat(
+                        fontSize: 25, //fontWeight: FontWeight.w300,
+                        color: DeliveryColorsRedOrange.red7,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(
@@ -111,7 +112,8 @@ class _InicioSesionState extends State<InicioSesion> {
                         keyboardType: TextInputType.emailAddress,
                         controller: controladorUsuario,
                         cursorColor: Colors.white,
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        style: GoogleFonts.montserrat(
+                            color: Colors.white, fontSize: 18),
                         decoration: InputDecoration(
                           icon: Icon(
                             Icons.person,
@@ -119,8 +121,8 @@ class _InicioSesionState extends State<InicioSesion> {
                             size: 30,
                           ),
                           hintText: "Usuario",
-                          hintStyle:
-                              TextStyle(color: Colors.white, fontSize: 18),
+                          hintStyle: GoogleFonts.montserrat(
+                              color: Colors.white, fontSize: 18),
                           border: InputBorder.none,
                         ),
                       ),
@@ -133,11 +135,12 @@ class _InicioSesionState extends State<InicioSesion> {
                         controller: controladorPassword,
                         obscureText: verpassword,
                         cursorColor: Colors.redAccent,
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        style: GoogleFonts.montserrat(
+                            color: Colors.white, fontSize: 18),
                         decoration: InputDecoration(
                           hintText: "Contraseña",
-                          hintStyle:
-                              TextStyle(color: Colors.white, fontSize: 18),
+                          hintStyle: GoogleFonts.montserrat(
+                              color: Colors.white, fontSize: 18),
                           icon: Icon(
                             Icons.lock,
                             color: Colors.white,
@@ -214,7 +217,8 @@ class _InicioSesionState extends State<InicioSesion> {
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
                           "Iniciar Sesion",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: GoogleFonts.montserrat(
+                              color: Colors.white, fontSize: 20),
                           textAlign: TextAlign.center,
                         ),
                       ),

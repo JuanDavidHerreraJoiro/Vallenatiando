@@ -87,11 +87,36 @@ final deliveryGradientsFinal = [
 
 class FontTexto {
   static final styleTexto = GoogleFonts.montserrat(
-    color: DeliveryColorsRedOrange.red1,
+    color: Colors.black,
+    //color: DeliveryColorsRedOrange.red1,
     fontSize: 20,
   );
-  static final styleTitulo = GoogleFonts.poppins(
-    color: DeliveryColorsRedOrange.red1,
+  static final styleTexto3 = GoogleFonts.montserrat(
+    color: Colors.black,
+    //color: DeliveryColorsRedOrange.red1,
+    fontSize: 15,
+  );
+  static final styleTitulo = GoogleFonts.montserrat(
+    color: Colors.black,
     fontSize: 35,
+  );
+  static final styleAppbar = GoogleFonts.montserrat(
+    color: Colors.white,
+    fontSize: 18,
+  );
+  static final styleCajaTexto = GoogleFonts.montserrat(
+    color: Colors.black,
+  );
+  static final styleNombreProducto = GoogleFonts.montserrat(
+    color: Colors.black,
+    fontSize: 18,
+  );
+  static final styleSubtexto = GoogleFonts.montserrat(
+    color: Colors.black26,
+    fontSize: 15,
+  );
+  static final styleDescrip = GoogleFonts.montserrat(
+    color: Colors.black45,
+    fontSize: 15,
   );
 }

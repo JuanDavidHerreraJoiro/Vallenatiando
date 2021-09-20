@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:turismo/Bll/MensajesService.dart';
 import 'package:turismo/Bll/PersonasService.dart';
 import 'package:turismo/Entity/Personas.dart';
@@ -103,7 +104,7 @@ class _RegistrarUsuarioHomeStateState
                       ),
                       Text(
                         "Registro de Datos Personales",
-                        style: TextStyle(
+                        style: GoogleFonts.montserrat(
                             fontSize: 25,
                             color: DeliveryColorsRedOrange.red1,
                             fontWeight: FontWeight.w400),
@@ -118,7 +119,7 @@ class _RegistrarUsuarioHomeStateState
                         child: Text(
                           "Tipo de identificacion",
                           textAlign: TextAlign.start,
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                               fontSize: 18,
                               color: DeliveryColorsRedOrange.red1,
                               fontWeight: FontWeight.w400),
@@ -143,7 +144,7 @@ class _RegistrarUsuarioHomeStateState
                             child: DropdownButton<String>(
                               isExpanded: true,
                               //elevation: 5,
-                              style: TextStyle(
+                              style: GoogleFonts.montserrat(
                                 color: Colors.black,
                               ),
                               icon: Icon(
@@ -171,7 +172,7 @@ class _RegistrarUsuarioHomeStateState
                               }).toList(),
                               hint: Text(
                                 _chosenValue1,
-                                style: TextStyle(
+                                style: GoogleFonts.montserrat(
                                     color: Colors.white,
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600),
@@ -300,7 +301,7 @@ class _RegistrarUsuarioHomeStateState
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
                           "Registrar",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
                           textAlign: TextAlign.center,
                         ),
                       ),

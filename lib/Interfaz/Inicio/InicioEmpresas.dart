@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:turismo/Bll/EmpresaService.dart';
 import 'package:turismo/Bll/ProductoService.dart';
 import 'package:turismo/Dal/Global.dart';
@@ -87,10 +88,7 @@ class _InicioEmpresasState extends State<InicioEmpresas> {
                                   children: [
                                     Text(
                                       "EMPRESAS",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                      ),
+                                      style: FontTexto.styleAppbar,
                                     ),
                                     SizedBox(
                                       height: 28,
@@ -209,16 +207,16 @@ class _InicioEmpresasState extends State<InicioEmpresas> {
             return ListTile(
               title: Text(
                 snapshot.data[index]["nombre"],
-                style: TextStyle(
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: FontTexto.styleCajaTexto,
               ),
               subtitle: Column(
                 //mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(snapshot.data[index]["descripcion"]),
+                  Text(
+                    snapshot.data[index]["descripcion"],
+                    style: FontTexto.styleDescrip,
+                  ),
                   Row(
                     children: [
                       Icon(
@@ -246,7 +244,10 @@ class _InicioEmpresasState extends State<InicioEmpresas> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Comprados: ${0}"),
+                      Text(
+                        "Comprados: ${0}",
+                        style: FontTexto.styleDescrip,
+                      ),
                       IconButton(
                         iconSize: 25,
                         icon: Icon(Icons.mail_outline_sharp),
@@ -265,14 +266,14 @@ class _InicioEmpresasState extends State<InicioEmpresas> {
                           Text(
                             "Cuenta",
                             textAlign: TextAlign.end,
-                            style: TextStyle(
+                            style: GoogleFonts.montserrat(
                               color: DeliveryColorsRedOrange.red3,
                             ),
                           ),
                           Text(
                             "0",
                             textAlign: TextAlign.end,
-                            style: TextStyle(
+                            style: GoogleFonts.montserrat(
                               color: Colors.black,
                             ),
                           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TextFieldFormDescription extends StatelessWidget {
   final IconData icono;
@@ -18,7 +19,7 @@ class TextFieldFormDescription extends StatelessWidget {
       child: TextFormField(
         maxLines: 4,
         controller: controlador,
-        style: TextStyle(
+        style: GoogleFonts.montserrat(
           color: Colors.black,
         ), // // Probar todos los teclados
         decoration: new InputDecoration(
@@ -34,7 +35,7 @@ class TextFieldFormDescription extends StatelessWidget {
             borderSide: BorderSide(color: Colors.black, width: 0.5),
           ),
           labelText: labelText,
-          labelStyle: TextStyle(
+          labelStyle: GoogleFonts.montserrat(
             color: Colors.black,
           ),
         ),

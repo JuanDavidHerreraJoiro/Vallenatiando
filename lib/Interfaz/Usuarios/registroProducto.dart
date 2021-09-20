@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:turismo/Bll/FileImagenesService.dart';
 import 'package:turismo/Bll/MensajesService.dart';
@@ -110,7 +111,7 @@ class _RegistrarProductoHomeStateState
                       ),
                       Text(
                         "Registro Producto",
-                        style: TextStyle(
+                        style: GoogleFonts.montserrat(
                             fontSize: 25,
                             color: DeliveryColorsRedOrange.red1,
                             fontWeight: FontWeight.w400),
@@ -163,7 +164,7 @@ class _RegistrarProductoHomeStateState
                         padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                         child: Text(
                           "Agregue Fotos del producto",
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                               fontSize: 20,
                               color: DeliveryColorsRedOrange.red1,
                               fontWeight: FontWeight.w400),
@@ -276,7 +277,7 @@ class _RegistrarProductoHomeStateState
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
                           "Registrar",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
                           textAlign: TextAlign.center,
                         ),
                       ),

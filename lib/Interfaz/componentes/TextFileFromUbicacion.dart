@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:turismo/Interfaz/Usuarios/googleMaps.dart';
 
 class TextFieldFormUbicacion extends StatefulWidget {
@@ -26,7 +27,7 @@ class _TextFieldFormUbicacionState extends State<TextFieldFormUbicacion> {
       padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
       child: TextFormField(
         controller: widget.controlador,
-        style: TextStyle(
+        style: GoogleFonts.montserrat(
           color: Colors.black,
         ), // // Probar todos los teclados
         decoration: new InputDecoration(
@@ -42,7 +43,7 @@ class _TextFieldFormUbicacionState extends State<TextFieldFormUbicacion> {
             borderSide: BorderSide(color: Colors.black, width: 0.5),
           ),
           labelText: widget.labelText,
-          labelStyle: TextStyle(
+          labelStyle: GoogleFonts.montserrat(
             color: Colors.black,
           ),
           suffixIcon: IconButton(

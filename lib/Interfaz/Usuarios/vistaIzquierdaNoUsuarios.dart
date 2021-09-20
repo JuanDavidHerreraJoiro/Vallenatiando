@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:turismo/Interfaz/Inicio/inicio1.dart';
 import 'package:turismo/Interfaz/Inicio/inicioCuenta.dart';
+import 'package:turismo/Interfaz/constante.dart';
 
 class VistaIzquierdaNoUsuarios extends StatefulWidget {
   @override
@@ -14,14 +15,14 @@ class _VistaIzquierdaNoUsuariosState extends State<VistaIzquierdaNoUsuarios> {
 
   @override
   Widget build(context) {
-    const logoSize = 80.0;
+    const logoSize = 90.0;
     return Container(
       width: 300.0,
       padding: EdgeInsets.all(8.0),
       child: Column(
         children: [
           Expanded(
-            flex: 1,
+            flex: 2,
             child: DrawerHeader(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -64,7 +65,7 @@ class _VistaIzquierdaNoUsuariosState extends State<VistaIzquierdaNoUsuarios> {
                   ),
                   title: Text(
                     "Crear Cuenta",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: FontTexto.styleAppbar,
                   ),
                 ),
                 SizedBox(
@@ -78,7 +79,7 @@ class _VistaIzquierdaNoUsuariosState extends State<VistaIzquierdaNoUsuarios> {
                   ),
                   title: Text(
                     "Ofertas",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: FontTexto.styleAppbar,
                   ),
                 ),
                 SizedBox(
@@ -92,7 +93,7 @@ class _VistaIzquierdaNoUsuariosState extends State<VistaIzquierdaNoUsuarios> {
                   ),
                   title: Text(
                     "Ayuda",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: FontTexto.styleAppbar,
                   ),
                 ),
                 SizedBox(
@@ -106,7 +107,7 @@ class _VistaIzquierdaNoUsuariosState extends State<VistaIzquierdaNoUsuarios> {
                   ),
                   title: Text(
                     "Terminos Legales",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: FontTexto.styleAppbar,
                   ),
                 ),
                 SizedBox(
@@ -120,7 +121,7 @@ class _VistaIzquierdaNoUsuariosState extends State<VistaIzquierdaNoUsuarios> {
                   ),
                   title: Text(
                     "Acerca de ¿?",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: FontTexto.styleAppbar,
                   ),
                 ),
               ],

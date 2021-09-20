@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:turismo/Bll/MensajesService.dart';
 import 'package:turismo/Bll/UsuariosServices.dart';
@@ -103,10 +104,11 @@ class _InicioCuentaState extends State<InicioCuenta> {
                     ),
                     Text(
                       "BIENVENIDO",
-                      style: Theme.of(context).textTheme.headline4!.copyWith(
-                            fontWeight: FontWeight.w300,
-                            color: DeliveryColorsRedOrange.red1,
-                          ),
+                      style: GoogleFonts.montserrat(
+                        fontSize: 25,
+                        //fontWeight: FontWeight.w300,
+                        color: DeliveryColorsRedOrange.red1,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(
@@ -122,7 +124,7 @@ class _InicioCuentaState extends State<InicioCuenta> {
                         textColor: Colors.white,
                         child: Text(
                           "Iniciar sesión",
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 20.0,
                           ),
                         ),
@@ -146,7 +148,7 @@ class _InicioCuentaState extends State<InicioCuenta> {
                         textColor: Colors.white,
                         child: Text(
                           "Registrarse",
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             color: Colors.grey[800],
                             fontSize: 20.0,
                           ),
@@ -182,7 +184,10 @@ class _InicioCuentaState extends State<InicioCuenta> {
                                 height: 36,
                               )),
                         ),
-                        Text("O"),
+                        Text(
+                          "O",
+                          style: GoogleFonts.montserrat(color: Colors.black),
+                        ),
                         Expanded(
                           child: new Container(
                               margin: const EdgeInsets.only(
@@ -273,8 +278,8 @@ class _InicioCuentaState extends State<InicioCuenta> {
                         InkWell(
                           child: Text(
                             "Aceptar los Terminos y condiciones",
-                            style: TextStyle(
-                              fontSize: 16.0,
+                            style: GoogleFonts.montserrat(
+                              fontSize: 15.0,
                               color: DeliveryColorsRedOrange.red1,
                             ),
                             textAlign: TextAlign.center,

@@ -112,7 +112,7 @@ class _TipoRegistroEmpresaState extends State<TipoRegistroEmpresa> {
                         textColor: Colors.white,
                         child: Text(
                           "Registrar empresa",
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 20.0,
                           ),
                         ),
@@ -150,7 +150,7 @@ class _TipoRegistroEmpresaState extends State<TipoRegistroEmpresa> {
                         textColor: Colors.white,
                         child: Text(
                           "Crear emprendimiento",
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             color: Colors.white,
                             fontSize: 20.0,
                           ),

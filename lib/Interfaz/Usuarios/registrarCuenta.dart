@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:turismo/Bll/MensajesService.dart';
 import 'package:turismo/Bll/UsuariosServices.dart';
 import 'package:turismo/Entity/Personas.dart';
@@ -125,7 +126,7 @@ class _CuentaLoginHomeStateState extends State<_CuentaLoginHomeState> {
                       ),
                       Text(
                         "Crear Cuenta",
-                        style: Theme.of(context).textTheme.headline4!.copyWith(
+                        style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.w300,
                               color: DeliveryColorsRedOrange.red7,
                             ),
@@ -139,7 +140,7 @@ class _CuentaLoginHomeStateState extends State<_CuentaLoginHomeState> {
                           keyboardType: TextInputType.emailAddress,
                           controller: controladorusuario,
                           cursorColor: Colors.white,
-                          style: TextStyle(color: Colors.white, fontSize: 18),
+                          style: GoogleFonts.montserrat(color: Colors.white, fontSize: 18),
                           decoration: InputDecoration(
                             icon: Icon(
                               Icons.person,
@@ -148,7 +149,7 @@ class _CuentaLoginHomeStateState extends State<_CuentaLoginHomeState> {
                             ),
                             hintText: "Usuario",
                             hintStyle:
-                                TextStyle(color: Colors.white, fontSize: 18),
+                                GoogleFonts.montserrat(color: Colors.white, fontSize: 18),
                             border: InputBorder.none,
                           ),
                         ),
@@ -161,11 +162,11 @@ class _CuentaLoginHomeStateState extends State<_CuentaLoginHomeState> {
                           controller: controladorpassword,
                           obscureText: verpassword1,
                           cursorColor: Colors.red,
-                          style: TextStyle(color: Colors.white, fontSize: 18),
+                          style: GoogleFonts.montserrat(color: Colors.white, fontSize: 18),
                           decoration: InputDecoration(
                             hintText: "Contraseña",
                             hintStyle:
-                                TextStyle(color: Colors.white, fontSize: 18),
+                                GoogleFonts.montserrat(color: Colors.white, fontSize: 18),
                             icon: Icon(
                               Icons.lock,
                               color: Colors.white,
@@ -192,11 +193,11 @@ class _CuentaLoginHomeStateState extends State<_CuentaLoginHomeState> {
                           controller: controladorrepetirpassword,
                           obscureText: verpassword2,
                           cursorColor: Colors.red,
-                          style: TextStyle(color: Colors.white, fontSize: 18),
+                          style: GoogleFonts.montserrat(color: Colors.white, fontSize: 18),
                           decoration: InputDecoration(
                             hintText: "Repetir Contraseña",
                             hintStyle:
-                                TextStyle(color: Colors.white, fontSize: 18),
+                                GoogleFonts.montserrat(color: Colors.white, fontSize: 18),
                             icon: Icon(
                               Icons.lock,
                               color: Colors.white,
@@ -282,7 +283,7 @@ class _CuentaLoginHomeStateState extends State<_CuentaLoginHomeState> {
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
                           "Crear Cuenta",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
                           textAlign: TextAlign.center,
                         ),
                       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:turismo/Interfaz/constante.dart';
 
 class TextFieldForm extends StatelessWidget {
   final IconData icono;
@@ -17,9 +18,7 @@ class TextFieldForm extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
       child: TextFormField(
         controller: controlador,
-        style: TextStyle(
-          color: Colors.black,
-        ), // // Probar todos los teclados
+        style: FontTexto.styleCajaTexto, // // Probar todos los teclados
         decoration: new InputDecoration(
           icon: Icon(
             icono,
@@ -33,9 +32,7 @@ class TextFieldForm extends StatelessWidget {
             borderSide: BorderSide(color: Colors.black, width: 0.5),
           ),
           labelText: labelText,
-          labelStyle: TextStyle(
-            color: Colors.black,
-          ),
+          labelStyle: FontTexto.styleCajaTexto, // // Probar todos los teclados
         ),
       ),
     );
