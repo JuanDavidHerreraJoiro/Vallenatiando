@@ -1,7 +1,10 @@
+import 'dart:ffi';
 import 'dart:io';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:turismo/Bll/EmpresaService.dart';
 import 'package:turismo/Bll/FileImagenesService.dart';
 import 'package:turismo/Bll/MensajesService.dart';
@@ -28,6 +31,12 @@ TextEditingController controladorLatitud = new TextEditingController();
 TextEditingController controladorRuta = new TextEditingController();
 
 class RegistrarEmpresa extends StatefulWidget {
+  final latitude;
+  final longitude;
+
+  const RegistrarEmpresa({Key? key, this.latitude, this.longitude})
+      : super(key: key);
+
   @override
   _RegistrarEmpresaState createState() {
     return _RegistrarEmpresaState();
@@ -40,11 +49,20 @@ class _RegistrarEmpresaState extends State<RegistrarEmpresa> {
     Size size = MediaQuery.of(context).size;
     var width = size.width;
     var moreSize = 50;
-    return _RegistrarEmpresaHomeState();
+    return _RegistrarEmpresaHomeState(
+      latitude: widget.latitude,
+      longitude: widget.longitude,
+    );
   }
 }
 
 class _RegistrarEmpresaHomeState extends StatefulWidget {
+  final latitude;
+  final longitude;
+
+  const _RegistrarEmpresaHomeState({Key? key, this.latitude, this.longitude})
+      : super(key: key);
+
   @override
   _RegistrarEmpresaHomeStateState createState() {
     return _RegistrarEmpresaHomeStateState();
@@ -73,7 +91,8 @@ class _RegistrarEmpresaHomeStateState
     controladorLongitud = new TextEditingController();
     controladorLatitud = new TextEditingController();
     controladorRuta = new TextEditingController();
-
+    controladorLongitud.text = widget.longitude;
+    controladorLatitud.text = widget.latitude;
     super.initState();
   }
 
@@ -142,6 +161,43 @@ class _RegistrarEmpresaHomeStateState
                         icono: Icons.phone,
                         labelText: 'Telefono 2',
                       ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        child: Text(
+                          "Ubicacion",
+                          style: GoogleFonts.montserrat(
+                              fontSize: 20,
+                              color: DeliveryColorsRedOrange.red1,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Flexible(
+                            child: TextFieldForm(
+                              controlador: controladorLongitud,
+                              icono: Icons.person_pin_circle,
+                              //iconoSub: Icons.pin_drop,
+                              labelText: 'Longitud',
+                            ),
+                          ),
+                          Flexible(
+                            child: TextFieldFormUbicacion(
+                              controlador: controladorLatitud,
+                              icono: Icons.person_pin_circle,
+                              iconoSub: Icons.pin_drop,
+                              labelText: 'Latitud',
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      /*TextFieldFormUbicacion(
+                        controlador: controladorTelefono2,
+                        icono: Icons.person_pin_circle,
+                        iconoSub: Icons.pin_drop,
+                        labelText: 'Ubicacion',
+                      ),*/
                       TextFieldFormDescription(
                         controlador: controladorDescripcion,
                         icono: Icons.description,
@@ -184,9 +240,9 @@ class _RegistrarEmpresaHomeStateState
                           controladorNIT.text.trim());
                       List respuesta2 = await ConsultarNitEmpresaValledupar1(
                           controladorNIT.text.trim());
+                      //_getCurrentLocation();
                       _getCurrentLocation();
-
-                      if (activacionUbicacion == true) {
+                      if (activacionUbicacion != false) {
                         if (imgFile.length > 0) {
                           if (controladorNIT.text.isNotEmpty &&
                               controladorNombre.text.isNotEmpty &&
@@ -274,7 +330,8 @@ class _RegistrarEmpresaHomeStateState
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
                           "Registrar",
-                          style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
+                          style: GoogleFonts.montserrat(
+                              color: Colors.white, fontSize: 20),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -309,25 +366,17 @@ class _RegistrarEmpresaHomeStateState
               desiredAccuracy: LocationAccuracy.best,
               forceAndroidLocationManager: true)
           .then((Position position) {
-        setState(() {
-          activacionUbicacion = true;
-          _currentPosition = position;
-          controladorLatitud.text = _currentPosition!.latitude.toString();
-          controladorLongitud.text = _currentPosition!.longitude.toString();
-          print(
-              "LAT: ${controladorLatitud.text}, LNG: ${controladorLongitud.text} ACTU: ${activacionUbicacion.toString()}");
-        });
+        position.isMocked;
+        print("${position.altitude}");
+        activacionUbicacion = true;
+        _currentPosition = position;
       }).catchError((e) {
-        print(" 1 NO ACT ${e.toString()}");
-        setState(() {
-          activacionUbicacion = false;
-        });
+        print(" 1 NO ACT ${e.toString()} 9");
+        activacionUbicacion = false;
       });
     } catch (e) {
       print(" 2 NO ACT ${e.toString()}");
-      setState(() {
-        activacionUbicacion = false;
-      });
+      activacionUbicacion = false;
     }
   }
 

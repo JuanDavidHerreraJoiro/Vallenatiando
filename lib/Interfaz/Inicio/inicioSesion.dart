@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:turismo/Bll/MensajesService.dart';
 import 'package:turismo/Bll/UsuariosServices.dart';
@@ -184,24 +185,23 @@ class _InicioSesionState extends State<InicioSesion> {
                                   controladorUsuario.text,
                                   controladorPassword.text);
                           idPersona = listaPersonas[0]["idPersona"].toString();
-                          String texto1 = 'USUARIO & PASSWORD CORRECTOS';
-                          String texto2 = 'INICIAR SESION';
-                          MensajeService(context, texto1, Colors.green.shade300,
-                              texto2, true);
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (_) => Inicio(),
+                            ),
+                          );
+                          Fluttertoast.showToast(
+                              msg: 'USUARIO & PASSWORD CORRECTOS');
                         } else {
-                          String texto1 = '¿USUARIO U/O PASSWORD INCORRECTOS?';
-                          String texto2 = 'INICIAR SESION ERROR...';
-                          MensajeService(context, texto1,
-                              DeliveryColorsRedOrange.red3, texto2, false);
+                          Fluttertoast.showToast(
+                              msg: '¿USUARIO U/O PASSWORD INCORRECTOS?');
                         }
                         controladorUsuario.text = "";
                         controladorPassword.text = "";
                         logueado = resultdo;
                       } else {
-                        String texto1 = '¿USUARIO U/O PASSWORD ESTAN VACIOS?';
-                        String texto2 = 'INICIAR SESION ERROR...';
-                        MensajeService(context, texto1,
-                            DeliveryColorsRedOrange.red3, texto2, false);
+                        Fluttertoast.showToast(
+                            msg: '¿USUARIO U/O PASSWORD ESTAN VACIOS?');
                       }
                     },
                     child: Container(

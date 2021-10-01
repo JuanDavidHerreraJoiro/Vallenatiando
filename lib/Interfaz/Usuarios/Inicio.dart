@@ -141,9 +141,9 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                             Container(
                               height: MediaQuery.of(context).size.height,
                               width: MediaQuery.of(context).size.width,
-                              child: SingleChildScrollView(
+                              child: Padding(
                                 padding: EdgeInsets.only(
-                                    left: 16, right: 16, top: 50, bottom: 40),
+                                    left: 16, right: 16, top: 60, bottom: 5),
                                 child: Column(
                                   children: [
                                     Text(
@@ -156,7 +156,7 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                             ),
                             Padding(
                               padding: EdgeInsets.only(
-                                  left: 10, right: 5, top: 30, bottom: 10),
+                                  left: 16, right: 4, top: 50, bottom: 5),
                               child: IconButton(
                                 onPressed: () {
                                   setState(() {
@@ -166,6 +166,7 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                                 icon: Icon(
                                   Icons.menu,
                                   color: Colors.white,
+                                  size: 30,
                                 ),
                               ),
                             ),
@@ -185,6 +186,8 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                               style: FontTexto.styleTexto,
                             ),
                             _crearListaCategoriaNombres(),
+                            Divider(),
+                            _crearListaCategoriaDescuento(),
                             Divider(),
                             Text(
                               'Lista de ofertas',
@@ -214,19 +217,6 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
               ));
             },
           ),
-          /* GestureDetector(
-            onHorizontalDragUpdate: (e) {
-              if (e.delta.dx > 0) {
-                setState(() {
-                  value = 1;
-                });
-              } else {
-                setState(() {
-                  value = 0;
-                });
-              }
-            },
-          )*/
         ],
       ),
     );
@@ -261,11 +251,12 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
       decoration: new InputDecoration(
         icon: Icon(
           Icons.search,
-          color: Colors.red,
-          size: 30,
+          color: DeliveryColorsFinal.redfinal3,
+          size: 50,
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red, width: 0.5),
+          borderSide:
+              BorderSide(color: DeliveryColorsFinal.redfinal3, width: 0.5),
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.black, width: 0.5),
@@ -328,7 +319,7 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
   Widget _crearListaFotos() {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20.0),
-      height: 210,
+      height: 230,
       child: Container(
         child: FutureBuilder(
           future: consultarProducto1(),
@@ -413,7 +404,7 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                     ),
                   ),
                   Container(
-                    height: 60,
+                    height: 80,
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -440,7 +431,8 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                                   TextSpan(
                                       text: snapshot.data[index]['precio']
                                           .toString(),
-                                      style: GoogleFonts.montserrat(color: Colors.black)),
+                                      style: GoogleFonts.montserrat(
+                                          color: Colors.black)),
                                   TextSpan(
                                     text: " pesos",
                                     style: FontTexto.styleSubtexto,
@@ -460,6 +452,53 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _crearListaCategoriaDescuento() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 5.0),
+      height: 120,
+      child: Container(
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount:
+              2, //listaCategoriaDia.length == 0 ? 0 : listaCategoriaDia.length,
+          itemBuilder: (context, index) {
+            return _estructuraListaDescuento(/*listaCategoriaDia,*/ index);
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _estructuraListaDescuento(/*listaCategoriaDia,*/ int index) {
+    return Padding(
+      padding: const EdgeInsets.all(0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            color: Colors.transparent,
+            width: 300,
+            // child: Card(
+            //color: Colors.transparent,
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  "assets/svg/Rectangle1.svg",
+
+                  //color: DeliveryColorsFinal.redfinal3,
+                  width: 300.0,
+                  height: 120,
+                ),
+              ],
+            ),
+            //),
+          ),
+        ],
       ),
     );
   }
@@ -497,7 +536,7 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
               children: [
                 Container(
                   color: Colors.transparent,
-                  height: 90.0,
+                  height: 100.0,
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -543,8 +582,8 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
 
   Widget _crearListaFotos2() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 20.0),
-      height: 210,
+      margin: EdgeInsets.symmetric(vertical: 0.0),
+      height: 230,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
@@ -569,7 +608,7 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                         ),
                         Container(
                           //alignment: Al,
-                          height: 50,
+                          height: 60,
                           child: Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,

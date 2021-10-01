@@ -3,17 +3,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:turismo/Interfaz/Usuarios/googleMaps.dart';
 
 class TextFieldFormUbicacion extends StatefulWidget {
-  final IconData icono;
-  final String labelText;
-  final TextEditingController controlador;
-  final IconData iconoSub;
+  final icono;
+  final labelText;
+  final controlador;
+  final iconoSub;
 
   const TextFieldFormUbicacion({
     Key? key,
-    required this.icono,
-    required this.labelText,
-    required this.controlador,
-    required this.iconoSub,
+    this.icono,
+    this.labelText,
+    this.controlador,
+    this.iconoSub,
   }) : super(key: key);
 
   @override
