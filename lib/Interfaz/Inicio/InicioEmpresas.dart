@@ -186,12 +186,12 @@ class _InicioEmpresasState extends State<InicioEmpresas> {
   StatefulWidget tipoPadding() {
     if (logueado == false) {
       return PaddingNoUsuarios(
-        Color2: Colors.redAccent,
+        Color2: DeliveryColorsFinal.redfinal3,
         Color1: Colors.black54,
       );
     } else {
       return PaddingUsuarios(
-        Color2: Colors.redAccent,
+        Color2: DeliveryColorsFinal.redfinal3,
         Color1: Colors.black54,
       );
     }

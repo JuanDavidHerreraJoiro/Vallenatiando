@@ -55,7 +55,9 @@ class _GoogleMapsState extends State<GoogleMaps> {
           onPressed: () {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (_) => RegistrarEmpresa(),
+                builder: (_) => RegistrarEmpresa(
+                  estadoUbicacion: "No registrado",
+                ),
               ),
             );
           },
@@ -105,12 +107,6 @@ class _GoogleMapsState extends State<GoogleMaps> {
                       color: DeliveryColorsFinal.redfinal4,
                       onPressed: searchnavigate,
                     ),
-                    /*suffixIcon: IconButton(
-                      icon: Icon(Icons.search),
-                      iconSize: 40,
-                      color: DeliveryColorsFinal.redfinal4,
-                      onPressed: searchnavigate,
-                    ),*/
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                           color: DeliveryColorsFinal.redfinal4, width: 0.5),
@@ -211,6 +207,7 @@ class _GoogleMapsState extends State<GoogleMaps> {
         builder: (_) => RegistrarEmpresa(
           latitude: _lastMapPosition.latitude.toString(),
           longitude: _lastMapPosition.longitude.toString(),
+          estadoUbicacion: "Registrado",
         ),
       ),
     );

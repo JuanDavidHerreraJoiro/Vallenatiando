@@ -18,6 +18,7 @@ import 'package:turismo/Interfaz/componentes/TextFieldFormDescription.dart';
 import 'package:turismo/Interfaz/componentes/TextFileFromUbicacion.dart';
 import 'package:turismo/Interfaz/constante.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:location/location.dart';
 
 TextEditingController controladorNIT = new TextEditingController();
 TextEditingController controladorNombre = new TextEditingController();
@@ -29,12 +30,15 @@ TextEditingController controladorDescripcion = new TextEditingController();
 TextEditingController controladorLongitud = new TextEditingController();
 TextEditingController controladorLatitud = new TextEditingController();
 TextEditingController controladorRuta = new TextEditingController();
+TextEditingController controladorUbicacion = new TextEditingController();
 
 class RegistrarEmpresa extends StatefulWidget {
   final latitude;
   final longitude;
+  final estadoUbicacion;
 
-  const RegistrarEmpresa({Key? key, this.latitude, this.longitude})
+  const RegistrarEmpresa(
+      {Key? key, this.latitude, this.longitude, this.estadoUbicacion})
       : super(key: key);
 
   @override
@@ -52,6 +56,7 @@ class _RegistrarEmpresaState extends State<RegistrarEmpresa> {
     return _RegistrarEmpresaHomeState(
       latitude: widget.latitude,
       longitude: widget.longitude,
+      estadoUbicacion: widget.estadoUbicacion,
     );
   }
 }
@@ -59,8 +64,10 @@ class _RegistrarEmpresaState extends State<RegistrarEmpresa> {
 class _RegistrarEmpresaHomeState extends StatefulWidget {
   final latitude;
   final longitude;
+  final estadoUbicacion;
 
-  const _RegistrarEmpresaHomeState({Key? key, this.latitude, this.longitude})
+  const _RegistrarEmpresaHomeState(
+      {Key? key, this.latitude, this.longitude, this.estadoUbicacion})
       : super(key: key);
 
   @override
@@ -91,8 +98,10 @@ class _RegistrarEmpresaHomeStateState
     controladorLongitud = new TextEditingController();
     controladorLatitud = new TextEditingController();
     controladorRuta = new TextEditingController();
+    controladorUbicacion = new TextEditingController();
     controladorLongitud.text = widget.longitude;
     controladorLatitud.text = widget.latitude;
+    controladorUbicacion.text = widget.estadoUbicacion;
     super.initState();
   }
 
@@ -118,7 +127,7 @@ class _RegistrarEmpresaHomeStateState
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       const SizedBox(
-                        height: 30,
+                        height: 50,
                       ),
                       Text(
                         "Registro Empresa",
@@ -174,30 +183,15 @@ class _RegistrarEmpresaHomeStateState
                       Row(
                         children: [
                           Flexible(
-                            child: TextFieldForm(
-                              controlador: controladorLongitud,
-                              icono: Icons.person_pin_circle,
-                              //iconoSub: Icons.pin_drop,
-                              labelText: 'Longitud',
-                            ),
-                          ),
-                          Flexible(
                             child: TextFieldFormUbicacion(
-                              controlador: controladorLatitud,
+                              controlador: controladorUbicacion,
                               icono: Icons.person_pin_circle,
                               iconoSub: Icons.pin_drop,
-                              labelText: 'Latitud',
+                              labelText: 'Ubicacion',
                             ),
                           ),
                         ],
                       ),
-
-                      /*TextFieldFormUbicacion(
-                        controlador: controladorTelefono2,
-                        icono: Icons.person_pin_circle,
-                        iconoSub: Icons.pin_drop,
-                        labelText: 'Ubicacion',
-                      ),*/
                       TextFieldFormDescription(
                         controlador: controladorDescripcion,
                         icono: Icons.description,
@@ -240,9 +234,8 @@ class _RegistrarEmpresaHomeStateState
                           controladorNIT.text.trim());
                       List respuesta2 = await ConsultarNitEmpresaValledupar1(
                           controladorNIT.text.trim());
-                      //_getCurrentLocation();
-                      _getCurrentLocation();
-                      if (activacionUbicacion != false) {
+
+                      if (widget.estadoUbicacion == "Registrado") {
                         if (imgFile.length > 0) {
                           if (controladorNIT.text.isNotEmpty &&
                               controladorNombre.text.isNotEmpty &&
@@ -270,9 +263,8 @@ class _RegistrarEmpresaHomeStateState
                               empresa.celular =
                                   controladorTelefono2.text.trim();
                               empresa.estado = "ACTIVO";
-                              empresa.latitud = controladorLatitud.text.trim();
-                              empresa.longitud =
-                                  controladorLongitud.text.trim();
+                              empresa.latitud = widget.latitude;
+                              empresa.longitud = widget.latitude;
                               empresa.idPersona = idPersona;
                               //print("EXITO AJAJAJ");
                               RegistrarEmpresa1(empresa);
@@ -311,7 +303,7 @@ class _RegistrarEmpresaHomeStateState
                               DeliveryColorsRedOrange.red3, texto2, false);
                         }
                       } else {
-                        String texto1 = '¡ACTIVE LA UBICACION DE SU TELEFONO!';
+                        String texto1 = '¡UBICACION NO REGISTRADA';
                         String texto2 = 'UBICACION ERROR...';
                         MensajeService(context, texto1,
                             DeliveryColorsRedOrange.red3, texto2, false);
@@ -358,26 +350,6 @@ class _RegistrarEmpresaHomeStateState
         ],
       ),
     );
-  }
-
-  _getCurrentLocation() {
-    try {
-      Geolocator.getCurrentPosition(
-              desiredAccuracy: LocationAccuracy.best,
-              forceAndroidLocationManager: true)
-          .then((Position position) {
-        position.isMocked;
-        print("${position.altitude}");
-        activacionUbicacion = true;
-        _currentPosition = position;
-      }).catchError((e) {
-        print(" 1 NO ACT ${e.toString()} 9");
-        activacionUbicacion = false;
-      });
-    } catch (e) {
-      print(" 2 NO ACT ${e.toString()}");
-      activacionUbicacion = false;
-    }
   }
 
   dynamic contenedorImagen(String TipoPath, int tipo) {

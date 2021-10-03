@@ -22,7 +22,7 @@ class _TipoRegistroEmpresaState extends State<TipoRegistroEmpresa> {
     Size size = MediaQuery.of(context).size;
     var width = size.width;
     var moreSize = 50;
-    const logoSize = 80.0;
+    const logoSize = 90.0;
 
     return Scaffold(
       body: Column(
@@ -92,11 +92,14 @@ class _TipoRegistroEmpresaState extends State<TipoRegistroEmpresa> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const SizedBox(
-                      height: 40,
+                      height: 50,
                     ),
                     Text(
-                      "VALLENATIANDO",
-                      style: FontTexto.styleTitulo,
+                      "Vallenatiando",
+                      style: GoogleFonts.montserrat(
+                          fontSize: 30,
+                          color: DeliveryColorsFinal.redfinal4,
+                          fontWeight: FontWeight.w400),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(
@@ -125,7 +128,9 @@ class _TipoRegistroEmpresaState extends State<TipoRegistroEmpresa> {
                             //print("${listaEmpresa.length}");
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                builder: (_) => RegistrarEmpresa(),
+                                builder: (_) => RegistrarEmpresa(
+                                  estadoUbicacion: "No registrado",
+                                ),
                               ),
                             );
                           } else {

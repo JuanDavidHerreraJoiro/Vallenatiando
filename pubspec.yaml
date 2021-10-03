@@ -44,6 +44,8 @@ dependencies:
   geolocator: ^7.6.0
   geocoding: ^2.0.1
   flutter_svg: ^0.22.0
+  location: ^4.3.0
+  sizer: ^2.0.15
 
   flutter:
     sdk: flutter
@@ -81,15 +83,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/imagenes/Vallenatiando1.png
-    - assets/imagenes/Vallenatiando2.png
-    - assets/imagenes/logoVallenatiando.png
-    - assets/imagenes/AddImagen.png
-    - assets/icons/Vallenatiando1.png
-    - assets/icons/Vallenatiando2.png
-    - assets/icons/facebook.png
-    - assets/icons/gmail.png
-    - assets/icons/flechAtras.png
+    - assets/imagenes/
+    - assets/icons/
     - assets/svg/
     
 

@@ -117,7 +117,9 @@ void MensajeRepositoryEmpresaProducto(
           onPressed: () {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (_) => RegistrarEmpresa(),
+                builder: (_) => RegistrarEmpresa(
+                  estadoUbicacion: "No registrado",
+                ),
               ),
             );
           },

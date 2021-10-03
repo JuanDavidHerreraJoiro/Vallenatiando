@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sizer/sizer.dart';
 
 /*
 C:\Program Files\Java\jdk1.8.0_291\bin>
@@ -86,15 +87,25 @@ final deliveryGradientsFinal = [
 ];
 
 class FontTexto {
+  static final styleTitulo2 = GoogleFonts.montserrat(
+    color: Colors.black54,
+    //color: DeliveryColorsRedOrange.red1,
+    fontSize: 18.sp,
+  );
   static final styleTexto = GoogleFonts.montserrat(
     color: Colors.black,
     //color: DeliveryColorsRedOrange.red1,
-    fontSize: 20,
+    fontSize: 10.sp,
   );
   static final styleTexto3 = GoogleFonts.montserrat(
-    color: Colors.black,
+    color: Colors.black54,
     //color: DeliveryColorsRedOrange.red1,
-    fontSize: 15,
+    fontSize: 9.sp,
+  );
+  static final styleSearch = GoogleFonts.montserrat(
+    color: Colors.black54,
+    //color: DeliveryColorsRedOrange.red1,
+    fontSize: 10.sp,
   );
   static final styleTitulo = GoogleFonts.montserrat(
     color: Colors.black,

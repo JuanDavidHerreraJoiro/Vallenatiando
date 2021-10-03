@@ -67,6 +67,8 @@ class _CuentaLoginHomeStateState extends State<_CuentaLoginHomeState> {
     Size size = MediaQuery.of(context).size;
     var width = size.width;
     var moreSize = 50;
+    const logoSize = 80.0;
+
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -85,7 +87,7 @@ class _CuentaLoginHomeStateState extends State<_CuentaLoginHomeState> {
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
-                        colors: [Colors.orangeAccent, Colors.redAccent],
+                        colors: deliveryGradientsFinal,
                       ),
                       borderRadius: BorderRadius.vertical(bottom: Radius.zero),
                     ),
@@ -101,7 +103,7 @@ class _CuentaLoginHomeStateState extends State<_CuentaLoginHomeState> {
                       backgroundColor: Colors.white,
                       child: ClipOval(
                         child: Padding(
-                          padding: const EdgeInsets.all(12.0),
+                          padding: const EdgeInsets.all(0),
                           child: Image.asset(logo1),
                         ),
                       ),
@@ -127,9 +129,9 @@ class _CuentaLoginHomeStateState extends State<_CuentaLoginHomeState> {
                       Text(
                         "Crear Cuenta",
                         style: GoogleFonts.montserrat(
-                              fontWeight: FontWeight.w300,
-                              color: DeliveryColorsRedOrange.red7,
-                            ),
+                          fontSize: 30,
+                          color: DeliveryColorsRedOrange.red1,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(
@@ -140,7 +142,8 @@ class _CuentaLoginHomeStateState extends State<_CuentaLoginHomeState> {
                           keyboardType: TextInputType.emailAddress,
                           controller: controladorusuario,
                           cursorColor: Colors.white,
-                          style: GoogleFonts.montserrat(color: Colors.white, fontSize: 18),
+                          style: GoogleFonts.montserrat(
+                              color: Colors.white, fontSize: 18),
                           decoration: InputDecoration(
                             icon: Icon(
                               Icons.person,
@@ -148,8 +151,8 @@ class _CuentaLoginHomeStateState extends State<_CuentaLoginHomeState> {
                               size: 30,
                             ),
                             hintText: "Usuario",
-                            hintStyle:
-                                GoogleFonts.montserrat(color: Colors.white, fontSize: 18),
+                            hintStyle: GoogleFonts.montserrat(
+                                color: Colors.white, fontSize: 18),
                             border: InputBorder.none,
                           ),
                         ),
@@ -162,11 +165,12 @@ class _CuentaLoginHomeStateState extends State<_CuentaLoginHomeState> {
                           controller: controladorpassword,
                           obscureText: verpassword1,
                           cursorColor: Colors.red,
-                          style: GoogleFonts.montserrat(color: Colors.white, fontSize: 18),
+                          style: GoogleFonts.montserrat(
+                              color: Colors.white, fontSize: 18),
                           decoration: InputDecoration(
                             hintText: "Contraseña",
-                            hintStyle:
-                                GoogleFonts.montserrat(color: Colors.white, fontSize: 18),
+                            hintStyle: GoogleFonts.montserrat(
+                                color: Colors.white, fontSize: 18),
                             icon: Icon(
                               Icons.lock,
                               color: Colors.white,
@@ -193,11 +197,12 @@ class _CuentaLoginHomeStateState extends State<_CuentaLoginHomeState> {
                           controller: controladorrepetirpassword,
                           obscureText: verpassword2,
                           cursorColor: Colors.red,
-                          style: GoogleFonts.montserrat(color: Colors.white, fontSize: 18),
+                          style: GoogleFonts.montserrat(
+                              color: Colors.white, fontSize: 18),
                           decoration: InputDecoration(
                             hintText: "Repetir Contraseña",
-                            hintStyle:
-                                GoogleFonts.montserrat(color: Colors.white, fontSize: 18),
+                            hintStyle: GoogleFonts.montserrat(
+                                color: Colors.white, fontSize: 18),
                             icon: Icon(
                               Icons.lock,
                               color: Colors.white,
@@ -245,20 +250,24 @@ class _CuentaLoginHomeStateState extends State<_CuentaLoginHomeState> {
                           MensajeService(context, texto1,
                               DeliveryColorsRedOrange.red3, texto2, false);
                         } else {
-                          /*String texto1 = 'USUARIO & PASSWORD VALIDOS';
-                          String texto2 = 'CREAR CUENTA';
-                          MensajeService(context, texto1, Colors.green.shade300,
-                              texto2, true);*/
-                              
-
-                          Personas personas = new Personas();
-                          personas.usuario = controladorusuario.text.trim();
-                          personas.password = controladorpassword.text.trim();
-                          Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (_) => RegistrarUsuario(persona: personas,FG: ""),
-                        ),
-                      );
+                          //DeliveryColorsRedOrange.red1,
+                          if (controladorpassword.text.trim() !=
+                              controladorrepetirpassword.text.trim()) {
+                            String texto1 = '¿PASSWORD NO COINSIDEN?';
+                            String texto2 = 'CREAR CUENTA ERROR...';
+                            MensajeService(context, texto1,
+                                DeliveryColorsRedOrange.red3, texto2, false);
+                          } else {
+                            Personas personas = new Personas();
+                            personas.usuario = controladorusuario.text.trim();
+                            personas.password = controladorpassword.text.trim();
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (_) =>
+                                    RegistrarUsuario(persona: personas, FG: ""),
+                              ),
+                            );
+                          }
                         }
                       } else {
                         String texto1 = '¿USUARIO U/O PASSWORDS ESTAN VACIOS?';
@@ -273,17 +282,15 @@ class _CuentaLoginHomeStateState extends State<_CuentaLoginHomeState> {
                         gradient: LinearGradient(
                           begin: Alignment.centerRight,
                           end: Alignment.centerLeft,
-                          colors: [
-                            Colors.orangeAccent,
-                            Colors.redAccent,
-                          ],
+                          colors: deliveryGradientsFinal,
                         ),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
                           "Crear Cuenta",
-                          style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
+                          style: GoogleFonts.montserrat(
+                              color: Colors.white, fontSize: 20),
                           textAlign: TextAlign.center,
                         ),
                       ),

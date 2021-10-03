@@ -20,91 +20,94 @@ class _PaddingUsuariosState extends State<PaddingUsuarios> {
     const logoSize = 80.0;
     return Padding(
       padding: const EdgeInsets.all(0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: Column(
-              children: [
-                IconButton(
-                  iconSize: 35,
-                  icon: Icon(Icons.home_outlined),
-                  color: widget.Color1, //Colors.redAccent,
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (_) => Inicio(),
-                      ),
-                    );
-                  },
-                ),
-                Text(
-                  "Inicio",
-                  style: GoogleFonts.montserrat(
-                      fontWeight: FontWeight.bold,
-                      color: widget.Color1, //,Colors.redAccent,
-                      fontSize: 15),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-              ],
-            ), //
-          ),
-          Expanded(
-            child: Column(
-              children: [
-                IconButton(
-                  iconSize: 35,
-                  icon: Icon(Icons.business_outlined),
-                  color: widget.Color2, //Colors.black54,
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (_) => InicioEmpresas(),
-                      ),
-                    );
-                  },
-                ),
-                Text(
-                  "Empresas",
-                  style: GoogleFonts.montserrat(
-                      fontWeight: FontWeight.bold,
-                      color: widget.Color2, //Colors.black45,
-                      fontSize: 15),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-              ],
-            ), //
-          ),
-          Expanded(
-            child: Column(
-              children: [
-                IconButton(
-                  iconSize: 35,
-                  icon: Icon(Icons.shopping_cart_outlined),
-                  color: Colors.black54,
-                  onPressed: () {},
-                ),
-                Text(
-                  "Carrito",
-                  style: GoogleFonts.montserrat(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black45,
-                      fontSize: 15),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-              ],
-            ), //
-          ),
-        ],
+      child: Container(
+        color: Colors.grey[50],
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  IconButton(
+                    iconSize: 35,
+                    icon: Icon(Icons.home_outlined),
+                    color: widget.Color1, //Colors.redAccent,
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (_) => Inicio(),
+                        ),
+                      );
+                    },
+                  ),
+                  Text(
+                    "Inicio",
+                    style: GoogleFonts.montserrat(
+                        fontWeight: FontWeight.bold,
+                        color: widget.Color1, //,Colors.redAccent,
+                        fontSize: 15),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                ],
+              ), //
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  IconButton(
+                    iconSize: 35,
+                    icon: Icon(Icons.business_outlined),
+                    color: widget.Color2, //Colors.black54,
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (_) => InicioEmpresas(),
+                        ),
+                      );
+                    },
+                  ),
+                  Text(
+                    "Empresas",
+                    style: GoogleFonts.montserrat(
+                        fontWeight: FontWeight.bold,
+                        color: widget.Color2, //Colors.black45,
+                        fontSize: 15),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                ],
+              ), //
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  IconButton(
+                    iconSize: 35,
+                    icon: Icon(Icons.shopping_cart_outlined),
+                    color: Colors.black54,
+                    onPressed: () {},
+                  ),
+                  Text(
+                    "Carrito",
+                    style: GoogleFonts.montserrat(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black45,
+                        fontSize: 15),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                ],
+              ), //
+            ),
+          ],
+        ),
       ),
     );
   }

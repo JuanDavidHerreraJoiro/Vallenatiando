@@ -17,6 +17,7 @@ import 'package:turismo/Interfaz/Usuarios/vistaIzquierdaUsuarios.dart';
 import 'package:turismo/Interfaz/componentes/TextFielForm.dart';
 import 'package:turismo/Interfaz/constante.dart';
 import 'dart:math';
+import 'package:sizer/sizer.dart';
 
 TextEditingController controladorBuscar = new TextEditingController();
 
@@ -55,17 +56,23 @@ class _CentroInicioState extends StatefulWidget {
 List listaCategoriaDia = [
   {"nombre": "Oferta", "urlImg": "assets/svg/Descuento.svg"},
   {"nombre": "Mercado", "urlImg": "assets/svg/Mercado.svg"},
-  {"nombre": "Hoteleria", "urlImg": "assets/svg/Hotel.svg"},
-  {"nombre": "Moteleria", "urlImg": "assets/svg/Motel.svg"},
+  {"nombre": "Hotel", "urlImg": "assets/svg/Hotel.svg"},
+  {"nombre": "Motel", "urlImg": "assets/svg/Motel.svg"},
   {"nombre": "Ferreteria", "urlImg": "assets/svg/Ferreteria.svg"},
-  {"nombre": "Domicilios", "urlImg": "assets/svg/Domicilio.svg"},
-  {"nombre": "Farmacia", "urlImg": "assets/svg/Farmacia.svg"},
-  {"nombre": "IPS", "urlImg": "assets/svg/IPS.svg"},
-  {"nombre": "EPS", "urlImg": "assets/svg/EPS.svg"},
+  {"nombre": "Domicilio", "urlImg": "assets/svg/Domicilio.svg"},
+  {"nombre": "Salud", "urlImg": "assets/svg/IPS.svg"},
   {"nombre": "Tecnologia", "urlImg": "assets/svg/Tecnologia.svg"},
   {"nombre": "Agro", "urlImg": "assets/svg/Agro.svg"},
   {"nombre": "Funeraria", "urlImg": "assets/svg/Funeral.svg"},
   {"nombre": "Arte", "urlImg": "assets/svg/Pintar.svg"},
+  {"nombre": "Licor", "urlImg": "assets/svg/Pintar.svg"},
+  {"nombre": "Restaurante", "urlImg": "assets/svg/Pintar.svg"},
+];
+
+List listaPromo = [
+  {"id": "4", "urlImg": "assets/imagenes/Promo4.jpeg"},
+  {"id": "3", "urlImg": "assets/imagenes/Promo3.jpeg"},
+  {"id": "9", "urlImg": "assets/imagenes/Promo9.jpeg"},
 ];
 
 int index2 = 0;
@@ -121,54 +128,48 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                         height: 100,
                         child: Stack(
                           children: [
-                            Positioned(
-                              bottom: 1,
-                              left: -moreSize / 2,
-                              right: -moreSize / 2,
-                              height: width, // + moreSize,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    colors: deliveryGradientsFinal,
-                                  ),
-                                  borderRadius: BorderRadius.vertical(
-                                      bottom: Radius.zero),
+                            AppBar(
+                              backgroundColor: Colors.grey[50],
+                              elevation: 0,
+                              leading: IconButton(
+                                icon: SvgPicture.asset(
+                                  "assets/svg/menu.svg",
+                                  color: DeliveryColorsFinal.redfinal3,
                                 ),
-                              ),
-                            ),
-                            Container(
-                              height: MediaQuery.of(context).size.height,
-                              width: MediaQuery.of(context).size.width,
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    left: 16, right: 16, top: 60, bottom: 5),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "INICIO",
-                                      style: FontTexto.styleAppbar,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: 16, right: 4, top: 50, bottom: 5),
-                              child: IconButton(
                                 onPressed: () {
                                   setState(() {
                                     value == 0 ? value = 1 : value = 0;
                                   });
                                 },
-                                icon: Icon(
-                                  Icons.menu,
-                                  color: Colors.white,
-                                  size: 30,
+                              ),
+                              title: Center(
+                                child: RichText(
+                                  text: TextSpan(
+                                      style: FontTexto.styleTitulo2,
+                                      children: [
+                                        TextSpan(
+                                          text: "Vallena",
+                                          style:
+                                              TextStyle(color: Colors.black54),
+                                        ),
+                                        TextSpan(
+                                          text: "tiando",
+                                          style: TextStyle(
+                                              color: DeliveryColorsFinal
+                                                  .redfinal3),
+                                        )
+                                      ]),
                                 ),
                               ),
+                              actions: <Widget>[
+                                IconButton(
+                                  icon: SvgPicture.asset(
+                                    "assets/svg/notification.svg",
+                                    //color: DeliveryColorsFinal.redfinal3,
+                                  ),
+                                  onPressed: () {},
+                                )
+                              ],
                             ),
                           ],
                         ),
@@ -233,44 +234,46 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
   StatefulWidget tipoPadding() {
     if (logueado == false) {
       return PaddingNoUsuarios(
-        Color1: Colors.redAccent,
+        Color1: DeliveryColorsFinal.redfinal3,
         Color2: Colors.black54,
       );
     } else {
       return PaddingUsuarios(
-        Color1: Colors.redAccent,
+        Color1: DeliveryColorsFinal.redfinal3,
         Color2: Colors.black54,
       );
     }
   }
 
   Widget _crearInput() {
-    return TextFormField(
-      controller: controladorBuscar,
-      style: FontTexto.styleCajaTexto, // // Probar todos los teclados
-      decoration: new InputDecoration(
-        icon: Icon(
-          Icons.search,
-          color: DeliveryColorsFinal.redfinal3,
-          size: 50,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide:
-              BorderSide(color: DeliveryColorsFinal.redfinal3, width: 0.5),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.black, width: 0.5),
-        ),
-        labelText: "Productos y servicios",
-        labelStyle: FontTexto.styleCajaTexto, // // Probar todos los teclados
-      ),
+    return Column(
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.all(8),
+          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 4),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            border: Border.all(
+              color: Colors.black54,
+            ),
+          ),
+          child: TextField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              icon: SvgPicture.asset("assets/svg/search.svg"),
+              hintText: "Productos o Servicios",
+              hintStyle: FontTexto.styleSearch,
+            ),
+          ),
+        )
+      ],
     );
   }
 
   Widget _crearCategorias() {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20.0),
-      height: 60,
+      height: 70,
       child: Container(
         child: FutureBuilder(
           future: consultarEmpresaRuta1("EMPRESA"),
@@ -298,10 +301,10 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
       child: Column(
         children: [
           CircleAvatar(
-            backgroundColor: DeliveryColorsFinal.redfinal3,
-            radius: 27 + 3,
+            backgroundColor: Colors.grey[200],
+            radius: 30 + 3,
             child: CircleAvatar(
-              radius: 27,
+              radius: 30,
               backgroundColor: Colors.white,
               child: ClipOval(
                 child: Image.network(
@@ -459,44 +462,54 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
   Widget _crearListaCategoriaDescuento() {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 5.0),
-      height: 120,
+      height: 200,
       child: Container(
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount:
-              2, //listaCategoriaDia.length == 0 ? 0 : listaCategoriaDia.length,
+          itemCount: listaPromo.length == 0 ? 0 : listaPromo.length,
           itemBuilder: (context, index) {
-            return _estructuraListaDescuento(/*listaCategoriaDia,*/ index);
+            return _estructuraListaDescuento(listaPromo, index);
           },
         ),
       ),
     );
   }
 
-  Widget _estructuraListaDescuento(/*listaCategoriaDia,*/ int index) {
+  Widget _estructuraListaDescuento(listaPromo, int index) {
     return Padding(
-      padding: const EdgeInsets.all(0),
+      padding: const EdgeInsets.only(left: 10, right: 10),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        //mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             color: Colors.transparent,
-            width: 300,
+            width: 400,
+            //height: 00,
             // child: Card(
             //color: Colors.transparent,
-            child: Wrap(
-              alignment: WrapAlignment.center,
-              children: [
-                SvgPicture.asset(
-                  "assets/svg/Rectangle1.svg",
-
-                  //color: DeliveryColorsFinal.redfinal3,
-                  width: 300.0,
-                  height: 120,
+            child: Column(
+              children: <Widget>[
+                Container(
+                  width: 400.0,
+                  height: 200.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8.0),
+                    ),
+                    color: Colors.redAccent,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.asset(
+                      listaPromo[index]["urlImg"],
+                      height: 200.0,
+                      width: 400.0,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                 ),
               ],
             ),
-            //),
           ),
         ],
       ),
@@ -594,41 +607,54 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
               children: [
                 Container(
                   width: 300,
-                  child: Card(
-                    child: Wrap(
-                      alignment: WrapAlignment.center,
-                      children: [
-                        Container(
-                          height: 150,
-                          child: Image.network(
-                            "https://www.mundialdetornillos.com/images/NOTICIAS_2020/martillo-herramientas-para-tener-en-casa.jpg",
-                            width: 300,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Container(
-                          //alignment: Al,
-                          height: 60,
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "HOLA",
-                                  textAlign: TextAlign.center,
-                                  style: FontTexto.styleTexto,
-                                ),
-                                Text(
-                                  "HOLA",
-                                  textAlign: TextAlign.center,
-                                  style: FontTexto.styleTexto,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20 * 1.25),
                     ),
+                  ),
+                  child: Wrap(
+                    alignment: WrapAlignment.center,
+                    children: [
+                      /*Container(
+                    height: 150,
+                    child: Image.network(
+                      urlServidor +
+                          "/" +
+                          snapshot.data[index]['ruta'].toString(),
+                      //width: 300,
+                      fit: BoxFit.contain,
+                    ),
+                  ),*/
+                      Container(
+                        height: 150,
+                        child: Image.network(
+                            "https://www.mundialdetornillos.com/images/NOTICIAS_2020/martillo-herramientas-para-tener-en-casa.jpg",
+                            //width: 300,
+                            fit: BoxFit.contain),
+                      ),
+                      Container(
+                        //alignment: Al,
+                        height: 60,
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "HOLA",
+                                textAlign: TextAlign.center,
+                                style: FontTexto.styleTexto,
+                              ),
+                              Text(
+                                "HOLA",
+                                textAlign: TextAlign.center,
+                                style: FontTexto.styleTexto,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

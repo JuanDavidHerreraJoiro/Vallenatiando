@@ -189,7 +189,7 @@ class _RegistrarProductoHomeStateState
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(0),
+            padding: const EdgeInsets.all(1),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -277,7 +277,8 @@ class _RegistrarProductoHomeStateState
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
                           "Registrar",
-                          style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
+                          style: GoogleFonts.montserrat(
+                              color: Colors.white, fontSize: 20),
                           textAlign: TextAlign.center,
                         ),
                       ),

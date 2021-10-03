@@ -100,7 +100,7 @@ class _RegistrarUsuarioHomeStateState
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       const SizedBox(
-                        height: 40,
+                        height: 60,
                       ),
                       Text(
                         "Registro de Datos Personales",
@@ -132,7 +132,8 @@ class _RegistrarUsuarioHomeStateState
                         width: size.width * 0.8,
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                              colors: [Colors.orangeAccent, Colors.redAccent]),
+                            colors: deliveryGradientsFinal,
+                          ),
                           color: DeliveryColorsRedOrange.orange10,
                           borderRadius: BorderRadius.circular(10.0),
                         ),
@@ -291,17 +292,15 @@ class _RegistrarUsuarioHomeStateState
                         gradient: LinearGradient(
                           begin: Alignment.centerRight,
                           end: Alignment.centerLeft,
-                          colors: [
-                            Colors.orangeAccent,
-                            Colors.redAccent,
-                          ],
+                          colors: deliveryGradientsFinal,
                         ),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
                           "Registrar",
-                          style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
+                          style: GoogleFonts.montserrat(
+                              color: Colors.white, fontSize: 20),
                           textAlign: TextAlign.center,
                         ),
                       ),

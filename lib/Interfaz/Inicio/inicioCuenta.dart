@@ -30,7 +30,7 @@ class _InicioCuentaState extends State<InicioCuenta> {
     Size size = MediaQuery.of(context).size;
     var width = size.width;
     var moreSize = 50;
-    const logoSize = 80.0;
+    const logoSize = 100.0;
 
     return Scaffold(
       body: Column(
@@ -58,7 +58,7 @@ class _InicioCuentaState extends State<InicioCuenta> {
                 ),
                 Padding(
                   padding:
-                      EdgeInsets.only(left: 10, right: 5, top: 30, bottom: 10),
+                      EdgeInsets.only(left: 10, right: 5, top: 40, bottom: 10),
                   child: IconButton(
                     onPressed: () {
                       Navigator.of(context).pushReplacement(
@@ -103,11 +103,11 @@ class _InicioCuentaState extends State<InicioCuenta> {
                       height: 40,
                     ),
                     Text(
-                      "BIENVENIDO",
+                      "Bienvenido",
                       style: GoogleFonts.montserrat(
-                        fontSize: 25,
+                        fontSize: 30,
                         //fontWeight: FontWeight.w300,
-                        color: DeliveryColorsRedOrange.red1,
+                        color: DeliveryColorsFinal.redfinal4,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -149,7 +149,7 @@ class _InicioCuentaState extends State<InicioCuenta> {
                         child: Text(
                           "Registrarse",
                           style: GoogleFonts.montserrat(
-                            color: Colors.grey[800],
+                            color: DeliveryColorsFinal.redfinal4,
                             fontSize: 20.0,
                           ),
                         ),
@@ -280,7 +280,7 @@ class _InicioCuentaState extends State<InicioCuenta> {
                             "Aceptar los Terminos y condiciones",
                             style: GoogleFonts.montserrat(
                               fontSize: 15.0,
-                              color: DeliveryColorsRedOrange.red1,
+                              color: DeliveryColorsFinal.redfinal4,
                             ),
                             textAlign: TextAlign.center,
                           ),
