@@ -19,7 +19,7 @@ Future<List> ConsultarNitEmpresa(String idEmpresa) async {
   final response = await http.post(Uri.parse(urls), body: {
     "idEmpresa": idEmpresa,
   });
-  var datauser = json.decode(response.body.toString());
+  var datauser = jsonDecode(response.body.toString());
   return datauser;
 }
 
@@ -28,7 +28,7 @@ Future<List> ConsultarNitEmpresaValledupar(String NIT) async {
   final response = await http.post(Uri.parse(urls), body: {
     "NIT": NIT,
   });
-  var datauser = json.decode(response.body.toString());
+  var datauser = jsonDecode(response.body.toString());
   return datauser;
 }
 
@@ -37,7 +37,7 @@ Future<List> consultarMiEmpresa(String tipo, String idPersona) async {
   String urls = urlServidor + "/consultarMiEmpresa.php";
   final response = await http
       .post(Uri.parse(urls), body: {"tipo": tipo, "idPersona": idPersona});
-  var datauser = json.decode(response.body.toString());
+  var datauser = jsonDecode(response.body.toString());
   //print(datauser);
 
   return datauser;
@@ -48,7 +48,7 @@ Future<List> consultarEmpresaRuta(String tipo) async {
   final response = await http.post(Uri.parse(urls), body: {
     "tipo": tipo,
   });
-  var datauser = json.decode(response.body.toString());
+  var datauser = jsonDecode(response.body.toString());
   //print(datauser);
 
   return datauser;

@@ -26,7 +26,7 @@ Future<List> consultarProducto() async {
   final response = await http.post(
     Uri.parse(urls),
   );
-  var datauser = json.decode(response.body.toString());
+  var datauser = jsonDecode(response.body.toString());
   //print(datauser);
   return datauser;
 }
@@ -36,7 +36,7 @@ Future<List> consultarProductoNombre(
   String urls = urlServidor + "/consultarProductosNombre.php";
   final response = await http.post(Uri.parse(urls),
       body: {"nombre": nombre, "estado": estado, "idEmpresa": idEmpresa});
-  var datauser = json.decode(response.body.toString());
+  var datauser = jsonDecode(response.body.toString());
   //print(datauser);
   return datauser;
 }

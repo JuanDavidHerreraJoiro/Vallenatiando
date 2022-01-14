@@ -24,28 +24,29 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
       padding: EdgeInsets.all(8.0),
       child: Column(
         children: [
-          Expanded(
-            flex: 2,
-            child: DrawerHeader(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.red[200],
-                    radius: (logoSize + 10) + 5,
-                    child: CircleAvatar(
-                      radius: (logoSize + 10),
-                      child: ClipOval(
-                        child: Padding(
-                          padding: const EdgeInsets.all(0.0),
-                          child: Image.asset(logo1),
-                        ),
+          Container(
+            //flex: 2,
+            width: 300,
+            //child: DrawerHeader(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  backgroundColor: Colors.red[200],
+                  radius: (logoSize + 10) + 5,
+                  child: CircleAvatar(
+                    radius: (logoSize + 10),
+                    child: ClipOval(
+                      child: Padding(
+                        padding: const EdgeInsets.all(0.0),
+                        child: Image.asset(logo1),
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
+            //),
           ),
           SizedBox(
             height: 10,
@@ -68,7 +69,8 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Inicio",
-                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(
+                        color: Colors.white, fontSize: 20),
                   ),
                 ),
                 SizedBox(
@@ -88,7 +90,8 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Mi perfil",
-                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(
+                        color: Colors.white, fontSize: 20),
                   ),
                 ),
                 SizedBox(
@@ -109,7 +112,8 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Quiero Vender",
-                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(
+                        color: Colors.white, fontSize: 20),
                   ),
                 ),
                 SizedBox(
@@ -129,7 +133,8 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Ofertas",
-                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(
+                        color: Colors.white, fontSize: 20),
                   ),
                 ),
                 SizedBox(
@@ -149,7 +154,8 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Favoritos",
-                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(
+                        color: Colors.white, fontSize: 20),
                   ),
                 ),
                 SizedBox(
@@ -169,7 +175,8 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Notificicaciones",
-                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(
+                        color: Colors.white, fontSize: 20),
                   ),
                 ),
                 SizedBox(
@@ -189,7 +196,8 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Mis Compras",
-                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(
+                        color: Colors.white, fontSize: 20),
                   ),
                 ),
                 SizedBox(
@@ -203,7 +211,8 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Ayuda",
-                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(
+                        color: Colors.white, fontSize: 20),
                   ),
                 ),
                 SizedBox(
@@ -217,7 +226,8 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Terminos Legales",
-                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(
+                        color: Colors.white, fontSize: 20),
                   ),
                 ),
                 SizedBox(
@@ -231,7 +241,8 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   ),
                   title: Text(
                     "Acerca de ¿?",
-                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
+                    style: GoogleFonts.montserrat(
+                        color: Colors.white, fontSize: 20),
                   ),
                 ),
               ],

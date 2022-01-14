@@ -87,6 +87,10 @@ final deliveryGradientsFinal = [
 ];
 
 class FontTexto {
+  static final styleVermas = GoogleFonts.montserrat(
+    color: Colors.white,
+    fontSize: 7.sp,
+  );
   static final styleTitulo2 = GoogleFonts.montserrat(
     color: Colors.black54,
     //color: DeliveryColorsRedOrange.red1,

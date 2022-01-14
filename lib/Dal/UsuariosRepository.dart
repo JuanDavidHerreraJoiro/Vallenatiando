@@ -6,13 +6,13 @@ Future<List> listarUsuariosPassword(String usuario, String password) async {
   String urls = urlServidor + "/consultasUsuariosPassword.php";
   final response = await http
       .post(Uri.parse(urls), body: {"usuario": usuario, "password": password});
-  var datauser = json.decode(response.body.toString());
+  var datauser = jsonDecode(response.body.toString());
   return datauser;
 }
 
 Future<List> listarUsuario(String usuario) async {
   String urls = urlServidor + "/consultarPorUsuarios.php";
   final response = await http.post(Uri.parse(urls), body: {"usuario": usuario});
-  var datauser = json.decode(response.body.toString());
+  var datauser = jsonDecode(response.body.toString());
   return datauser;
 }

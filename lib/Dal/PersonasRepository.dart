@@ -24,6 +24,6 @@ Future<List> ConsultarPersonasIdentificacion(String identificacion) async {
   final response = await http.post(Uri.parse(urls), body: {
     "idPersona": identificacion,
   });
-  var datauser = json.decode(response.body.toString());
+  var datauser = jsonDecode(response.body.toString());
   return datauser;
 }

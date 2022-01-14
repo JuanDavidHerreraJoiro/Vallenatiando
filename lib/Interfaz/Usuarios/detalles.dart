@@ -41,14 +41,14 @@ class _DetallesState extends State<Detalles> {
               children: [
                 Container(
                   width: double.infinity,
-                  color: Color(0xFFF8F8F8),
+                  color: Colors.white,
                   child: InteractiveViewer(
                     child: Hero(
                       tag: "",
                       child: Image.network(
                         widget.route,
                         //width: 200,
-                        fit: BoxFit.fill,
+                        fit: BoxFit.contain,
                       ),
                     ),
                   ),

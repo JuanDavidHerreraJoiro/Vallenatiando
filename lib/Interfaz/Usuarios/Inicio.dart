@@ -54,19 +54,18 @@ class _CentroInicioState extends StatefulWidget {
 
 //https://spng.pngfind.com/pngs/s/187-1878783_etiqueta-de-oferta-png-transparent-png.png
 List listaCategoriaDia = [
-  {"nombre": "Oferta", "urlImg": "assets/svg/Descuento.svg"},
+  {"nombre": "Oferta", "urlImg": "assets/svg/etiqueta.svg"},
   {"nombre": "Mercado", "urlImg": "assets/svg/Mercado.svg"},
   {"nombre": "Hotel", "urlImg": "assets/svg/Hotel.svg"},
-  {"nombre": "Motel", "urlImg": "assets/svg/Motel.svg"},
   {"nombre": "Ferreteria", "urlImg": "assets/svg/Ferreteria.svg"},
   {"nombre": "Domicilio", "urlImg": "assets/svg/Domicilio.svg"},
-  {"nombre": "Salud", "urlImg": "assets/svg/IPS.svg"},
+  {"nombre": "Salud", "urlImg": "assets/svg/salud.svg"},
   {"nombre": "Tecnologia", "urlImg": "assets/svg/Tecnologia.svg"},
   {"nombre": "Agro", "urlImg": "assets/svg/Agro.svg"},
-  {"nombre": "Funeraria", "urlImg": "assets/svg/Funeral.svg"},
-  {"nombre": "Arte", "urlImg": "assets/svg/Pintar.svg"},
-  {"nombre": "Licor", "urlImg": "assets/svg/Pintar.svg"},
-  {"nombre": "Restaurante", "urlImg": "assets/svg/Pintar.svg"},
+  {"nombre": "Funeraria", "urlImg": "assets/svg/ataud.svg"},
+  {"nombre": "Arte", "urlImg": "assets/svg/arte.svg"},
+  {"nombre": "Licor", "urlImg": "assets/svg/licor.svg"},
+  {"nombre": "Restaurante", "urlImg": "assets/svg/restaurante.svg"},
 ];
 
 List listaPromo = [
@@ -162,13 +161,7 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                                 ),
                               ),
                               actions: <Widget>[
-                                IconButton(
-                                  icon: SvgPicture.asset(
-                                    "assets/svg/notification.svg",
-                                    //color: DeliveryColorsFinal.redfinal3,
-                                  ),
-                                  onPressed: () {},
-                                )
+                                TipoNotificaciones(),
                               ],
                             ),
                           ],
@@ -190,15 +183,51 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                             Divider(),
                             _crearListaCategoriaDescuento(),
                             Divider(),
-                            Text(
-                              'Lista de ofertas',
-                              style: FontTexto.styleTexto,
+                            /*Row(
+                              children: [
+                                Text(
+                                  'Lista de ofertas',
+                                  style: FontTexto.styleTexto,
+                                ),
+                                Spacer(),
+                                FlatButton(
+                                  height: 2.h,
+                                  minWidth: 3.w,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  color: DeliveryColorsFinal.redfinal3,
+                                  onPressed: () {},
+                                  child: Text(
+                                    "Ver mas",
+                                    style: FontTexto.styleVermas,
+                                  ),
+                                ),
+                              ],
                             ),
                             _crearListaFotos2(),
-                            Divider(),
-                            Text(
-                              'Lista de productos',
-                              style: FontTexto.styleTexto,
+                            Divider(),*/
+                            Row(
+                              children: [
+                                Text(
+                                  'Lista de productos',
+                                  style: FontTexto.styleTexto,
+                                ),
+                                Spacer(),
+                                FlatButton(
+                                  height: 2.h,
+                                  minWidth: 3.w,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  color: DeliveryColorsFinal.redfinal3,
+                                  onPressed: () {},
+                                  child: Text(
+                                    "Ver mas",
+                                    style: FontTexto.styleVermas,
+                                  ),
+                                ),
+                              ],
                             ),
                             _crearListaFotos(),
                             Divider(),
@@ -221,6 +250,22 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
         ],
       ),
     );
+  }
+
+  Widget TipoNotificaciones() {
+    if (logueado == false) {
+      return Container(
+        color: Colors.white,
+      );
+    } else {
+      return IconButton(
+        icon: SvgPicture.asset(
+          "assets/svg/notification.svg",
+          //color: DeliveryColorsFinal.redfinal3,
+        ),
+        onPressed: () {},
+      );
+    }
   }
 
   StatefulWidget tipoVistaIzquierda() {
@@ -555,8 +600,8 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CircleAvatar(
-                          radius: 27 + 3,
-                          backgroundColor: DeliveryColorsFinal.redfinal3,
+                          radius: 27 + 4,
+                          backgroundColor: Colors.transparent,
                           child: CircleAvatar(
                             radius: 27,
                             backgroundColor: Colors.white,
@@ -564,7 +609,7 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
                               padding: const EdgeInsets.all(0),
                               child: SvgPicture.asset(
                                 listaCategoriaDia[index]["urlImg"],
-                                color: DeliveryColorsFinal.redfinal3,
+                                //color: DeliveryColorsFinal.redfinal3,
                                 width: 40.0,
                                 height: 40.0,
                               ),
