@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:turismo/Interfaz/Usuarios/roundIconBtn.dart';
 
-class CartCounter extends StatelessWidget {
-  const CartCounter({
-    Key? key,
-  }) : super(key: key);
-
-  final int contador = 2;
+class CardCounter extends StatefulWidget {
+  CardCounter({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    //
+  _CardCounterState createState() => _CardCounterState();
+}
 
+int conteo = 1;
+
+class _CardCounterState extends State<CardCounter> {
+  @override
+  Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         color: Color(0xFFF6F6F6),
@@ -23,24 +24,33 @@ class CartCounter extends StatelessWidget {
           RoundIconBtn(
             iconData: Icons.remove,
             color: Colors.black38,
-            press: agregar,
+            press: sustraer,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20 / 4),
             child: Text(
-              "$contador",
+              "$conteo",
               style: GoogleFonts.montserrat(
                   fontSize: 14, fontWeight: FontWeight.w800),
             ),
           ),
           RoundIconBtn(
             iconData: Icons.add,
-            press: () {},
+            press: agregar,
           ),
         ],
       ),
     );
   }
 
-  agregar() {}
+  void agregar() {
+    setState(() => conteo++);
+  }
+
+  void sustraer() {
+    if (conteo == 0) {
+      return;
+    }
+    setState(() => conteo--);
+  }
 }
