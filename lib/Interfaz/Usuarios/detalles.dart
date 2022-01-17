@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:turismo/Bll/CarritoService.dart';
+import 'package:turismo/Entity/Carrito.dart';
 import 'package:turismo/Entity/Productos.dart';
 import 'package:turismo/Interfaz/Inicio/Inicio1.dart';
 import 'package:turismo/Interfaz/Inicio/inicioCuenta.dart';
 import 'package:turismo/Interfaz/Usuarios/Inicio.dart';
+import 'package:turismo/Interfaz/Usuarios/cardCounter.dart';
+import 'package:turismo/Interfaz/Usuarios/pages/carrito.dart';
 
 import 'cartCounter.dart';
 
@@ -55,7 +59,7 @@ class _DetallesState extends State<Detalles> {
                 ),
                 Positioned(
                   bottom: -20,
-                  child: CartCounter(),
+                  child: CardCounter(),
                 )
               ],
             ),
@@ -143,7 +147,9 @@ class _DetallesState extends State<Detalles> {
     if (logueado == true) {
       return ElevatedButton(
         onPressed: () {
-          Navigator.pop(context);
+          registrarCarrito(widget.producto.idProducto);
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (_) => CarritoPage()));
         },
         child: Text(
           "Agregar al carrito",
@@ -169,5 +175,14 @@ class _DetallesState extends State<Detalles> {
         ),
       );
     }
+  }
+
+  void registrarCarrito(var id) {
+    Carrito carrito = Carrito();
+
+    carrito.id_cliente = "1";
+    carrito.id_producto = id;
+
+    RegistrarCarrito1(carrito);
   }
 }
