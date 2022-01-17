@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+//import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -202,7 +202,7 @@ class _InicioCuentaState extends State<InicioCuenta> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        SizedBox(
+                        /*SizedBox(
                           height: 60,
                           child: FloatingActionButton(
                             heroTag: "btn1",
@@ -218,7 +218,7 @@ class _InicioCuentaState extends State<InicioCuenta> {
                             ),
                             onPressed: () async {
                               if (isChecked == true) {
-                                await LoginFacebook();
+                                //await LoginFacebook();
                               } else {
                                 String texto1 =
                                     'POR FAVOR ACEPTAR TERMINOS Y CONDICIONES';
@@ -229,7 +229,7 @@ class _InicioCuentaState extends State<InicioCuenta> {
                               }
                             },
                           ),
-                        ),
+                        ),*/
                         SizedBox(
                           height: 60,
                           child: FloatingActionButton(
@@ -344,7 +344,7 @@ class _InicioCuentaState extends State<InicioCuenta> {
     googleSignIn.disconnect();
   }
 
-  Future LoginFacebook() async {
+  /*Future LoginFacebook() async {
     final loginFacebook = FacebookLogin();
     final result = await loginFacebook.logIn(['email']);
     print("RS ${result.status}");
@@ -361,9 +361,9 @@ class _InicioCuentaState extends State<InicioCuenta> {
         await LoginWithFacebook(result, loginFacebook);
         break;
     }
-  }
+  }*/
 
-  Future LoginWithFacebook(
+  /*Future LoginWithFacebook(
       FacebookLoginResult result, FacebookLogin loginFacebook) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     //FacebookLogin loginFacebook = FacebookLogin();
@@ -405,7 +405,7 @@ class _InicioCuentaState extends State<InicioCuenta> {
         ),
       );
     }
-  }
+  }*/
 
   Future SingOutGoogle(GoogleSignIn googleSignIn) async {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -417,7 +417,7 @@ class _InicioCuentaState extends State<InicioCuenta> {
     });
   }
 
-  Future SingOutFacebook(FacebookLogin loginFacebook) async {
+  /*Future SingOutFacebook(FacebookLogin loginFacebook) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     await auth.signOut().then((value) {
       setState(() {
@@ -425,5 +425,5 @@ class _InicioCuentaState extends State<InicioCuenta> {
         login = false;
       });
     });
-  }
+  }*/
 }

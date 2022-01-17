@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:turismo/Interfaz/Inicio/inicio1.dart';
+import 'package:turismo/Interfaz/Usuarios/googleMaps.dart';
+import 'package:turismo/Interfaz/Usuarios/googleMaps.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +26,7 @@ class MyApp extends StatelessWidget {
         home: PageView(
           children: <Widget>[
             Inicio1(),
+            //GoogleMaps(),
           ],
         ),
       );

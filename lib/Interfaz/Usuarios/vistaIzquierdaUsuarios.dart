@@ -7,6 +7,7 @@ import 'package:turismo/Interfaz/Inicio/inicio1.dart';
 import 'package:turismo/Interfaz/Inicio/inicioSesion.dart';
 import 'package:turismo/Interfaz/Inicio/tipoProductoEmpresa.dart';
 import 'package:turismo/Interfaz/Usuarios/Inicio.dart';
+import 'package:turismo/Interfaz/Usuarios/miPerfil.dart';
 import 'package:turismo/Interfaz/Usuarios/registrarEmpresa.dart';
 import 'package:turismo/Interfaz/Usuarios/tipoRegistroEmpresa.dart';
 
@@ -80,7 +81,7 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                   onTap: () {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (_) => Inicio(),
+                        builder: (_) => miPerfil(),
                       ),
                     );
                   },

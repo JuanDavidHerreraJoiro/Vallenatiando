@@ -15,7 +15,7 @@ class _VistaIzquierdaNoUsuariosState extends State<VistaIzquierdaNoUsuarios> {
 
   @override
   Widget build(context) {
-    const logoSize = 90.0;
+    const logoSize = 80.0;
     return Container(
       width: 300.0,
       padding: EdgeInsets.all(8.0),
