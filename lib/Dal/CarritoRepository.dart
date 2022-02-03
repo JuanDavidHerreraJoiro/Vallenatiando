@@ -17,7 +17,7 @@ void RegistrarCarrito(Carrito carrito) async {
 
   final response = await http.post(Uri.parse(urls), body: {
     "id_cliente": carrito.id_cliente,
-    "id_producto": carrito.id_producto
+    "id_producto": carrito.id_producto,
   });
   //print(json.decode(response.body.toString()));
 }

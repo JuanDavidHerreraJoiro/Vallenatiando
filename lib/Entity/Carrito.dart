@@ -5,7 +5,7 @@ class Carrito {
 
   Carrito({this.id_carrito, this.id_cliente, this.id_producto});
 
-  factory Carrito.fromJson(Map<String, dynamic> json) => new Carrito(
+  factory Carrito.fromJson(Map<String, dynamic> json) => Carrito(
         id_carrito: json['id_carrito'],
         id_cliente: json['id_cliente'],
         id_producto: json['id_producto'],

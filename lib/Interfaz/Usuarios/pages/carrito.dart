@@ -1,10 +1,15 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:turismo/Dal/ProductoRepository.dart';
+import 'package:turismo/Entity/Productos.dart';
 
 import '../roundIconBtn.dart';
 
 class CarritoPage extends StatefulWidget {
-  CarritoPage({Key? key}) : super(key: key);
+  final Productos producto;
+  const CarritoPage(this.producto, {Key? key}) : super(key: key);
 
   @override
   _CarritoPageState createState() => _CarritoPageState();
@@ -17,16 +22,30 @@ class _CarritoPageState extends State<CarritoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Carrito'),
+        title: const Text('Carrito'),
       ),
       body: ListView(
-        padding: EdgeInsets.all(10.0),
         children: [card()],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.attach_money_sharp),
+        child: const Icon(Icons.attach_money_sharp),
         onPressed: () {},
       ),
+    );
+  }
+
+  Widget listaProducto() {
+    return FutureBuilder(
+      future: consultarProductoPorId(widget.producto.idProducto.toString()),
+      initialData: const [],
+      builder: (context, AsyncSnapshot snapshot) {
+        print(snapshot.data);
+        return ListView(
+          children: [
+            _listaCards(snapshot.data!, context),
+          ],
+        );
+      },
     );
   }
 
@@ -37,17 +56,17 @@ class _CarritoPageState extends State<CarritoPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Nombre del producto',
             ),
-            Divider(
+            const Divider(
               color: Color.fromRGBO(0, 0, 0, 0.8),
             ),
             //Padding(padding: EdgeInsets.only(left: 50.0, top: 30.0)),
             Container(
               child: Row(
                 children: [
-                  FadeInImage(
+                  const FadeInImage(
                     placeholder: AssetImage('assets/imagenes/loading-81.gif'),
                     image: NetworkImage(
                         'https://lamoto.com.ar/wp-content/uploads/2021/06/Las-mejores-marcas-de-cascos-para-motos.jpg'),
@@ -56,7 +75,7 @@ class _CarritoPageState extends State<CarritoPage> {
                     width: 120,
                     fit: BoxFit.cover,
                   ),
-                  Padding(padding: EdgeInsets.only(left: 20.0)),
+                  const Padding(padding: EdgeInsets.only(left: 20.0)),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -64,16 +83,16 @@ class _CarritoPageState extends State<CarritoPage> {
                         'Cantidad: $conteo',
                         textAlign: TextAlign.start,
                       ),
-                      Text('Precio unitario'),
-                      Text('489.000'),
-                      Text('479.000')
+                      const Text('Precio unitario'),
+                      const Text('489.000'),
+                      const Text('479.000')
                     ],
                   )
                 ],
               ),
             ),
             Container(
-                padding: EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -105,7 +124,7 @@ class _CarritoPageState extends State<CarritoPage> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30.0),
           color: Colors.white,
-          boxShadow: <BoxShadow>[
+          boxShadow: const <BoxShadow>[
             BoxShadow(
                 color: Colors.black26,
                 blurRadius: 10.0,
@@ -128,5 +147,22 @@ class _CarritoPageState extends State<CarritoPage> {
       return;
     }
     setState(() => conteo--);
+  }
+
+  _listaCards(List<dynamic> data, BuildContext context) {
+    final List<Widget> opciones = [];
+
+    for (var opt in data) {
+      final widgetTemp = ListTile(
+          title: Text(opt['nombre']),
+          trailing: const Icon(
+            Icons.keyboard_arrow_right,
+            color: Colors.blue,
+          ));
+      opciones
+        ..add(widgetTemp)
+        ..add(const Divider());
+    }
+    return opciones;
   }
 }

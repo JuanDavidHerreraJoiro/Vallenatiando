@@ -1,10 +1,12 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:turismo/Interfaz/Usuarios/roundIconBtn.dart';
 
 class CardCounter extends StatefulWidget {
-  CardCounter({Key? key}) : super(key: key);
-
+  int tope;
+  CardCounter(this.tope, {Key? key}) : super(key: key);
   @override
   _CardCounterState createState() => _CardCounterState();
 }
@@ -44,7 +46,9 @@ class _CardCounterState extends State<CardCounter> {
   }
 
   void agregar() {
-    setState(() => conteo++);
+    if (conteo < widget.tope) {
+      setState(() => conteo++);
+    }
   }
 
   void sustraer() {

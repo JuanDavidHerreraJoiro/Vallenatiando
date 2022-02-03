@@ -47,6 +47,6 @@ Future<List> consultarProductoPorId(String idProducto) async {
   final response =
       await http.post(Uri.parse(urls), body: {"idProducto": idProducto});
   var datauser = jsonDecode(response.body.toString());
-  //print(datauser);
+  // print(datauser);
   return datauser;
 }

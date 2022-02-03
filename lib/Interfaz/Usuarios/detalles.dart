@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:turismo/Bll/CarritoService.dart';
@@ -59,7 +61,7 @@ class _DetallesState extends State<Detalles> {
                 ),
                 Positioned(
                   bottom: -20,
-                  child: CardCounter(),
+                  child: CardCounter(int.parse(widget.producto.cantidad)),
                 )
               ],
             ),
@@ -137,6 +139,7 @@ class _DetallesState extends State<Detalles> {
         "Ferreteria",
         style: GoogleFonts.montserrat(color: Colors.black),
       ),
+      // ignore: prefer_const_literals_to_create_immutables
       actions: [
         SizedBox(width: 20),
       ],
@@ -149,7 +152,7 @@ class _DetallesState extends State<Detalles> {
         onPressed: () {
           registrarCarrito(widget.producto.idProducto);
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (_) => CarritoPage()));
+              MaterialPageRoute(builder: (_) => CarritoPage(widget.producto)));
         },
         child: Text(
           "Agregar al carrito",

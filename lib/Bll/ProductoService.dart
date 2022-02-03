@@ -9,6 +9,11 @@ Future<List> consultarProducto1() async {
   return consultarProducto();
 }
 
-Future<List> consultarProductoNombre1(String nombre, String estado,String idEmpresa) async {
-  return consultarProductoNombre(nombre, estado,idEmpresa);
+Future<List> consultarProductoNombre1(
+    String nombre, String estado, String idEmpresa) async {
+  return consultarProductoNombre(nombre, estado, idEmpresa);
+}
+
+Future<List> consultarProductoPorId1(String idProducto) {
+  return consultarProductoPorId(idProducto);
 }
