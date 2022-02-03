@@ -40,3 +40,12 @@ Future<List> consultarProductoNombre(
   //print(datauser);
   return datauser;
 }
+
+Future<List> consultarProductoPorId(String idProducto) async {
+  String urls = urlServidor + "/consultarProductoPorId.php";
+
+  final response = await http.post(Uri.parse(urls), body: {"idProducto": idProducto});
+  var datauser = jsonDecode(response.body.toString());
+  // print(datauser);
+  return datauser;
+}

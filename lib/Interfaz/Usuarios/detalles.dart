@@ -1,9 +1,15 @@
+// ignore_for_file: avoid_print, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:turismo/Bll/CarritoService.dart';
+import 'package:turismo/Entity/Carrito.dart';
 import 'package:turismo/Entity/Productos.dart';
 import 'package:turismo/Interfaz/Inicio/Inicio1.dart';
 import 'package:turismo/Interfaz/Inicio/inicioCuenta.dart';
 import 'package:turismo/Interfaz/Usuarios/Inicio.dart';
+import 'package:turismo/Interfaz/Usuarios/cardCounter.dart';
+import 'package:turismo/Interfaz/Usuarios/pages/carrito.dart';
 
 import 'cartCounter.dart';
 
@@ -19,7 +25,7 @@ class Detalles extends StatefulWidget {
 class _DetallesState extends State<Detalles> {
   @override
   Widget build(BuildContext context) {
-    print(widget.producto.toMap());
+    //print(widget.producto.toMap());
     return Scaffold(
       bottomNavigationBar: SafeArea(
         child: SizedBox(
@@ -55,7 +61,7 @@ class _DetallesState extends State<Detalles> {
                 ),
                 Positioned(
                   bottom: -20,
-                  child: CartCounter(),
+                  child: CardCounter(int.parse(widget.producto.cantidad)),
                 )
               ],
             ),
@@ -133,6 +139,7 @@ class _DetallesState extends State<Detalles> {
         "Ferreteria",
         style: GoogleFonts.montserrat(color: Colors.black),
       ),
+      // ignore: prefer_const_literals_to_create_immutables
       actions: [
         SizedBox(width: 20),
       ],
@@ -143,7 +150,9 @@ class _DetallesState extends State<Detalles> {
     if (logueado == true) {
       return ElevatedButton(
         onPressed: () {
-          Navigator.pop(context);
+          registrarCarrito(widget.producto.idProducto);
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (_) => CarritoPage(widget.producto)));
         },
         child: Text(
           "Agregar al carrito",
@@ -169,5 +178,14 @@ class _DetallesState extends State<Detalles> {
         ),
       );
     }
+  }
+
+  void registrarCarrito(var id) {
+    Carrito carrito = Carrito();
+
+    carrito.id_cliente = "1";
+    carrito.id_producto = id;
+
+    RegistrarCarrito1(carrito);
   }
 }
