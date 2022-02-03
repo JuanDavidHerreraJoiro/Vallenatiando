@@ -280,7 +280,7 @@ class _VistaIzquierdaUsuariosState extends State<VistaIzquierdaUsuarios> {
                     children: [
                       IconButton(
                         iconSize: 35,
-                        icon: Icon(Icons.exit_to_app_sharp),
+                        icon: Icon(Icons.power_settings_new_outlined),
                         color: Colors.white,
                         onPressed: () {
                           logueado = false;

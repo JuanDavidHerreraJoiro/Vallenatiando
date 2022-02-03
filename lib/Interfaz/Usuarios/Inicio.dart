@@ -372,6 +372,8 @@ class __CentroInicioStateState extends State<_CentroInicioState> {
         child: FutureBuilder(
           future: consultarProducto1(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
+            print(" CV ");
+            print(snapshot.data);
             return tipoFuture1(snapshot);
           },
         ),
