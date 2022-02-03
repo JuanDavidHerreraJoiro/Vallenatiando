@@ -25,7 +25,7 @@ class Detalles extends StatefulWidget {
 class _DetallesState extends State<Detalles> {
   @override
   Widget build(BuildContext context) {
-    print(widget.producto.toMap());
+    //print(widget.producto.toMap());
     return Scaffold(
       bottomNavigationBar: SafeArea(
         child: SizedBox(

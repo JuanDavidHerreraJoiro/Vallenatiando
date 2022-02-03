@@ -17,3 +17,4 @@ Future<List> consultarProductoNombre1(
 Future<List> consultarProductoPorId1(String idProducto) {
   return consultarProductoPorId(idProducto);
 }
+
